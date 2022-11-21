@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>components/AppButton.qml</file>
+        <file>components/AppComboBox.qml</file>
+        <file>components/AppFieldCheck.qml</file>
+        <file>components/AppFieldFile.qml</file>
+        <file>components/AppFieldText.qml</file>
+        <file>components/AppScrollBar.qml</file>
+        <file>components/qmldir</file>
+        <file>components/AppTabButton.qml</file>
+    </qresource>
+</RCC>

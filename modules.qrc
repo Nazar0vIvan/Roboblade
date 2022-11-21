@@ -1,0 +1,32 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Modules/Components/AppButton.qml</file>
+        <file>Modules/Components/AppComboBox.qml</file>
+        <file>Modules/Components/AppSwitch.qml</file>
+        <file>Modules/Components/AppFileUpload.qml</file>
+        <file>Modules/Components/AppTextField.qml</file>
+        <file>Modules/Components/AppScrollBar.qml</file>
+        <file>Modules/Components/AppTabButton.qml</file>
+        <file>Modules/Components/qmldir</file>
+        <file>Modules/Properties/BorderProperty.qml</file>
+        <file>Modules/Properties/ColorProperty.qml</file>
+        <file>Modules/Properties/GeometryProperty.qml</file>
+        <file>Modules/Properties/LineProperty.qml</file>
+        <file>Modules/Properties/PropertiesSection.qml</file>
+        <file>Modules/Properties/TextProperty.qml</file>
+        <file>Modules/Widgets/DashboardWidget.qml</file>
+        <file>Modules/Widgets/GaugeWidget.qml</file>
+        <file>Modules/Widgets/LineChartWidget.qml</file>
+        <file>Modules/Widgets/NumericWidget.qml</file>
+        <file>Modules/Widgets/qmldir</file>
+        <file>Modules/Widgets/widgetFactory.js</file>
+        <file>Modules/Properties/qmldir</file>
+        <file>Modules/Components/AppFormComponent.qml</file>
+        <file>Modules/Components/AppPopup.qml</file>
+        <file>Modules/Components/LinearGradientModel.qml</file>
+        <file>Modules/Components/NavigationMenu.qml</file>
+        <file>Modules/Components/NavigationMenuDelegate.qml</file>
+        <file>Modules/Components/AppIcon.qml</file>
+        <file>Modules/Components/AppToolButton.qml</file>
+    </qresource>
+</RCC>

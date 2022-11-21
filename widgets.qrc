@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>widgets/DashboardWidget.qml</file>
+        <file>widgets/GaugeWidget.qml</file>
+        <file>widgets/LineChart.qml</file>
+        <file>widgets/NumericWidget.qml</file>
+        <file>widgets/qmldir</file>
+        <file>widgets/widgetFactory.js</file>
+    </qresource>
+</RCC>

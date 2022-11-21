@@ -1,0 +1,10 @@
+module Components
+
+AppButton     1.0 AppButton.qml
+AppComboBox   1.0 AppComboBox.qml
+AppField      1.0 AppField.qml
+AppFieldCheck 1.0 AppFieldCheck.qml
+AppFieldFile  1.0 AppFieldFile.qml
+AppFieldText  1.0 AppFieldText.qml
+AppScrollBar  1.0 AppScrollBar.qml
+AppTabButton  1.0 AppTabButton.qml

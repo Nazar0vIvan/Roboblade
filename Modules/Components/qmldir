@@ -1,0 +1,16 @@
+module Components
+
+AppButton              1.0 AppButton.qml
+AppComboBox            1.0 AppComboBox.qml
+AppFileUpload          1.0 AppFileUpload.qml
+AppFormComponent       1.0 AppFormComponent.qml
+AppIcon                1.0 AppIcon.qml
+AppPopup               1.0 AppPopup.qml
+AppScrollBar           1.0 AppScrollBar.qml
+AppSwitch              1.0 AppSwitch.qml
+AppTabButton           1.0 AppTabButton.qml
+AppTextField           1.0 AppTextField.qml
+AppToolButton          1.0 AppToolButton.qml
+LinearGradientModel    1.0 LinearGradientModel.qml
+NavigationMenu         1.0 NavigationMenu.qml
+NavigationMenuDelegate 1.0 NavigationMenuDelegate.qml

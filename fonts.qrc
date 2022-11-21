@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/main">
+        <file alias="Roboto-Bold.ttf">fonts/roboto/Roboto-Bold.ttf</file>
+        <file alias="Roboto-Medium.ttf">fonts/roboto/Roboto-Medium.ttf</file>
+        <file alias="Roboto-Regular.ttf">fonts/roboto/Roboto-Regular.ttf</file>
+        <file alias="OpenSans-Bold.ttf">fonts/opensans/OpenSans-Bold.ttf</file>
+        <file alias="OpenSans-Italic.ttf">fonts/opensans/OpenSans-Italic.ttf</file>
+        <file alias="OpenSans-Regular.ttf">fonts/opensans/OpenSans-Regular.ttf</file>
+        <file alias="Nasalization-Regular.ttf">fonts/nasalization/Nasalization-Regular.ttf</file>
+    </qresource>
+</RCC>

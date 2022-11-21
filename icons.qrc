@@ -1,0 +1,46 @@
+<RCC>
+    <qresource prefix="/main">
+        <file alias="logo.svg">icons/logo.svg</file>
+    </qresource>
+    <qresource prefix="/navigation">
+        <file alias="dashboard.svg">icons/navigation/dashboard.svg</file>
+        <file alias="help.svg">icons/navigation/help.svg</file>
+        <file alias="model.svg">icons/navigation/model.svg</file>
+        <file alias="network.svg">icons/navigation/network.svg</file>
+        <file alias="settings.svg">icons/navigation/settings.svg</file>
+        <file alias="scene.svg">icons/navigation/scene.svg</file>
+    </qresource>
+    <qresource prefix="/dashboard">
+        <file alias="open.svg">icons/dashboard/open.svg</file>
+        <file alias="save.svg">icons/dashboard/save.svg</file>
+        <file alias="save_as.svg">icons/dashboard/save_as.svg</file>
+        <file alias="undo.svg">icons/dashboard/undo.svg</file>
+        <file alias="redo.svg">icons/dashboard/redo.svg</file>
+        <file alias="numeric.svg">icons/dashboard/numeric.svg</file>
+        <file alias="gauge.svg">icons/dashboard/gauge.svg</file>
+        <file alias="table.svg">icons/dashboard/table.svg</file>
+        <file alias="line_chart.svg">icons/dashboard/line_chart.svg</file>
+        <file alias="bar_chart.svg">icons/dashboard/bar_chart.svg</file>
+        <file alias="pie_chart.svg">icons/dashboard/pie_chart.svg</file>
+        <file alias="group.svg">icons/dashboard/group.svg</file>
+        <file alias="text.svg">icons/dashboard/text.svg</file>
+        <file alias="grid.svg">icons/dashboard/grid.svg</file>
+        <file alias="arrow_right.svg">icons/dashboard/arrow_right.svg</file>
+        <file alias="settings.svg">icons/dashboard/settings.svg</file>
+        <file alias="fullscreen.svg">icons/dashboard/fullscreen.svg</file>
+        <file alias="line_width.svg">icons/dashboard/line_width.svg</file>
+        <file alias="radius.svg">icons/dashboard/radius.svg</file>
+        <file alias="adjust.svg">icons/dashboard/adjust.svg</file>
+        <file alias="snap.svg">icons/dashboard/snap.svg</file>
+        <file alias="fts.svg">icons/dashboard/fts.svg</file>
+        <file alias="hou.svg">icons/dashboard/hou.svg</file>
+        <file alias="robot.svg">icons/dashboard/robot.svg</file>
+        <file alias="vfd.svg">icons/dashboard/vfd.svg</file>
+        <file alias="arrow_down.svg">icons/dashboard/arrow_down.svg</file>
+        <file alias="arrow_left.png">icons/dashboard/arrow_left.png</file>
+        <file alias="search.svg">icons/dashboard/search.svg</file>
+        <file alias="eraser.svg">icons/dashboard/eraser.svg</file>
+        <file alias="tick.svg">icons/dashboard/tick.svg</file>
+        <file alias="allow_left_long.png">icons/dashboard/allow_left_long.png</file>
+    </qresource>
+</RCC>
