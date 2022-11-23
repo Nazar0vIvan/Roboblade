@@ -8,21 +8,21 @@ import Components 1.0
 Item{
     id: root
 
-    signal subsPopupStateChanged()
+    signal subsDrawerStateChanged()
 
-    property bool isSubsPopupOpen: false
+    property bool isSubsDrawerOpen: false
     property alias enabled: subsButton.enabled
 
     ColumnLayout{
         id: rootCL
 
-        anchors{ fill: parent; margins: 10 }
+        anchors.fill: parent
 
         Rectangle{
             id: subsInfo
 
             Layout.fillWidth: true; Layout.fillHeight: true
-            color: AppStyle.surface
+            color: "transparent"
         }
 
         AppButton{
@@ -30,6 +30,7 @@ Item{
 
             Layout.preferredHeight: 30;  Layout.preferredWidth: 100;
             Layout.alignment: Qt.AlignLeft
+            Layout.bottomMargin: 10; Layout.leftMargin: 10
             leftPadding: 10
             text: qsTr("Subscribe")
             font: AppStyle.fonts.caption
@@ -42,7 +43,7 @@ Item{
             iconPath: "/dashboard/arrow_left.png"
             iconColor: enabled ? "black" : "gray"
 
-            onClicked: { root.subsPopupStateChanged() }
+            onClicked: { root.subsDrawerStateChanged() }
             onHoveredChanged: shiftAnimation.start()
 
 //            NumberAnimation{

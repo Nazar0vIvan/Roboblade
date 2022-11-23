@@ -15,7 +15,7 @@ Item{
     property int elementIconSize: 25
 
     property color elementSelectionIconColor: AppStyle.primary.base
-    property color elementDefaultIconColor: AppStyle.foreground
+    property color elementDefaultIconColor: "#a6a6a6"
 
     ListView{
         id: listView

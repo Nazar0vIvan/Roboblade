@@ -21,14 +21,8 @@ Rectangle{
     property int  _popupSpacing: 5
     property font _popupFont: AppStyle.fonts.caption
 
-    signal open
-    signal save
-    signal saveAs
-    signal undo
-    signal redo
     signal grid
     signal snap
-    signal prefs
     signal fullscreen
 
     signal gridStepChanged(int step)
@@ -41,15 +35,9 @@ Rectangle{
     function addToSnaps(button){ dragModes.addButton(button) }
 
     Action{ id: none }
-    Action{ id: open;       shortcut: StandardKey.Open;       onTriggered: { root.open(); console.log("open") }}
-    Action{ id: save;       shortcut: StandardKey.Save;       onTriggered: { root.save(); console.log("save") }}
-    Action{ id: saveAs;     shortcut: "Ctrl+Shift+S";         onTriggered: { root.saveAs(); console.log("saveAs")}}
-    Action{ id: undo;       shortcut: StandardKey.Undo;       onTriggered: { root.undo(); console.log("undo") }}
-    Action{ id: redo;       shortcut: StandardKey.Redo;       onTriggered: { root.redo(); console.log("redo") }}
-    Action{ id: grid;       shortcut: "G";                    onCheckedChanged: { root.grid() } checkable: true }
-    Action{ id: snap;       shortcut: "B";                    onCheckedChanged: { root.snap() } checkable: true }
-    Action{ id: prefs;                                        onTriggered: { root.prefs() }}
-    Action{ id: fullscreen; shortcut: StandardKey.FullScreen; onTriggered: { root.fullscreen(); console.log("fullscreen") } }
+    Action{ id: grid; shortcut: "G"; onCheckedChanged:{ root.grid() } checkable: true }
+    Action{ id: snap; shortcut: "B"; onCheckedChanged:{ root.snap() } checkable: true }
+    Action{ id: fullscreen; shortcut: StandardKey.FullScreen; onTriggered:{ root.fullscreen(); console.log("fullscreen") } }
 
     ButtonGroup{ id: dragModes }
 
@@ -155,6 +143,7 @@ Rectangle{
 
             Layout.preferredWidth: contentItem.childrenRect.width; Layout.fillHeight: true
             Layout.leftMargin: 20
+
             orientation: Qt.Horizontal
             spacing: 12
             interactive: false
@@ -163,22 +152,16 @@ Rectangle{
                 id: lmdl
 
                 Component.onCompleted: {
-                    lmdl.append({ type: 9, iconPath: "/dashboard/open.svg",       todo: open,   isCheckable: false, popup: noPopup })
-                    lmdl.append({ type: 9, iconPath: "/dashboard/save_as.svg",    todo: saveAs, isCheckable: false, popup: noPopup })
-                    lmdl.append({ type: 9, iconPath: "/dashboard/save.svg",       todo: save,   isCheckable: false, popup: noPopup })
-                    lmdl.append({ type: 9, iconPath: "/dashboard/undo.svg",       todo: undo,   isCheckable: false, popup: noPopup,   section: "edit" })
-                    lmdl.append({ type: 9, iconPath: "/dashboard/redo.svg",       todo: redo,   isCheckable: false, popup: noPopup,   section: "edit" })
-                    lmdl.append({ type: 0, iconPath: "/dashboard/numeric.svg",    todo: none,   isCheckable: false, popup: noPopup,   section: "widget" })
-                    lmdl.append({ type: 1, iconPath: "/dashboard/gauge.svg",      todo: none,   isCheckable: false, popup: noPopup,   section: "widget" })
-                    lmdl.append({ type: 2, iconPath: "/dashboard/table.svg",      todo: none,   isCheckable: false, popup: noPopup,   section: "widget" })
-                    lmdl.append({ type: 3, iconPath: "/dashboard/line_chart.svg", todo: none,   isCheckable: false, popup: noPopup,   section: "widget" })
-                    lmdl.append({ type: 4, iconPath: "/dashboard/bar_chart.svg",  todo: none,   isCheckable: false, popup: noPopup,   section: "widget" })
-                    lmdl.append({ type: 5, iconPath: "/dashboard/pie_chart.svg",  todo: none,   isCheckable: false, popup: noPopup,   section: "widget" })
-                    lmdl.append({ type: 6, iconPath: "/dashboard/group.svg",      todo: none,   isCheckable: false, popup: noPopup,   section: "widget" })
-                    lmdl.append({ type: 7, iconPath: "/dashboard/text.svg",       todo: none,   isCheckable: false, popup: noPopup,   section: "widget" })
+                    lmdl.append({ type: 0, iconPath: "/dashboard/numeric.svg",    todo: none,   isCheckable: false, popup: noPopup, })
+                    lmdl.append({ type: 1, iconPath: "/dashboard/gauge.svg",      todo: none,   isCheckable: false, popup: noPopup, })
+                    lmdl.append({ type: 2, iconPath: "/dashboard/table.svg",      todo: none,   isCheckable: false, popup: noPopup, })
+                    lmdl.append({ type: 3, iconPath: "/dashboard/line_chart.svg", todo: none,   isCheckable: false, popup: noPopup, })
+                    lmdl.append({ type: 4, iconPath: "/dashboard/bar_chart.svg",  todo: none,   isCheckable: false, popup: noPopup, })
+                    lmdl.append({ type: 5, iconPath: "/dashboard/pie_chart.svg",  todo: none,   isCheckable: false, popup: noPopup, })
+                    lmdl.append({ type: 6, iconPath: "/dashboard/group.svg",      todo: none,   isCheckable: false, popup: noPopup, })
+                    lmdl.append({ type: 7, iconPath: "/dashboard/text.svg",       todo: none,   isCheckable: false, popup: noPopup, })
                     lmdl.append({ type: 9, iconPath: "/dashboard/grid.svg",       todo: grid,   isCheckable: true,  popup: gridPopup, section: "dragMode" })
                     lmdl.append({ type: 9, iconPath: "/dashboard/snap.svg",       todo: snap,   isCheckable: true,  popup: snapPopup, section: "dragMode" })
-                    lmdl.append({ type: 9, iconPath: "/dashboard/adjust.svg",     todo: prefs,  isCheckable: false, popup: noPopup,   section: "settings" })
                 }
             }
 
@@ -189,6 +172,7 @@ Rectangle{
                 required property string section
                 required property var popup
 
+                anchors.verticalCenter: parent.verticalCenter
                 toolBar: root
                 size: root.size
                 isDropDown: popup.components.length
@@ -196,11 +180,12 @@ Rectangle{
             section.property: "section"
             section.criteria: ViewSection.FullString
             section.delegate: Rectangle{
-                anchors{ bottom: parent.bottom; bottomMargin: 8 }
-                width: leftListView.spacing; height: size
+                width: leftListView.spacing; height: root.size
+                anchors.verticalCenter: parent.verticalCenter
                 color: "transparent"
                 Rectangle{
                     width: 1; height: parent.height
+                    anchors.verticalCenter: parent.verticalCenter
                     color: AppStyle.foreground
                     opacity: AppStyle.emphasis.disabled
                     anchors.left: parent.left

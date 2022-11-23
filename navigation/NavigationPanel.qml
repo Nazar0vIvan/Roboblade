@@ -8,14 +8,15 @@ import Components 1.0
 Rectangle{
     id: root
 
-    signal currentIndexChanged(int index)
+    // signal currentIndexChanged(int index)
 
-    clip: true
+    property int currentIndex: 0
 
     NavigationMenu{
         id: navigationMenu
 
         anchors.fill: parent
+
         model: ListModel {
             ListElement{ iconPath: "/navigation/dashboard.svg" }
             ListElement{ iconPath: "/navigation/scene.svg"     }
@@ -23,6 +24,6 @@ Rectangle{
             ListElement{ iconPath: "/navigation/settings.svg"; type: "second" }
         }
 
-        onCurrentIndexChanged: index => { root.currentIndexChanged(index) }
+        onCurrentIndexChanged: index => { root.currentIndex = index }
     }
 }

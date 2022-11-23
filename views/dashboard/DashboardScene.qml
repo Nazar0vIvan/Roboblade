@@ -11,10 +11,10 @@ import "subsDrawer"
 Rectangle{
     id: root
 
-    property int subsPopupMargin: 5
+    property int subsDrawerMargin: 5
 
     signal selectionChanged(var wgt)
-    signal subsPopupStateChanged()
+    signal subsDrawerStateChanged()
 
     function slotGrid(){ flick.isGrid = !flick.isGrid; flick.adjustWidgetsPositionsToGrid() }
     function slotSnap(){ flick.isSnap  = !flick.isSnap }
@@ -25,8 +25,6 @@ Rectangle{
     function slotGridWidthChanged(width)    { flick.gridLineWidth = width; gridCanvas.requestPaint() }
     function slotGridOpacityChanged(opacity){ flick.gridOpacity = opacity/100; gridCanvas.requestPaint() }
     function slotSnapSpacingChanged(spacing){ flick.snapSpacing = spacing }
-
-    clip: true
 
     Flickable{
         id: flick
@@ -282,7 +280,7 @@ Rectangle{
     }
 
     SubsDrawer{
-        id: subsPopup
+        id: subsDrawer
 
         function slotSelectionChanged(wgt){ if(wgt !== null) widget = wgt; else visible = false }
         function slotStateChanged(){ visible = !visible }
@@ -292,8 +290,8 @@ Rectangle{
     }
 
     Component.onCompleted:{
-        root.subsPopupStateChanged.connect(subsPopup.slotStateChanged)
-        root.selectionChanged.connect(subsPopup.slotSelectionChanged)
+        root.subsDrawerStateChanged.connect(subsDrawer.slotStateChanged)
+        root.selectionChanged.connect(subsDrawer.slotSelectionChanged)
     }
 }
 

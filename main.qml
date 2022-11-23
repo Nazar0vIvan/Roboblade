@@ -1,7 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.2
+import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
 
 import "navigation"
@@ -16,7 +16,7 @@ ApplicationWindow{
     id: app
 
     width: 1100; height: 650
-    color: "gray" // AppStyle.surface
+    color: "#353535" // AppStyle.surface
     title: qsTr("Roboblade")
     visible: true
 
@@ -30,10 +30,10 @@ ApplicationWindow{
         handle: Rectangle{
             implicitHeight: 1
             color: SplitHandle.pressed | SplitHandle.hovered ? AppStyle.foreground : "transparent"
-            opacity: SplitHandle.pressed ? AppStyle.emphasis.high : (SplitHandle.hovered ? AppStyle.emphasis.medium : 1)
+            opacity: SplitHandle.pressed ? AppStyle.emphasis.high : (SplitHandle.hovered ? AppStyle.emphasis.medium : 1.0)
         }
 
-        SplitView{ // navigation menu - view
+        SplitView{ // navigation nav - view
             id: horizontalSplit
 
             SplitView.fillWidth: true; SplitView.fillHeight: true
@@ -41,7 +41,7 @@ ApplicationWindow{
             handle: Rectangle{
                 implicitWidth: 1
                 color: SplitHandle.pressed | SplitHandle.hovered ? AppStyle.foreground : "transparent"
-                opacity: SplitHandle.pressed ? AppStyle.emphasis.high : (SplitHandle.hovered ? AppStyle.emphasis.medium : 1)
+                opacity: SplitHandle.pressed ? AppStyle.emphasis.high: (SplitHandle.hovered ? AppStyle.emphasis.medium : 1.0)
             }
 
             NavigationPanel{
@@ -51,13 +51,15 @@ ApplicationWindow{
                 SplitView.minimumWidth: 50; SplitView.maximumWidth: 50
                 color: "#212121"
 
-                onCurrentIndexChanged: index => { stackView.replace(stackView.children[index], StackView.Immediate) }
+                // onCurrentIndexChanged: index => {  }// { stackView.replace(stackView.children[index], StackView.Immediate) }
             }
 
-            StackView{
-                id: stackView
+            StackLayout{
+                id: sl
 
                 SplitView.fillHeight: true; SplitView.fillWidth: true
+
+                currentIndex: navigationPanel.currentIndex
 
                 Dashboard{ id: dashboard; visible: true }
 
@@ -66,8 +68,6 @@ ApplicationWindow{
                 Network{ id: network; visible: false }
 
                 SettingsView{ id: settingsView; visible: false }
-
-                Rectangle{ id: help; width: 50; height: 50; color: "blue"; visible: false }
             }
         }
 

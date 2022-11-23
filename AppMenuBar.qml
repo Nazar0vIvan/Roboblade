@@ -7,7 +7,17 @@ import AppStyle 1.0
 MenuBar{
     id: menuBar
 
-    leftPadding: 10
+    signal open
+    signal save
+    signal saveAs
+    signal undo
+    signal redo
+
+    Action{ id: open;   shortcut: StandardKey.Open; onTriggered: { root.open(); console.log("open") }}
+    Action{ id: save;   shortcut: StandardKey.Save; onTriggered: { root.save(); console.log("save") }}
+    Action{ id: saveAs; shortcut: "Ctrl+Shift+S";   onTriggered: { root.saveAs(); console.log("saveAs")}}
+    Action{ id: undo;   shortcut: StandardKey.Undo; onTriggered: { root.undo(); console.log("undo") }}
+    Action{ id: redo;   shortcut: StandardKey.Redo; onTriggered: { root.redo(); console.log("redo") }}
 
     Menu{
         title: qsTr("File")
@@ -39,7 +49,7 @@ MenuBar{
         contentItem: Text{
 
             verticalAlignment: Text.AlignVCenter
-            leftPadding: 10; rightPadding: 10
+            leftPadding: 8; rightPadding: 8
             text: menuBarItem.text
             font: AppStyle.fonts.body
             color: AppStyle.foreground

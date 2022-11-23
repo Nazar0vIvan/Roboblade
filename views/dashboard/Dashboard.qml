@@ -14,21 +14,22 @@ Rectangle{
     color: "transparent"
 
     RowLayout{
-        id: rowLayout
+        id: rootRL
 
         anchors{ fill: parent; topMargin: 1 }
         spacing: 1
 
         ColumnLayout{
-            id: columnLayout
+            id: rootCL
+
+            Layout.fillWidth: true; Layout.fillHeight: true;
             spacing: 1
 
             DashboardToolBar{
                 id: dbToolBar
 
-                Layout.fillWidth: true; Layout.preferredHeight: 60
+                Layout.fillWidth: true; Layout.preferredHeight: 45
                 color: AppStyle.background
-
             }
 
             DashboardScene{
@@ -60,7 +61,7 @@ Rectangle{
 
         dbScene.selectionChanged.connect(dbSidePanel.slotSelectionChanged)
 
-        dbSidePanel.subsPopupStateChanged.connect(dbScene.subsPopupStateChanged)
+        dbSidePanel.subsDrawerStateChanged.connect(dbScene.subsDrawerStateChanged)
     }
 }
 

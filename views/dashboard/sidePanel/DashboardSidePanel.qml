@@ -21,7 +21,7 @@ Rectangle{
         }
     }
 
-    signal subsPopupStateChanged()
+    signal subsDrawerStateChanged()
 
     ColumnLayout{
         id: rootCL
@@ -33,18 +33,17 @@ Rectangle{
 
             property int interval: 15
 
-            Layout.fillWidth: true; Layout.preferredHeight: 35
-            leftPadding: 15
+            Layout.fillWidth: true; Layout.preferredHeight: 45
+            leftPadding: 20
             spacing: 15
 
             background: Rectangle{
                 color: "transparent"
-//                Rectangle{
-//                    anchors.bottom: parent.bottom
-//                    width: parent.width; height: 1
-//                    color: AppStyle.foreground
-//                    opacity: AppStyle.emphasis.disabled
-//                }
+                Rectangle{
+                    anchors.bottom: parent.bottom; anchors.bottomMargin: -1
+                    width: parent.width; height: 1
+                    color: "#353535"
+                }
             }
 
             AppTabButton{
@@ -74,16 +73,13 @@ Rectangle{
                 id: propsTab
 
                 Layout.fillWidth: true; Layout.fillHeight: true
-
             }
             SubsTab{
                 id: subsTab
 
                 Layout.fillWidth: true; Layout.fillHeight: true
 
-                onSubsPopupStateChanged: { root.subsPopupStateChanged(); isSubsPopupOpen = !isSubsPopupOpen }
-
-
+                onSubsDrawerStateChanged: { root.subsDrawerStateChanged(); isSubsDrawerOpen = !isSubsDrawerOpen }
             }
         }
     }

@@ -67,7 +67,7 @@ ToolButton{
         id: draggableLoader
 
         Component.onCompleted: {
-            if(control.section === "widget"){
+            if(control.type >= 0 && control.type <= 8){
                 sourceComponent = draggableComponent;
                 imageMA.drag.target = draggableLoader.item
             }
