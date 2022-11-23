@@ -4,7 +4,7 @@
         <file>Logger.qml</file>
         <file>AppStyle.qml</file>
         <file>navigation/Logo.qml</file>
-        <file>navigation/NavigationPanel.qml</file>   
+        <file>navigation/NavigationPanel.qml</file>
         <file>views/settings/SettingsNetworkTab.qml</file>
         <file>views/settings/SettingsSection.qml</file>
         <file>views/settings/SettingsView.qml</file>
@@ -23,5 +23,6 @@
         <file>views/dashboard/DashboardScene.qml</file>
         <file>views/dashboard/DashboardToolBar.qml</file>
         <file>views/scene/Scene.qml</file>
+        <file>AppMenuBar.qml</file>
     </qresource>
 </RCC>

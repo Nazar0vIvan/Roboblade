@@ -16,17 +16,19 @@ ApplicationWindow{
     id: app
 
     width: 1100; height: 650
-    color: AppStyle.surface
+    color: "gray" // AppStyle.surface
     title: qsTr("Roboblade")
     visible: true
 
-     SplitView{ // top - logger
+    menuBar: AppMenuBar{ height: 30 }
+
+    SplitView{ // top - logger
         id: verticalSplit
 
         anchors.fill: parent
         orientation: Qt.Vertical
         handle: Rectangle{
-            implicitHeight: 4
+            implicitHeight: 1
             color: SplitHandle.pressed | SplitHandle.hovered ? AppStyle.foreground : "transparent"
             opacity: SplitHandle.pressed ? AppStyle.emphasis.high : (SplitHandle.hovered ? AppStyle.emphasis.medium : 1)
         }
@@ -37,7 +39,7 @@ ApplicationWindow{
             SplitView.fillWidth: true; SplitView.fillHeight: true
             orientation: Qt.Horizontal
             handle: Rectangle{
-                implicitWidth: 4
+                implicitWidth: 1
                 color: SplitHandle.pressed | SplitHandle.hovered ? AppStyle.foreground : "transparent"
                 opacity: SplitHandle.pressed ? AppStyle.emphasis.high : (SplitHandle.hovered ? AppStyle.emphasis.medium : 1)
             }
@@ -45,13 +47,10 @@ ApplicationWindow{
             NavigationPanel{
                 id: navigationPanel
 
-                SplitView.preferredWidth: 220; SplitView.fillHeight: true
-                SplitView.minimumWidth: 85; SplitView.maximumWidth: 220
-                color: AppStyle.background
-                onWidthChanged:{ // logo opacity
-                    var min = SplitView.minimumWidth; var max = SplitView.maximumWidth
-                    navigationPanel.txtLogoOpacity = 1/(max-min)*width - min/(max-min)
-                }
+                SplitView.preferredWidth: 50; SplitView.fillHeight: true
+                SplitView.minimumWidth: 50; SplitView.maximumWidth: 50
+                color: "#212121"
+
                 onCurrentIndexChanged: index => { stackView.replace(stackView.children[index], StackView.Immediate) }
             }
 

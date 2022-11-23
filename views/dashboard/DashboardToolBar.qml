@@ -147,7 +147,6 @@ Rectangle{
         id: rootRL
 
         anchors.fill: parent
-        anchors.bottomMargin: 5
 
         // LEFT TOOLBAR SIDE
 
@@ -190,7 +189,6 @@ Rectangle{
                 required property string section
                 required property var popup
 
-                anchors{ bottom: parent.bottom; bottomMargin: 8 }
                 toolBar: root
                 size: root.size
                 isDropDown: popup.components.length

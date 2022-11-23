@@ -11,24 +11,25 @@ import "sidePanel"
 Rectangle{
     id: root
 
-    color: AppStyle.surface
+    color: "transparent"
 
-    ColumnLayout{
-        id: columnLayout
+    RowLayout{
+        id: rowLayout
 
-        anchors.fill: parent
-        spacing: 5
+        anchors{ fill: parent; topMargin: 1 }
+        spacing: 1
 
-        DashboardToolBar{
-            id: dbToolBar
+        ColumnLayout{
+            id: columnLayout
+            spacing: 1
 
-            Layout.fillWidth: true; Layout.preferredHeight: 70
-            color: AppStyle.background
-        }
-        RowLayout{
-            id: rowLayout
+            DashboardToolBar{
+                id: dbToolBar
 
-            Layout.fillWidth: true; Layout.fillHeight: true
+                Layout.fillWidth: true; Layout.preferredHeight: 60
+                color: AppStyle.background
+
+            }
 
             DashboardScene{
                 id: dbScene
@@ -36,13 +37,13 @@ Rectangle{
                 Layout.fillWidth: true; Layout.fillHeight: true
                 color: AppStyle.background
             }
+        }
 
-            DashboardSidePanel{
-                id: dbSidePanel
+        DashboardSidePanel{
+            id: dbSidePanel
 
-                Layout.preferredWidth: AppStyle.drawerWidth; Layout.fillHeight: true
-                color: AppStyle.background
-            }
+            Layout.preferredWidth: AppStyle.drawerWidth; Layout.fillHeight: true
+            color: AppStyle.background
         }
     }
 
