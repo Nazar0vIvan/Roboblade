@@ -83,17 +83,17 @@ Rectangle{
         // <- TabBar
 
         StackLayout{
-            id: settingsViewSL
+            id: stgViewSL
 
             currentIndex: tabBar.currentIndex
 
-            Rectangle{ id: dashboardTab }
+            Rectangle{ id: stgDashboardTab }
 
-            SettingsNetworkTab{ id: settingsNetworkTab }
+            SettingsNetworkTab{ id: stgNetworkTab }
 
-            Rectangle{ id: settingsSceneTab }
+            Rectangle{ id: stgSceneTab }
 
-            Rectangle{ id: settingsModelTab }
+            Rectangle{ id: stgModelTab }
         }
 
         RowLayout{
@@ -120,8 +120,8 @@ Rectangle{
                 color: AppStyle.background
                 text: "Apply"
                 onClicked: {
-                    for (const v1 of settingsDashboardTab.signals.values()){ v1.signal(v1.arg) }
-                    for (const v2 of settingsNetworkTab.signals.values()){ v2.signal(v2.arg) }
+                    for (const v1 of stgDashboardTab.signals.values()){ v1.signal(v1.arg) }
+                    for (const v2 of stgNetworkTab.signals.values()){ v2.signal(v2.arg) }
                     settingsNetworkTab.signals.clear()
                     settingsDashboardTab.signals.clear()
                 }

@@ -1,5 +1,5 @@
-#ifndef SOCKETHOUDINI_H
-#define SOCKETHOUDINI_H
+#ifndef SOCKETHOU_H
+#define SOCKETHOU_H
 
 #include <QUdpSocket>
 #include <QNetworkDatagram>
@@ -14,13 +14,13 @@
   PEER ADDRESS:  LOCALHOST
 */
 
-class SocketHoudini : public Socket
+class SocketHou : public Socket
 {
   Q_OBJECT
   Q_PROPERTY(int peerPort  MEMBER m_peerPort NOTIFY peerPortChanged)
 
 public:
-  SocketHoudini(const QString& name, QAbstractSocket::OpenMode openMode, QObject* parent = nullptr) : Socket(name, openMode, parent){}
+  SocketHou(const QString& name, QAbstractSocket::OpenMode openMode, QObject* parent = nullptr) : Socket(name, openMode, parent){}
 
 private:
   int m_peerPort;
@@ -29,4 +29,4 @@ signals:
   void peerPortChanged(int port);
 };
 
-#endif // SOCKETHOUDINI_H
+#endif // SOCKETHOU_H

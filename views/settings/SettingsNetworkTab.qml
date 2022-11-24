@@ -31,7 +31,7 @@ ListView{
     signal vfdPeerAddressChanged(string address)
     signal vfdPeerPortChanged(string port)
 
-    onKrcLocalPortChanged:   { socketRSI.localPort = parseInt(port); console.log(port)} // root.networkView.krcLocalPort = port }
+    onKrcLocalPortChanged:   { socketRSI.localPort = parseInt(port); console.log(port)}
     onKrcPeerAddressChanged: { socketRSI.peerAddress = socketRSI.stringToHostAddress(address)}
     onFtsLocalPortChanged:   { socketRDT.localPort = parseInt(port); console.log(port) }
     onFtsPeerAddressChanged: { socketRDT.peerAddress = socketRDT.stringToHostAddress(address) } // BAD

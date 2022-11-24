@@ -167,7 +167,6 @@ Rectangle{
 
             // delegate parent - contentItem of the ListView !
             delegate: AppToolButton{
-                id: toolButton
 
                 required property string section
                 required property var popup

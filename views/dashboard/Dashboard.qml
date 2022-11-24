@@ -16,7 +16,7 @@ Rectangle{
     RowLayout{
         id: rootRL
 
-        anchors{ fill: parent; topMargin: 1 }
+        anchors{ fill: parent; topMargin: 1 } // !!!!
         spacing: 1
 
         ColumnLayout{

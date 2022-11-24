@@ -31,14 +31,13 @@ Button{
         spacing: 0
 
         AppIcon{
-
             Layout.preferredWidth: control.iconSize; Layout.preferredHeight: control.iconSize
             source: control.iconPath
             color: control.iconColor
         }
 
         Text{
-
+            Layout.alignment: iconPath ? Qt.AlignLeft : Qt.AlignCenter
             text: control.text
             textFormat: control.textFormat
             font: control.font

@@ -17,7 +17,9 @@ ObjectModel{
         id: geometryPropsSection
 
         titleName: qsTr("Geometry")
+        isSeparator: false
         properties:[ GeometryProperty{ id: geometryProp }]
+
     }
 
     onWgtChanged:{

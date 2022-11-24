@@ -14,6 +14,9 @@ Rectangle {
     property int _fieldWidth: 85
     property int _componentHeight: 30
 
+    property var socket
+    property int timeInterval: 1
+
     color: "transparent"
 
     ColumnLayout{
@@ -28,65 +31,70 @@ Rectangle {
             columnSpacing: 25
 
             AppFormComponent{
-                id: localAddress
+                id: localAddressComp
                 Layout.row: 0; Layout.column: 0
                 Layout.preferredHeight: _componentHeight
                 labelName: "Local Address"; labelWidth: _labelWidth
                 field: AppTextField{
                     implicitWidth: _fieldWidth ; implicitHeight: _componentHeight
                     readOnly: true
+                    text: socket.localAddress ? socket.localAddress : "N/D"
                 }
             }
             AppFormComponent{
-                id: localPort
+                id: localPortComp
                 Layout.row: 1; Layout.column: 0
                 Layout.preferredHeight: _componentHeight
                 labelName: "Local Port"; labelWidth: _labelWidth
                 field: AppTextField{
                     implicitWidth: _fieldWidth ; implicitHeight: _componentHeight
                     readOnly: true
+                    text: socket.localPort ? socket.localPort : "N/D"
                 }
 
             }
             AppFormComponent{
-                id: peerAddress
+                id: peerAddressComp
                 Layout.row: 2; Layout.column: 0
                 Layout.preferredHeight: _componentHeight
                 labelName: "Peer Address"; labelWidth: _labelWidth
                 field: AppTextField{
                     implicitWidth: _fieldWidth ; implicitHeight: _componentHeight
                     readOnly: true
+                    text: socket.peerAddress ? socket.peerAddress : "N/D"
                 }
             }
             AppFormComponent{
-                id: peerPort
+                id: peerPortComp
                 Layout.row: 3; Layout.column: 0
                 Layout.preferredHeight: _componentHeight
                 labelName: "Peer Port"; labelWidth: _labelWidth
                 field: AppTextField{
                     implicitWidth: _fieldWidth ; implicitHeight: _componentHeight
                     readOnly: true
+                    text: socket.peerPort ? socket.peerPort : "N/D"
                 }
             }
 
             AppFormComponent{
-                id: type
+                id: typeComp
                 Layout.row: 0; Layout.column: 1
                 Layout.preferredHeight: _componentHeight
                 labelName: "Type"; labelWidth: _labelWidth
                 field: AppTextField{
                     implicitWidth: _fieldWidth ; implicitHeight: _componentHeight
                     readOnly: true
+                    text: socket.type ? socket.type : "N/D"
                 }
             }
             AppFormComponent{
-                id: status
+                id: statusComp
                 Layout.row: 1; Layout.column: 1
                 Layout.preferredHeight: _componentHeight
                 labelName: "Status"; labelWidth: _labelWidth
                 field: AppTextField{
                     implicitWidth: _fieldWidth ; implicitHeight: _componentHeight
-                    readOnly: true
+                    readOnly: socket.stateToString() ? socket.stateToString() : "N/D"
                 }
             }
             AppFormComponent{
@@ -97,22 +105,24 @@ Rectangle {
                 field: AppTextField{
                     implicitWidth: _fieldWidth ; implicitHeight: _componentHeight
                     readOnly: true
+                    text: socket.openMode ? socket.openMode : "N/D"
                 }
             }
             AppFormComponent{
-                id: timeInterval
+                id: timeIntervalComp
                 Layout.row: 3; Layout.column: 1
                 Layout.preferredHeight: _componentHeight
                 labelName: "Time Interval"; labelWidth: _labelWidth
                 field: AppTextField{
                     implicitWidth: _fieldWidth ; implicitHeight: _componentHeight
                     readOnly: true
+                    text: root.timeInterval
                 }
             }
         }
 
         ChartView{
-            id: dtrChart
+            id: dtrChart // dtr - data transfer rate
 
             Layout.fillWidth: true; Layout.fillHeight: true
             Layout.leftMargin: -10

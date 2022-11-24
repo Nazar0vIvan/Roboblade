@@ -4,6 +4,7 @@ import QtQuick 2.12
 QtObject {
 
     readonly property color background: "#121212"
+    readonly property color navigationPanelBackground: "#212121"
     readonly property color surface:    "#212121"
     readonly property color foreground: "#ffffff"
 

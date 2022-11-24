@@ -11,7 +11,8 @@ Item{
     property alias titleName: titleName.text
     readonly property int titleHeight: 40
     property list<Item> properties
-    property bool expanded: false
+    property bool isExpanded: false
+    property bool isSeparator: true
 
     implicitWidth: AppStyle.drawerWidth; implicitHeight: childrenRect.height
 
@@ -40,6 +41,7 @@ Item{
                 height: 1
                 color: AppStyle.foreground
                 opacity: AppStyle.emphasis.medium
+                visible: root.isSeparator
             }
             RowLayout{
                 id: titleRL
@@ -72,7 +74,7 @@ Item{
                     transform: Rotation {
                         origin.x: titleArrow.width/2; origin.y: titleArrow.height/2
                         axis{ x: 0; y: 0; z: 1 }
-                        angle: root.expanded ? 90 : 0
+                        angle: root.isExpanded ? 90 : 0
 
                         Behavior on angle { NumberAnimation { duration:  200 } }
                     }
@@ -84,7 +86,7 @@ Item{
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
-                onClicked: { root.expanded = !root.expanded }
+                onClicked: { root.isExpanded = !root.isExpanded }
             }
         }
         // <- properties section title
@@ -99,8 +101,8 @@ Item{
             Layout.leftMargin: 15; Layout.rightMargin: 35; Layout.bottomMargin: 15
             Layout.alignment: Qt.AlignTop
 
-            visible: root.expanded
-            opacity: root.expanded ? 1.0 : 0
+            visible: root.isExpanded
+            opacity: root.isExpanded ? 1.0 : 0
 
             Behavior on opacity { NumberAnimation { duration: 200 }}
 

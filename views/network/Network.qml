@@ -8,52 +8,40 @@ import Components 1.0
 Rectangle{
     id: root
 
-    color: AppStyle.background
+    color: "transparent"
 
-    ColumnLayout{
-        id: rootCL
+    Rectangle{
+        id: pane
 
-        anchors.fill: parent
-        anchors.margins: 30
-        spacing: 20
+        anchors{ fill: parent; topMargin: 1 }
+        color: AppStyle.background
 
-        Text{
-            text: qsTr("Network")
-            font: AppStyle.fonts.headline1
-            color: AppStyle.foreground
-            opacity: AppStyle.emphasis.high
+        ColumnLayout{
+            id: rootCL
+
+            anchors{
+                fill: parent
+                topMargin: 10
+                leftMargin: 20
+                rightMargin: 20
+                bottomMargin: 10
+            }
+            spacing: 20
+
+            Text{
+                text: qsTr("Network")
+                font: AppStyle.fonts.headline1
+                color: AppStyle.foreground
+                opacity: AppStyle.emphasis.high
+            }
+
+            NetworkTable{
+                id: networkTable
+
+                Layout.fillWidth: true; Layout.fillHeight: true
+            }
+
         }
-
-        AppComboBox{
-            id: socketsComboBox
-
-            Layout.preferredWidth: 250; Layout.preferredHeight: 30
-
-            valueRole: "value"
-            textRole: "text"
-            model:[
-                { value: 0, text: qsTr("KUKA Robot Controller") },
-                { value: 1, text: qsTr("Force/Torque Sensor") },
-                { value: 2, text: qsTr("Houdini") },
-                { value: 3, text: qsTr("Variable Frequency Drive") },
-            ]
-        }
-
-        StackLayout{
-            id: networkSL
-
-            currentIndex: socketsComboBox.currentIndex
-
-            NetworkSocketTab{ id: krcNetwork }
-
-            NetworkSocketTab{ id: ftsNetwork }
-
-            NetworkSocketTab{ id: houNetwork }
-
-            NetworkSocketTab{ id: vfdNetwork }
-        }
-
     }
-
 }
 

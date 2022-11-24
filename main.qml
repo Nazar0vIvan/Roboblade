@@ -49,15 +49,14 @@ ApplicationWindow{
 
                 SplitView.preferredWidth: 50; SplitView.fillHeight: true
                 SplitView.minimumWidth: 50; SplitView.maximumWidth: 50
-                color: "#212121"
-
-                // onCurrentIndexChanged: index => {  }// { stackView.replace(stackView.children[index], StackView.Immediate) }
+                color: AppStyle.navigationPanelBackground
             }
 
             StackLayout{
                 id: sl
 
                 SplitView.fillHeight: true; SplitView.fillWidth: true
+                anchors.topMargin: 5
 
                 currentIndex: navigationPanel.currentIndex
 
@@ -65,7 +64,7 @@ ApplicationWindow{
 
                 Scene{ id: scene; visible: false}
 
-                Network{ id: network; visible: false }
+                Network{ id: network; visible: false;  }
 
                 SettingsView{ id: settingsView; visible: false }
             }

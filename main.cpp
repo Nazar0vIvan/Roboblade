@@ -9,7 +9,7 @@
 #include "logger.h"
 #include "socketrdt.h"
 #include "socketrsi.h"
-#include "sockethoudini.h"
+#include "sockethou.h"
 
 int main(int argc, char *argv[])
 {
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     SocketRDT socketRDT("rdt", QAbstractSocket::ReadWrite);
     rootContext->setContextProperty("socketRDT", &socketRDT);
 
-    SocketHoudini socketHou("hou", QAbstractSocket::ReadWrite);
+    SocketHou socketHou("hou", QAbstractSocket::ReadWrite);
     rootContext->setContextProperty("socketHou", &socketHou);
 
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app, [url](QObject *obj, const QUrl &objUrl){if (!obj && url == objUrl) QCoreApplication::exit(-1);}, Qt::QueuedConnection);
