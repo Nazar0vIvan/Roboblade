@@ -12,13 +12,16 @@
 #include "socket.h"
 
 /*
-  LOCAL PORT:    59152
-  LOCAL ADDRESS: 192.168.1.1
-  PEER PORT:     49152
-  PEER ADDRESS:  192.168.1.3
+  LOCAL ADDRESS: 192.168.1.1 // can't be set
+  LOCAL PORT:    59152       // must be set
+  PEER ADDRESS:  192.168.1.3 // must be set
+  PEER PORT:     49152       // can't be set
 */
 
-#define PEER_PORT 49152
+#define RDT_LOCAL_PORT 59152
+#define RDT_PEER_ADDRESS "192.168.1.3"
+#define RDT_PEER_PORT 49152
+
 #define RDT_REQUEST_LENGTH 8
 #define RDT_RESPONSE_LENGTH 36
 
@@ -46,23 +49,15 @@ class SocketRDT : public Socket
 {
 
   Q_OBJECT
-  Q_PROPERTY(QHostAddress peerAddress MEMBER m_peerAddress NOTIFY peerAddressChanged)
 
 public:
-  SocketRDT(const QString& name, QAbstractSocket::OpenMode openMode, QObject* parent = nullptr);
+  SocketRDT(const QString& name, QObject* parent = nullptr);
 
   QNetworkDatagram RDTRequest2QNetworkDatagram(const RDTRequest& request);
   RDTResponse QNetworkDatagram2RDTResponse(const QNetworkDatagram& networkDatagram);
 
-  Q_INVOKABLE QString peerHostAddressString() const { return m_peerAddress.toString(); }
-
-private:
-  int m_peerPort;
-  QHostAddress m_peerAddress;
-
 signals:
   void responceChanged(const RDTResponse& responce);
-  void peerAddressChanged(const QHostAddress& address);
 
 public slots:
   void slotStartStreaming();

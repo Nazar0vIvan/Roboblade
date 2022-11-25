@@ -21,25 +21,26 @@ ListView{
 
     property var signals: new Map()
 
-    signal krcLocalPortChanged(string port)
-    signal krcPeerAddressChanged(string address)
-    signal ftsLocalPortChanged(string port)
-    signal ftsPeerAddressChanged(string address)
-    signal houLocalPortChanged(string port)
-    signal houPeerPortChanged(string port)
-    signal vfdLocalPortChanged(string port)
-    signal vfdPeerAddressChanged(string address)
-    signal vfdPeerPortChanged(string port)
+    signal rsiConfigFileChanged
+//    signal ftsLocalPortChanged
+//    signal ftsPeerAddressChanged
+//    signal houLocalPortChanged
+//    signal houPeerPortChanged
+//    signal vfdLocalPortChanged
+//    signal vfdPeerAddressChanged
+//    signal vfdPeerPortChanged
 
-    onKrcLocalPortChanged:   { socketRSI.localPort = parseInt(port); console.log(port)}
-    onKrcPeerAddressChanged: { socketRSI.peerAddress = socketRSI.stringToHostAddress(address)}
-    onFtsLocalPortChanged:   { socketRDT.localPort = parseInt(port); console.log(port) }
-    onFtsPeerAddressChanged: { socketRDT.peerAddress = socketRDT.stringToHostAddress(address) } // BAD
-    onHouLocalPortChanged:   { socketHou.localPort = parseInt(port); console.log(port) }
-    onHouPeerPortChanged:    { socketHou.peerPort = parseInt(port) }
-    onVfdLocalPortChanged:   { /*console.log(port)*/ }
-    onVfdPeerAddressChanged: { /*console.log(address)*/ }
-    onVfdPeerPortChanged:    { /*console.log(port)*/ }
+    onRsiConfigFileChanged:{
+        socketRSI.localAddress = krcLocalAddress.field.text
+        socketRSI.localPort = parseInt(krcLocalPort.field.text)
+    }
+//    onFtsLocalPortChanged:   { socketRDT.localPort = parseInt(port); console.log(port) }
+//    onFtsPeerAddressChanged: { socketRDT.peerAddress = socketRDT.stringToHostAddress(address) } // BAD
+//    onHouLocalPortChanged:   { socketHou.localPort = parseInt(port); console.log(port) }
+//    onHouPeerPortChanged:    { socketHou.peerPort = parseInt(port) }
+//    onVfdLocalPortChanged:   { /*console.log(port)*/ }
+//    onVfdPeerAddressChanged: { /*console.log(address)*/ }
+//    onVfdPeerPortChanged:    { /*console.log(port)*/ }
 
     spacing: 20
     clip: true
@@ -51,23 +52,43 @@ ListView{
     // -> ObjectModel
     model: ObjectModel{
 
-        // -> krc
+        // -> rsi
         SettingsSection{
             id: rsiSettings
 
             width: root.width
-            titleName: qsTr("RobotSensorInterface")
-            componentHeight: _componentHeight; componentsSpacing: _componentsSpacing;
+            titleName: qsTr("Robot Sensor Interface")
+            componentHeight: _componentHeight; componentsSpacing: _componentsSpacing
             labelWidth: _labelWidth; fieldWidth: _fieldWidth; componentSpacing: _componentSpacing
             components:[
-                AppFormComponent{ id: uploadFile;      labelName: qsTr("Configuration File"); field: AppFileUpload{ fieldWidth: _fieldWidth; defaultTxt: qsTr("defined by Configuration File"); } },
-                AppFormComponent{ id: krcLocalAddress; labelName: qsTr("Local Address");      field: AppTextField{ defaultTxt: qsTr("defined by Configuration File"); readOnly: true } },
-                AppFormComponent{ id: krcLocalPort;    labelName: qsTr("Local Port");         field: AppTextField{ defaultTxt: qsTr("defined by Configuration File"); readOnly: true } },
-                AppFormComponent{ id: krcOnlySend;     labelName: qsTr("ONLYSEND");           field: AppTextField{ defaultTxt: qsTr("defined by Configuration File"); readOnly: true } },
-                AppFormComponent{ id: krcPeerAddress;  labelName: qsTr("Peer Address");       field: AppTextField{ text: qsTr("192.168.1.2");                         readOnly: true } }
+                AppFormComponent{
+                    id: uploadFile
+                    labelName: qsTr("Configuration File")
+                    field: AppFileUpload{ fieldWidth: _fieldWidth; defaultTxt: qsTr("defined by Configuration File") }
+                },
+                AppFormComponent{
+                    id: krcLocalAddress
+                    labelName: qsTr("Local Address")
+                    field: AppTextField{ defaultTxt: qsTr("defined by Configuration File"); readOnly: true; enabled: false }
+                },
+                AppFormComponent{
+                    id: krcLocalPort
+                    labelName: qsTr("Local Port")
+                    field: AppTextField{ defaultTxt: qsTr("defined by Configuration File"); readOnly: true; enabled: false }
+                },
+                AppFormComponent{
+                    id: krcOnlySend
+                    labelName: qsTr("ONLYSEND")
+                    field: AppTextField{ defaultTxt: qsTr("defined by Configuration File"); readOnly: true; enabled: false }
+                },
+                AppFormComponent{
+                    id: krcPeerAddress
+                    labelName: qsTr("Peer Address")
+                    field: AppTextField{ text: socketRSI.peerAddress; readOnly: true; enabled: false }
+                }
             ]
         }
-        // <- krc
+        // <- rsi
 
         // -> fts
         SettingsSection{
@@ -79,10 +100,19 @@ ListView{
             labelWidth: _labelWidth; fieldWidth: _fieldWidth; componentSpacing: _componentSpacing
             components:[
                 AppFormComponent{
+                    id: ftsLocalAddress
+                    labelName: qsTr("Local Address");
+                    field: AppTextField{
+                        text: socketRDT.localAddress
+                        borderWidth: 0
+                        readOnly: true
+                    }
+                },
+                AppFormComponent{
                     id: ftsLocalPort
                     labelName: qsTr("Local Port");
                     field: AppTextField{
-                        text: "59152"
+                        text: socketRDT.localPort.toString()
                         validator: portValidator
                         onEditingFinished:{ signals.set(1, {signal: root.ftsLocalPortChanged, arg: text}) }
                     }
@@ -91,7 +121,7 @@ ListView{
                     id: ftsPeerAddress
                     labelName: qsTr("Peer Address")
                     field: AppTextField{
-                        text: "192.168.1.3"
+                        text: socketRDT.peerAddress
                         validator: ipValidator
                         onEditingFinished:{ signals.set(2, {signal: root.ftsPeerAddressChanged, arg: text}) }
                     }
@@ -99,7 +129,11 @@ ListView{
                 AppFormComponent{
                     id: ftsPeerPort
                     labelName: qsTr("Peer Port")
-                    field: AppTextField{ text: "49152"; borderWidth: 0; readOnly: true }
+                    field: AppTextField{
+                        text: socketRDT.peerPort.toString()
+                        borderWidth: 0
+                        readOnly: true
+                    }
                 }
             ]
         }
@@ -118,15 +152,10 @@ ListView{
                     id: houLocalPort
                     labelName: qsTr("Local Port")
                     field: AppTextField{
-                        text: "1111"
+                        text: socketHou.localPort
                         validator: portValidator
                         onEditingFinished:{ signals.set(3, {signal: root.houLocalPortChanged, arg: text}) }
                     }
-                },
-                AppFormComponent{
-                    id: houPeerAddress
-                    labelName: qsTr("Peer Address")
-                    field: AppTextField{ text: "127.0.0.1"; borderWidth: 0; readOnly: true }
                 },
                 AppFormComponent{
                     id: houPeerPort
@@ -151,10 +180,19 @@ ListView{
             labelWidth: _labelWidth; fieldWidth: _fieldWidth; componentSpacing: _componentSpacing
             components:[
                 AppFormComponent{
+                    id: vfdLocalAddress
+                    labelName: qsTr("Local Address");
+                    field: AppTextField{
+                        text: socketVFDA65.localAddress
+                        borderWidth: 0
+                        readOnly: true
+                    }
+                },
+                AppFormComponent{
                     id: vfdLocalPort
                     labelName: qsTr("Local Port")
                     field: AppTextField{
-                        text: qsTr("111111")
+                        text: socketVFDA65.localPort
                         validator: portValidator
                         onEditingFinished:{ signals.set(5, {signal: root.vfdLocalPortChanged, arg: text}) }
                     }
@@ -164,7 +202,7 @@ ListView{
 
                     labelName: qsTr("Peer Address");
                     field: AppTextField{
-                        text: qsTr("192.168.1.4")
+                        text: socketVFDA65.peerAddress
                         validator: ipValidator
                         onEditingFinished:{ signals.set(6, {signal: vfdPeerAddressChanged, arg: text}) }
                     }
@@ -174,7 +212,7 @@ ListView{
 
                     labelName: qsTr("Peer Port")
                     field: AppTextField{
-                        text: qsTr("222222")
+                        text: socketVFDA65.peerPort
                         validator: portValidator
                         onEditingFinished:{ signals.set(7, {signal: root.vfdPeerPortChanged, arg: text}) }
                     }
@@ -182,26 +220,9 @@ ListView{
             ]
         }
         // <- vfd
-
     } // <- ObjectModel
 
     onContentYChanged: { vBar.adjustVBarIndicator() }
-
-//    MouseArea{
-//        id: rootMA
-
-//        anchors.fill: parent
-//        onWheel: wheel => { if (wheel.angleDelta.y > 0) vBar.decrease(); else vBar.increase() }
-
-//        onClicked: mouse => { console.log("pressed"); mouse.accepted = true }
-////        preventStealing: false
-////        onClicked: mouse => { mouse.accepted = true }
-////        onReleased: mouse => { mouse.accepted = true }
-////        onPressed: mouse => { mouse.accepted = true }
-////        hoverEnabled: true
-
-//        propagateComposedEvents: true
-//    }
 
     AppScrollBar{
         id: vBar

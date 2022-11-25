@@ -1,5 +1,41 @@
 #include "socket.h"
 
+Socket::Socket(const QString &name, QObject *parent) : QUdpSocket(parent), m_name(name)
+{
+  setLocalAddress(LOCAL_ADDRESS);
+
+  connect(this, &Socket::stateChanged, this, &Socket::stateChangeToMessage);
+  connect(this, &Socket::errorOccurred, this, &Socket::errorOccurrenceToMessage);
+
+  connect(this, &Socket::stateChangedMessage, Logger::instance(), &Logger::push);
+  connect(this, &Socket::errorOccuredMessage, Logger::instance(), &Logger::push);
+}
+
+
+QString Socket::openModeToString(OpenMode openMode)
+{
+  switch(openMode){
+    case QIODevice::NotOpen:  { return "Not Open";  }
+    case QIODevice::ReadOnly: { return "ReadOnly";  }
+    case QIODevice::WriteOnly:{ return "WriteOnly"; }
+    case QIODevice::ReadWrite:{ return "ReadWrite"; }
+  }
+  return "ReadWrite";
+}
+
+QString Socket::stateToString()
+{
+  switch (state()) {
+    case QAbstractSocket::UnconnectedState:{ return QString("UnconnectedState"); }
+    case QAbstractSocket::HostLookupState: { return QString("HostLookupState");  }
+    case QAbstractSocket::ConnectingState: { return QString("ConnectingState");  }
+    case QAbstractSocket::ConnectedState:  { return QString("ConnectedState");   }
+    case QAbstractSocket::BoundState:      { return QString("BoundState");       }
+    case QAbstractSocket::ClosingState:    { return QString("ClosingState");      }
+    case QAbstractSocket::ListeningState:  { return QString("ListeningState");   }
+  }
+}
+
 void Socket::stateChangeToMessage(QAbstractSocket::SocketState socketState)
 {
   QString message;

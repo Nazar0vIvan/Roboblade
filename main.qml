@@ -23,7 +23,7 @@ ApplicationWindow{
     menuBar: AppMenuBar{ height: 30 }
 
     SplitView{ // top - logger
-        id: verticalSplit
+        id: vSplitView
 
         anchors.fill: parent
         orientation: Qt.Vertical
@@ -34,7 +34,7 @@ ApplicationWindow{
         }
 
         SplitView{ // navigation nav - view
-            id: horizontalSplit
+            id: hSplitView
 
             SplitView.fillWidth: true; SplitView.fillHeight: true
             orientation: Qt.Horizontal

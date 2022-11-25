@@ -9,6 +9,8 @@
 
 #include "logger.h"
 
+#define LOCAL_ADDRESS "192.168.1.1"
+
 struct Parameter{
   QString  name;
   QString  type;
@@ -121,65 +123,57 @@ private:
 };
 
 // ----------------------------------------------------------------------------------------------------
+
 class Socket : public QUdpSocket
 {
 
   Q_OBJECT
-  Q_PROPERTY(int localPort MEMBER m_localPort NOTIFY localPortChanged)
   Q_PROPERTY(ParametersTableModel* parmsModel READ parmsModel CONSTANT)
+  Q_PROPERTY(QString localAddress MEMBER m_localAddress NOTIFY localAddressChanged)
+  Q_PROPERTY(int localPort READ localPort WRITE setLocalPort NOTIFY localPortChanged)
+  Q_PROPERTY(QString peerAddress READ peerAddress WRITE setPeerAddress NOTIFY peerAddressChanged)
+  Q_PROPERTY(int peerPort READ peerPort WRITE setPeerPort NOTIFY peerPortChanged)
 
 public:
-  explicit Socket(const QString& name, QAbstractSocket::OpenMode openMode = QAbstractSocket::ReadWrite, QObject* parent = nullptr)
-    : QUdpSocket(parent), m_name(name), m_localPort(0)
-  {
-    connect(this, &Socket::stateChanged, this, &Socket::stateChangeToMessage);
-    connect(this, &Socket::errorOccurred, this, &Socket::errorOccurrenceToMessage);
+  explicit Socket(const QString& name, QObject* parent = nullptr);
 
-    connect(this, &Socket::stateChangedMessage, Logger::instance(), &Logger::push);
-    connect(this, &Socket::errorOccuredMessage, Logger::instance(), &Logger::push);
+  ~Socket(){ delete m_parmsModel; }
 
-    m_parmsTableModel = new ParametersTableModel(m_name);
+  ParametersTableModel* parmsModel() const { return m_parmsModel; }
+  void setParmsModel(ParametersTableModel* parmModel) { m_parmsModel = parmModel; }
 
-    setOpenMode(openMode);
-  }
+  QString openModeToString(QIODevice::OpenMode openMode);
 
-  ~Socket(){ delete m_parmsTableModel; }
+  QString localAddress() const { return m_localAddress; }
+  void setLocalAddress(const QString& localAddress){ m_localAddress = localAddress; }
 
-  QString openModeToString(QIODevice::OpenMode openMode){
-    switch(openMode){
-      case QIODevice::NotOpen:   { return "Not Open";  }
-      case QIODevice::ReadOnly:  { return "ReadOnly";  }
-      case QIODevice::WriteOnly: { return "WriteOnly"; }
-      case QIODevice::ReadWrite: { return "ReadWrite"; }
-    }
-    return "ReadWrite";
-  }
+  int localPort() const { return m_localPort; }
+  void setLocalPort(int localPort){ m_localPort = localPort; }
 
-  ParametersTableModel* parmsModel() const { return m_parmsTableModel; }
+  QString peerAddress() const { return m_peerAddress; }
+  void setPeerAddress(const QString& peerAddress){ m_peerAddress = peerAddress; }
+
+  int peerPort() const { return m_peerPort; }
+  void setPeerPort(int peerPort){ m_peerPort = peerPort; }
 
   // Q_INVOKABLES
-  Q_INVOKABLE QString stateToString(){
-    switch (state()) {
-      case QAbstractSocket::UnconnectedState: { return QString("UnconnectedState"); }
-      case QAbstractSocket::HostLookupState:  { return QString("HostLookupState");  }
-      case QAbstractSocket::ConnectingState:  { return QString("ConnectingState");  }
-      case QAbstractSocket::ConnectedState:   { return QString("ConnectedState");   }
-      case QAbstractSocket::BoundState:       { return QString("BoundState");       }
-      case QAbstractSocket::ClosingState:     { return QString("ClosingStat");      }
-      case QAbstractSocket::ListeningState:   { return QString("ListeningState");   }
-    }
-  }
-  Q_INVOKABLE QHostAddress stringToHostAddress(const QString& str) const{ return QHostAddress(str); }
-
-  ParametersTableModel* m_parmsTableModel;
+  Q_INVOKABLE QString stateToString();
 
 private:
   QString m_name;
+  ParametersTableModel* m_parmsModel;
+  QString m_localAddress;
   int m_localPort;
+  QString m_peerAddress;
+  int m_peerPort;
+
 
 signals:
- void localPortChanged(int port);
- void parametersChanged();
+ void localAddressChanged();
+ void localPortChanged();
+ void peerAddressChanged();
+ void peerPortChanged();
+
  void stateChangedMessage(const QString& message);
  void errorOccuredMessage(const QString& message);
 
@@ -190,6 +184,5 @@ private slots:
 };
 
 Q_DECLARE_METATYPE(ParametersTableModel)
-Q_DECLARE_METATYPE(QHostAddress)
 
 #endif // SOCKET_H

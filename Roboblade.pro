@@ -17,6 +17,7 @@ SOURCES += \
         main.cpp \
         socket.cpp \
         sockethou.cpp \
+        socketmodbustcp.cpp \
         socketrdt.cpp \
         socketrsi.cpp
 
@@ -42,5 +43,6 @@ HEADERS += \
     logger.h \
     socket.h \
     sockethou.h \
+    socketmodbustcp.h \
     socketrdt.h \
     socketrsi.h

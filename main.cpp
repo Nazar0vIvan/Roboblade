@@ -41,13 +41,13 @@ int main(int argc, char *argv[])
 
     rootContext->setContextProperty("logger", Logger::instance());
 
-    SocketRSI socketRSI("rsi", QAbstractSocket::ReadWrite);
+    SocketRSI socketRSI("rsi");
     rootContext->setContextProperty("socketRSI", &socketRSI);
 
-    SocketRDT socketRDT("rdt", QAbstractSocket::ReadWrite);
+    SocketRDT socketRDT("rdt");
     rootContext->setContextProperty("socketRDT", &socketRDT);
 
-    SocketHou socketHou("hou", QAbstractSocket::ReadWrite);
+    SocketHou socketHou("hou");
     rootContext->setContextProperty("socketHou", &socketHou);
 
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app, [url](QObject *obj, const QUrl &objUrl){if (!obj && url == objUrl) QCoreApplication::exit(-1);}, Qt::QueuedConnection);

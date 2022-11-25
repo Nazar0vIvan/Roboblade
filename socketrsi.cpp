@@ -1,14 +1,17 @@
 #include "socketrsi.h"
 
-SocketRSI::SocketRSI(const QString &name, OpenMode openMode, QObject *parent)  : Socket(name, openMode, parent)
+SocketRSI::SocketRSI(const QString &name, QObject *parent) : Socket(name, parent)
 {
-  QList<Parameter> parms;
+  setPeerAddress(RSI_PEER_ADDRESS);
 
+  qDebug() << peerAddress();
+
+  QList<Parameter> parms;
   for(int i=0; i < 3; ++i){
     parms.append( {QString::number(i),"int","ct"} );
   }
 
-  m_parmsTableModel->setParameters(parms);
+  setParmsModel(new ParametersTableModel(name, parms));
 }
 
 void SocketRSI::parseConfigFile(const QUrl& url)

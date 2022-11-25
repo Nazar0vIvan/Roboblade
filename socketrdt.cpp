@@ -1,8 +1,11 @@
 #include "socketrdt.h"
 
-SocketRDT::SocketRDT(const QString &name, OpenMode openMode, QObject* parent) : Socket(name, openMode, parent)
+SocketRDT::SocketRDT(const QString& name, QObject* parent) : Socket(name, parent)
 {
-  setPeerPort(PEER_PORT);
+  setLocalAddress(LOCAL_ADDRESS);
+  setLocalPort(RDT_LOCAL_PORT);
+  setPeerAddress(RDT_PEER_ADDRESS);
+  setPeerPort(RDT_PEER_PORT);
 
   QList<Parameter> parms;
   parms.append({ "rdt_seq", "int",    "ct"  });
@@ -15,7 +18,7 @@ SocketRDT::SocketRDT(const QString &name, OpenMode openMode, QObject* parent) : 
   parms.append({ "Ty",      "double", "Nm", -60.0,    60.0  });
   parms.append({ "Tz",      "double", "Nm", -60.0,    60.0  });
 
-  m_parmsTableModel->setParameters(parms);
+  setParmsModel(new ParametersTableModel(name, parms));
 }
 
 QNetworkDatagram SocketRDT::RDTRequest2QNetworkDatagram(const RDTRequest& request)
@@ -54,12 +57,12 @@ RDTResponse SocketRDT::QNetworkDatagram2RDTResponse(const QNetworkDatagram& netw
 void SocketRDT::slotStartStreaming()
 {
   connect(this, &SocketRDT::readyRead, this, &SocketRDT::slotReadData);
-  writeDatagram(RDTRequest2QNetworkDatagram(RDTRequest{0x1234,0x0002,0}).data(), peerAddress(), peerPort());
+  writeDatagram(RDTRequest2QNetworkDatagram(RDTRequest{0x1234,0x0002,0}).data(), QHostAddress(peerAddress()), peerPort());
 }
 
 void SocketRDT::slotStopStreaming()
 {
-  writeDatagram(RDTRequest2QNetworkDatagram(RDTRequest{0x1234,0x0000,0}).data(), peerAddress(), peerPort());
+  writeDatagram(RDTRequest2QNetworkDatagram(RDTRequest{0x1234,0x0000,0}).data(), QHostAddress(peerAddress()), peerPort());
 }
 
 void SocketRDT::slotReadData()

@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.15
 import AppStyle 1.0
 import Components 1.0
 
-Rectangle{
+Item{
     id: root
 
     property var model
@@ -39,8 +39,6 @@ Rectangle{
         updateSubsParms(widget.subs.get(model.id))
     }
 
-    color: "transparent"
-
     ColumnLayout{
         id: rootCL
 
@@ -48,7 +46,7 @@ Rectangle{
         spacing: 5
 
         Rectangle{
-            id: headerBackground
+            id: header
 
             Layout.fillWidth: true; Layout.preferredHeight: _headerHeight
             color: AppStyle.background
