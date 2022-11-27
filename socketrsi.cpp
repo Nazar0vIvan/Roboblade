@@ -2,19 +2,19 @@
 
 SocketRSI::SocketRSI(const QString &name, QObject *parent) : Socket(name, parent)
 {
-  setPeerAddress(RSI_PEER_ADDRESS);
+  m_protocol = "RSI";
 
-  qDebug() << peerAddress();
+  setPeerAddress(QHostAddress(RSI_PEER_ADDRESS));
 
   QList<Parameter> parms;
   for(int i=0; i < 3; ++i){
     parms.append( {QString::number(i),"int","ct"} );
   }
 
-  setParmsModel(new ParametersTableModel(name, parms));
+  setParmsModel(new ParametersTableModel(name, parms)); 
 }
 
-void SocketRSI::parseConfigFile(const QUrl& url)
+void SocketRSI::slotParseConfigFile(const QUrl& url)
 {
   QString filePath = url.toLocalFile();
   QFile configFile(filePath);
@@ -32,29 +32,29 @@ void SocketRSI::parseConfigFile(const QUrl& url)
   }
 
   QDomElement configElements = dom.documentElement().firstChildElement("CONFIG");
-  QString sIPAddress = configElements.namedItem("IP_NUMBER").toElement().text();
-  QString sPort = configElements.namedItem("PORT").toElement().text();
-  QString sOnlySend = configElements.namedItem("ONLYSEND").toElement().text();
+  QString rsiLocalAddress = configElements.namedItem("IP_NUMBER").toElement().text();
+  int rsiLocalPort = configElements.namedItem("PORT").toElement().text().toInt();
+
+  QString rsiOpenModeText = configElements.namedItem("ONLYSEND").toElement().text();
+  QIODeviceBase::OpenModeFlag rsiOpenMode = rsiOpenModeText == "TRUE" ? QIODeviceBase::ReadOnly : "FALSE" ? QIODeviceBase::ReadWrite : QIODeviceBase::NotOpen;
 
   QString pattern("[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}");
   QRegularExpression re(pattern);
-  QRegularExpressionMatch match = re.match(sIPAddress);
+  QRegularExpressionMatch match = re.match(rsiLocalAddress);
 
-  if(!sPort.toInt() || !match.hasMatch()){
-    emit portOrIPAddressFormatError(sPort, sIPAddress);
+  if(!rsiLocalPort || !match.hasMatch()){
+    emit portOrAddressFormatError(rsiLocalPort, rsiLocalAddress);
     return;
   }
 
-  if (sOnlySend == "FALSE"){
-    setOpenMode(QAbstractSocket::ReadWrite);
-  }
-  else if (sOnlySend == "TRUE"){
-    setOpenMode(QAbstractSocket::ReadOnly);
-  }
-  else{
-    emit onlySendFormatError(sOnlySend);
+  if(!rsiOpenMode){
+    emit onlySendFormatError(rsiOpenModeText);
     return;
   }
 
-  emit socketDataChanged(sPort, sIPAddress, sOnlySend, filePath);
+  setLocalAddress(QHostAddress(rsiLocalAddress));
+  setLocalPort(rsiLocalPort);
+  setOpenMode(rsiOpenMode);
+
+  emit sendSocketInfo(localAddress().toString(), localPort(), peerAddress().toString(), 0, protocol(), isOpen(), openMode());
 }

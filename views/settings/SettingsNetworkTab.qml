@@ -21,26 +21,43 @@ ListView{
 
     property var signals: new Map()
 
-    signal rsiConfigFileChanged
-//    signal ftsLocalPortChanged
-//    signal ftsPeerAddressChanged
-//    signal houLocalPortChanged
-//    signal houPeerPortChanged
-//    signal vfdLocalPortChanged
-//    signal vfdPeerAddressChanged
-//    signal vfdPeerPortChanged
+    signal requestSocketsInfo()
+    signal requestParseConfigFile(string url)
 
-    onRsiConfigFileChanged:{
-        socketRSI.localAddress = krcLocalAddress.field.text
-        socketRSI.localPort = parseInt(krcLocalPort.field.text)
+    function slotUUISocketRSI(localAddress, localPort, peerAddress, peerPort, protocol, status, openMode){
+        krcLocalAddress.field.text = localAddress
+        krcLocalPort.field.text = localPort
+        krcPeerAddress.field.text = peerAddress
+        krcPeerPort.field.text = peerPort ? peerPort : "N/D"
+        krcOnlySend.field.text = openMode === 1 ? "TRUE" : "FALSE"
     }
-//    onFtsLocalPortChanged:   { socketRDT.localPort = parseInt(port); console.log(port) }
-//    onFtsPeerAddressChanged: { socketRDT.peerAddress = socketRDT.stringToHostAddress(address) } // BAD
-//    onHouLocalPortChanged:   { socketHou.localPort = parseInt(port); console.log(port) }
-//    onHouPeerPortChanged:    { socketHou.peerPort = parseInt(port) }
-//    onVfdLocalPortChanged:   { /*console.log(port)*/ }
-//    onVfdPeerAddressChanged: { /*console.log(address)*/ }
-//    onVfdPeerPortChanged:    { /*console.log(port)*/ }
+
+    function slotUUISocketRDT(localAddress, localPort, peerAddress, peerPort, protocol, status, openMode){
+        ftsLocalAddress.field.text = localAddress
+        ftsLocalPort.field.text = localPort
+        ftsPeerAddress.field.text = peerAddress
+        ftsPeerPort.field.text = peerPort
+    }
+
+    function slotUUISocketHou(localAddress, localPort, peerAddress, peerPort, protocol, status, openMode){
+        houLocalPort.field.text = localPort
+        houPeerPort.field.text = peerPort
+    }
+
+    function slotUUISocketVFDA65(localAddress, localPort, peerAddress, peerPort, protocol, status, openMode){
+        vfdA65LocalAddress.field.text = localAddress
+        vfdA65LocalPort.field.text = localPort
+        vfdA65PeerAddress.field.text = peerAddress
+        vfdA65PeerPort.field.text = peerPort
+    }
+
+    signal ftsLocalPortChanged(int localPort)
+    signal ftsPeerAddressChanged(string peerAddress)
+    signal houLocalPortChanged(int localPort)
+    signal houPeerPortChanged(int peerPort)
+    signal vfdA65LocalPortChanged(int localPort)
+    signal vfdA65PeerAddressChanged(string peerAddress)
+    signal vfdA65PeerPortChanged(int peerPort)
 
     spacing: 20
     clip: true
@@ -63,29 +80,67 @@ ListView{
             components:[
                 AppFormComponent{
                     id: uploadFile
+
                     labelName: qsTr("Configuration File")
-                    field: AppFileUpload{ fieldWidth: _fieldWidth; defaultTxt: qsTr("defined by Configuration File") }
+                    field: AppFileUpload{
+                        fieldWidth: _fieldWidth
+                        onAccepted: currentFile => {
+                            uploadFile.field.text = currentFile.toString().slice(8)
+                            requestParseConfigFile(currentFile)
+                        }
+                    }
                 },
                 AppFormComponent{
                     id: krcLocalAddress
+
                     labelName: qsTr("Local Address")
-                    field: AppTextField{ defaultTxt: qsTr("defined by Configuration File"); readOnly: true; enabled: false }
+                    field: AppTextField{
+                        defaultTxt: qsTr("defined by Configuration File")
+                        readOnly: true
+                        enabled: false
+                    }
                 },
                 AppFormComponent{
                     id: krcLocalPort
+
                     labelName: qsTr("Local Port")
-                    field: AppTextField{ defaultTxt: qsTr("defined by Configuration File"); readOnly: true; enabled: false }
-                },
-                AppFormComponent{
-                    id: krcOnlySend
-                    labelName: qsTr("ONLYSEND")
-                    field: AppTextField{ defaultTxt: qsTr("defined by Configuration File"); readOnly: true; enabled: false }
+                    field: AppTextField{
+                        defaultTxt: qsTr("defined by Configuration File")
+                        readOnly: true
+                        enabled: false
+                    }
                 },
                 AppFormComponent{
                     id: krcPeerAddress
+
                     labelName: qsTr("Peer Address")
-                    field: AppTextField{ text: socketRSI.peerAddress; readOnly: true; enabled: false }
+                    field: AppTextField{
+                        defaultTxt: qsTr("defined by Configuration File")
+                        readOnly: true
+                        enabled: false
+                    }
+                },
+                AppFormComponent{
+                    id: krcPeerPort
+
+                    labelName: qsTr("Peer Port")
+                    field: AppTextField{
+                        text: qsTr("N/D")
+                        readOnly: true
+                        enabled: false
+                    }
+                },
+                AppFormComponent{
+                    id: krcOnlySend
+
+                    labelName: qsTr("ONLYSEND")
+                    field: AppTextField{
+                        defaultTxt: qsTr("defined by Configuration File")
+                        readOnly: true
+                        enabled: false
+                    }
                 }
+
             ]
         }
         // <- rsi
@@ -101,36 +156,36 @@ ListView{
             components:[
                 AppFormComponent{
                     id: ftsLocalAddress
+
                     labelName: qsTr("Local Address");
                     field: AppTextField{
-                        text: socketRDT.localAddress
                         borderWidth: 0
                         readOnly: true
                     }
                 },
-                AppFormComponent{
+                /**/AppFormComponent{
                     id: ftsLocalPort
+
                     labelName: qsTr("Local Port");
                     field: AppTextField{
-                        text: socketRDT.localPort.toString()
                         validator: portValidator
                         onEditingFinished:{ signals.set(1, {signal: root.ftsLocalPortChanged, arg: text}) }
                     }
                 },
-                AppFormComponent{
+                /**/AppFormComponent{
                     id: ftsPeerAddress
+
                     labelName: qsTr("Peer Address")
                     field: AppTextField{
-                        text: socketRDT.peerAddress
                         validator: ipValidator
                         onEditingFinished:{ signals.set(2, {signal: root.ftsPeerAddressChanged, arg: text}) }
                     }
                 },
                 AppFormComponent{
                     id: ftsPeerPort
+
                     labelName: qsTr("Peer Port")
                     field: AppTextField{
-                        text: socketRDT.peerPort.toString()
                         borderWidth: 0
                         readOnly: true
                     }
@@ -148,20 +203,20 @@ ListView{
             componentHeight: _componentHeight; componentsSpacing: _componentsSpacing
             labelWidth: _labelWidth; fieldWidth: _fieldWidth; componentSpacing: _componentSpacing
             components:[
-                AppFormComponent{
+                /**/AppFormComponent{
                     id: houLocalPort
+
                     labelName: qsTr("Local Port")
                     field: AppTextField{
-                        text: socketHou.localPort
                         validator: portValidator
                         onEditingFinished:{ signals.set(3, {signal: root.houLocalPortChanged, arg: text}) }
                     }
                 },
-                AppFormComponent{
+                /**/AppFormComponent{
                     id: houPeerPort
+
                     labelName: qsTr("Peer Port")
                     field: AppTextField{
-                        text: "2222"
                         validator: portValidator
                         onEditingFinished:{ signals.set(4, {signal: root.houPeerPortChanged, arg: text}) }
                     }
@@ -172,7 +227,7 @@ ListView{
 
         // -> vfd
         SettingsSection{
-            id: vfdSettings
+            id: vfdA65Settings
 
             width: root.width
             titleName: qsTr("Variable Frequency Drive A65")
@@ -180,46 +235,45 @@ ListView{
             labelWidth: _labelWidth; fieldWidth: _fieldWidth; componentSpacing: _componentSpacing
             components:[
                 AppFormComponent{
-                    id: vfdLocalAddress
+                    id: vfdA65LocalAddress
+
                     labelName: qsTr("Local Address");
                     field: AppTextField{
-                        text: socketVFDA65.localAddress
                         borderWidth: 0
                         readOnly: true
                     }
                 },
-                AppFormComponent{
-                    id: vfdLocalPort
+                /**/AppFormComponent{
+                    id: vfdA65LocalPort
+
                     labelName: qsTr("Local Port")
                     field: AppTextField{
-                        text: socketVFDA65.localPort
                         validator: portValidator
-                        onEditingFinished:{ signals.set(5, {signal: root.vfdLocalPortChanged, arg: text}) }
+                        onEditingFinished:{ signals.set(5, {signal: root.vfdA65LocalPortChanged, arg: text}) }
                     }
                 },
-                AppFormComponent{
-                    id: vfdPeerAddress
+                /**/AppFormComponent{
+                    id: vfdA65PeerAddress
 
                     labelName: qsTr("Peer Address");
                     field: AppTextField{
-                        text: socketVFDA65.peerAddress
                         validator: ipValidator
-                        onEditingFinished:{ signals.set(6, {signal: vfdPeerAddressChanged, arg: text}) }
+                        onEditingFinished:{ signals.set(6, {signal: root.vfdA65PeerAddressChanged, arg: text}) }
                     }
                 },
-                AppFormComponent{
-                    id: vfdPeerPort
+                /**/AppFormComponent{
+                    id: vfdA65PeerPort
 
                     labelName: qsTr("Peer Port")
                     field: AppTextField{
-                        text: socketVFDA65.peerPort
                         validator: portValidator
-                        onEditingFinished:{ signals.set(7, {signal: root.vfdPeerPortChanged, arg: text}) }
+                        onEditingFinished:{ signals.set(7, {signal: root.vfdA65PeerPortChanged, arg: text}) }
                     }
                 }
             ]
         }
         // <- vfd
+
     } // <- ObjectModel
 
     onContentYChanged: { vBar.adjustVBarIndicator() }
@@ -237,6 +291,29 @@ ListView{
         iopacity: 0.5
         iborderc: "gray"
         iborderw: 1
+    }
+
+    Component.onCompleted:{
+        requestParseConfigFile.connect(socketRSI.slotParseConfigFile)
+        requestSocketsInfo.connect(socketRDT.slotRequestSocketInfo)
+        requestSocketsInfo.connect(socketHou.slotRequestSocketInfo)
+        requestSocketsInfo.connect(socketVFDA65.slotRequestSocketInfo)
+
+        socketRSI.sendSocketInfo.connect(slotUUISocketRSI)
+        socketRDT.sendSocketInfo.connect(slotUUISocketRDT)
+        socketHou.sendSocketInfo.connect(slotUUISocketHou)
+        socketVFDA65.sendSocketInfo.connect(slotUUISocketVFDA65)
+
+        ftsLocalPortChanged.connect(socketRDT.slotLocalPortChanged)
+        ftsPeerAddressChanged.connect(socketRDT.slotPeerAddressChanged)
+        houLocalPortChanged.connect(socketHou.slotLocalPortChanged)
+        houPeerPortChanged.connect(socketHou.slotPeerPortChanged)
+        vfdA65LocalPortChanged.connect(socketVFDA65.slotLocalPortChanged)
+        vfdA65PeerAddressChanged.connect(socketVFDA65.slotPeerAddressChanged)
+        vfdA65PeerPortChanged.connect(socketVFDA65.slotPeerPortChanged)
+
+        // initialize ui
+        requestSocketsInfo()
     }
 }
 

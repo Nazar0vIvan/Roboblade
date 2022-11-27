@@ -87,7 +87,7 @@ Rectangle{
 
             currentIndex: tabBar.currentIndex
 
-            Rectangle{ id: stgDashboardTab }
+            SettingsDashboardTab{ id: stgDashboardTab }
 
             SettingsNetworkTab{ id: stgNetworkTab }
 
@@ -120,10 +120,11 @@ Rectangle{
                 color: AppStyle.background
                 text: "Apply"
                 onClicked: {
-                    for (const v1 of stgDashboardTab.signals.values()){ v1.signal(v1.arg) }
-                    for (const v2 of stgNetworkTab.signals.values()){ v2.signal(v2.arg) }
-                    settingsNetworkTab.signals.clear()
-                    settingsDashboardTab.signals.clear()
+                    // for (const v1 of stgDashboardTab.signals.values()){ v1.signal(v1.arg) }
+                    for (const v2 of stgNetworkTab.signals.values()) v2.signal(v2.arg)
+                    //stgDashboardTab.signals.clear()
+                    stgNetworkTab.signals.clear()
+
                 }
             }
         }

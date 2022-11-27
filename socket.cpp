@@ -1,8 +1,8 @@
 #include "socket.h"
 
-Socket::Socket(const QString &name, QObject *parent) : QUdpSocket(parent), m_name(name)
+Socket::Socket(const QString& name, QObject *parent) : QUdpSocket(parent), m_name(name)
 {
-  setLocalAddress(LOCAL_ADDRESS);
+  setLocalAddress(QHostAddress(LOCAL_ADDRESS));
 
   connect(this, &Socket::stateChanged, this, &Socket::stateChangeToMessage);
   connect(this, &Socket::errorOccurred, this, &Socket::errorOccurrenceToMessage);
@@ -10,7 +10,6 @@ Socket::Socket(const QString &name, QObject *parent) : QUdpSocket(parent), m_nam
   connect(this, &Socket::stateChangedMessage, Logger::instance(), &Logger::push);
   connect(this, &Socket::errorOccuredMessage, Logger::instance(), &Logger::push);
 }
-
 
 QString Socket::openModeToString(OpenMode openMode)
 {
@@ -33,7 +32,7 @@ QString Socket::stateToString()
     case QAbstractSocket::BoundState:      { return QString("BoundState");       }
     case QAbstractSocket::ClosingState:    { return QString("ClosingState");      }
     case QAbstractSocket::ListeningState:  { return QString("ListeningState");   }
-  }
+    }
 }
 
 void Socket::stateChangeToMessage(QAbstractSocket::SocketState socketState)
@@ -46,7 +45,7 @@ void Socket::stateChangeToMessage(QAbstractSocket::SocketState socketState)
     /*1*/case QAbstractSocket::HostLookupState:  { message.append("socket is looking up for a host"); break;}
     /*2*/case QAbstractSocket::ConnectingState:  { message.append("socket has started establishing a connection"); break;}
     /*3*/case QAbstractSocket::ConnectedState:   { message.append("socket has established connection"); break;}
-    /*4*/case QAbstractSocket::BoundState:       { message.append("socket is bound to port " + QString::number(m_localPort)); break;}
+    /*4*/case QAbstractSocket::BoundState:       { message.append("socket is bound to port " + QString::number(localPort())); break;}
     /*5*/case QAbstractSocket::ClosingState:     { message.append("The socket is about to close"); break;}
     /*6*/case QAbstractSocket::ListeningState:   { message.append("socket is opened | Mode: " + openModeToString(openMode())); break;}
   }
@@ -88,7 +87,7 @@ void Socket::errorOccurrenceToMessage(QAbstractSocket::SocketError socketError)
 
 void Socket::slotBindAndOpenPort()
 {
-  if(bind(m_localPort)){
+  if(bind(localPort())){
     if(open(openMode())){
       setSocketState(QAbstractSocket::ListeningState);
       emit stateChanged(QAbstractSocket::ListeningState);
@@ -101,3 +100,11 @@ void Socket::slotBindAndOpenPort()
     // Logger
   }
 }
+
+// SLOTS
+
+void Socket::slotRequestSocketInfo()
+{
+  emit sendSocketInfo(localAddress().toString(), localPort(), peerAddress().toString(), peerPort(), m_protocol, isOpen(), openMode());
+}
+

@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.15
+import QtQuick.Dialogs
 
 // needs to add due to Qt6.3 and Windows bug: root.pressed doesn't work on Windows
 import QtQuick.Controls.Basic
@@ -33,7 +34,7 @@ Item{
     property int btnPadding: 3
 
     signal editingFinished()
-    signal browsePressed()
+    signal accepted(url currentFile)
 
     RowLayout{
         id: rootRL
@@ -70,11 +71,25 @@ Item{
                     anchors.fill: parent
                     color: AppStyle.foreground
                     radius: parent.radius
-                    opacity: btnBrowse.pressed ? AppStyle.overlays.pressed
-                                               : btnBrowse.hovered ? AppStyle.overlays.hovered : 0
+                    opacity: btnBrowse.pressed ? AppStyle.overlays.outlined.pressed
+                                               : btnBrowse.hovered ? AppStyle.overlays.outlined.hovered : 0
                 }
             }
-            onPressed: root.browsePressed()
+            onClicked:{ fileDialogLoader.sourceComponent = fileDialogComp }
+        }
+    }
+
+    Loader{ id: fileDialogLoader  }
+
+    Component{
+        id: fileDialogComp
+
+        FileDialog{
+            id: fileDialog
+
+            visible: true
+            onRejected: { fileDialogLoader.sourceComponent = undefined }
+            onAccepted: { root.accepted(currentFile); fileDialogLoader.sourceComponent = undefined}
         }
     }
 }

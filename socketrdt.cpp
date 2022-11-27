@@ -2,10 +2,14 @@
 
 SocketRDT::SocketRDT(const QString& name, QObject* parent) : Socket(name, parent)
 {
-  setLocalAddress(LOCAL_ADDRESS);
+  m_protocol = "RDT";
+
+  setLocalAddress(QHostAddress(LOCAL_ADDRESS));
   setLocalPort(RDT_LOCAL_PORT);
-  setPeerAddress(RDT_PEER_ADDRESS);
+  setPeerAddress(QHostAddress(RDT_PEER_ADDRESS));
   setPeerPort(RDT_PEER_PORT);
+
+  setOpenMode(QIODeviceBase::ReadWrite);
 
   QList<Parameter> parms;
   parms.append({ "rdt_seq", "int",    "ct"  });

@@ -10,6 +10,7 @@
 #include "socketrdt.h"
 #include "socketrsi.h"
 #include "sockethou.h"
+#include "socketmodbustcp.h"
 
 int main(int argc, char *argv[])
 {
@@ -31,8 +32,8 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
 
-    engine.addImportPath("D:/Qt/QtProjects/_Roboblade");
-    engine.addImportPath("C:/Qt/QtProjects/_Roboblade");
+    engine.addImportPath("D:/Qt/QtProjects/Roboblade");
+    engine.addImportPath("C:/Qt/QtProjects/Roboblade");
     engine.addImportPath(":/Modules");
 
     QQmlContext* rootContext = engine.rootContext();
@@ -41,14 +42,17 @@ int main(int argc, char *argv[])
 
     rootContext->setContextProperty("logger", Logger::instance());
 
-    SocketRSI socketRSI("rsi");
+    SocketRSI socketRSI("KR C4");
     rootContext->setContextProperty("socketRSI", &socketRSI);
 
-    SocketRDT socketRDT("rdt");
+    SocketRDT socketRDT("F/T Sensor");
     rootContext->setContextProperty("socketRDT", &socketRDT);
 
-    SocketHou socketHou("hou");
+    SocketHou socketHou("Houdini");
     rootContext->setContextProperty("socketHou", &socketHou);
+
+    SocketModbusTCP socketVFDA65("VFD/A65");
+    rootContext->setContextProperty("socketVFDA65", &socketVFDA65);
 
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app, [url](QObject *obj, const QUrl &objUrl){if (!obj && url == objUrl) QCoreApplication::exit(-1);}, Qt::QueuedConnection);
 

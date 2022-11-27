@@ -17,14 +17,14 @@
 
 #include "socket.h"
 
+#define RSI_PEER_ADDRESS "192.168.1.2"
+
 /*
   LOCAL ADDRESS: 192.168.1.1            // from file
   LOCAL PORT:    49152                  // from file
   PEER ADDRESS:  192.168.1.2            // can't be set
   PEER PORT:     FROM RECEVIED DATAGRAM // from file
 */
-
-#define RSI_PEER_ADDRESS "192.168.1.2"
 
 class SocketRSI : public Socket
 {
@@ -42,13 +42,13 @@ private:
 signals:
   void configFileOpenError(const QString& error);
   void configFileFormatError(const QString& errorMsg, int errorLine, int errorColumn);
-  void portOrIPAddressFormatError(const QString& port, const QString& ipAddress);
+  void portOrAddressFormatError(int port, const QString& ipAddress);
   void onlySendFormatError(const QString& error);
 
-  void socketDataChanged(const QString& port, const QString& ipAddress, const QString& openMode, const QString& filePath);
+  void configFileParsingFinished(const QString& port, const QString& ipAddress, const QString& openMode, const QString& filePath);
 
 public slots:
-  void parseConfigFile(const QUrl& url);
+  void slotParseConfigFile(const QUrl& url);
 };
 
 #endif // SOCKETRSI_H

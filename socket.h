@@ -129,10 +129,10 @@ class Socket : public QUdpSocket
 
   Q_OBJECT
   Q_PROPERTY(ParametersTableModel* parmsModel READ parmsModel CONSTANT)
-  Q_PROPERTY(QString localAddress MEMBER m_localAddress NOTIFY localAddressChanged)
-  Q_PROPERTY(int localPort READ localPort WRITE setLocalPort NOTIFY localPortChanged)
-  Q_PROPERTY(QString peerAddress READ peerAddress WRITE setPeerAddress NOTIFY peerAddressChanged)
-  Q_PROPERTY(int peerPort READ peerPort WRITE setPeerPort NOTIFY peerPortChanged)
+//  Q_PROPERTY(QString localAddress MEMBER m_localAddress NOTIFY localAddressChanged)
+//  Q_PROPERTY(int localPort READ localPort WRITE setLocalPort NOTIFY localPortChanged)
+//  Q_PROPERTY(QString peerAddress READ peerAddress WRITE setPeerAddress NOTIFY peerAddressChanged)
+//  Q_PROPERTY(int peerPort READ peerPort WRITE setPeerPort NOTIFY peerPortChanged)
 
 public:
   explicit Socket(const QString& name, QObject* parent = nullptr);
@@ -143,30 +143,33 @@ public:
   void setParmsModel(ParametersTableModel* parmModel) { m_parmsModel = parmModel; }
 
   QString openModeToString(QIODevice::OpenMode openMode);
+  QString protocol(){ return m_protocol; }
 
-  QString localAddress() const { return m_localAddress; }
-  void setLocalAddress(const QString& localAddress){ m_localAddress = localAddress; }
+//  QString localAddress() const { return m_localAddress; }
+//  void setLocalAddress(const QString& localAddress){ m_localAddress = localAddress; }
 
-  int localPort() const { return m_localPort; }
-  void setLocalPort(int localPort){ m_localPort = localPort; }
+//  int localPort() const { return m_localPort; }
+//  void setLocalPort(int localPort){ m_localPort = localPort; }
 
-  QString peerAddress() const { return m_peerAddress; }
-  void setPeerAddress(const QString& peerAddress){ m_peerAddress = peerAddress; }
+//  QString peerAddress() const { return m_peerAddress; }
+//  void setPeerAddress(const QString& peerAddress){ m_peerAddress = peerAddress; }
 
-  int peerPort() const { return m_peerPort; }
-  void setPeerPort(int peerPort){ m_peerPort = peerPort; }
+//  int peerPort() const { return m_peerPort; }
+//  void setPeerPort(int peerPort){ m_peerPort = peerPort; }
 
   // Q_INVOKABLES
   Q_INVOKABLE QString stateToString();
 
+protected:
+  QString m_protocol;
+
 private:
   QString m_name;
   ParametersTableModel* m_parmsModel;
-  QString m_localAddress;
-  int m_localPort;
-  QString m_peerAddress;
-  int m_peerPort;
-
+//  QString m_localAddress = "";
+//  int m_localPort = 0;
+//  QString m_peerAddress = "";
+//  int m_peerPort = 0;
 
 signals:
  void localAddressChanged();
@@ -174,8 +177,25 @@ signals:
  void peerAddressChanged();
  void peerPortChanged();
 
+ void sendSocketInfo(const QString& localAddress,
+                     int localPort,
+                     const QString& peerAddress,
+                     int peerPort,
+                     const QString& protocol,
+                     bool isOpen,
+                     QIODeviceBase::OpenMode openModeFlag
+                     );
+
  void stateChangedMessage(const QString& message);
  void errorOccuredMessage(const QString& message);
+
+public slots:
+  void slotRequestSocketInfo();
+
+  void slotLocalAddressChanged(const QString& localAddress){ setLocalAddress(QHostAddress(localAddress)); qDebug() << this->localAddress(); }
+  void slotLocalPortChanged(int localPort){ setLocalPort(localPort); qDebug() << this->localPort(); }
+  void slotPeerAddressChanged(const QString& peerAddress){ setPeerAddress(QHostAddress(peerAddress)); qDebug() << this->peerAddress(); }
+  void slotPeerPortChanged(int peerPort){ setPeerPort(peerPort); qDebug() << this->peerPort(); }
 
 private slots:
   void stateChangeToMessage(QAbstractSocket::SocketState socketState);
