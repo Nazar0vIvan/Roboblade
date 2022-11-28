@@ -6,10 +6,8 @@ import QtCharts 2.2
 import AppStyle 1.0
 import Components 1.0
 
-Rectangle{
+Item{
     id: root
-
-    color: "transparent"
 
     Rectangle{
         id: pane
@@ -30,6 +28,8 @@ Rectangle{
             spacing: 20
 
             Text{
+                id: title
+
                 text: qsTr("Network")
                 font: AppStyle.fonts.headline1
                 color: AppStyle.foreground
@@ -41,7 +41,7 @@ Rectangle{
 
                 Layout.fillWidth: true; Layout.fillHeight: true
             }
-
+/*
             ChartView{
                 id: dtrChart // dtr - data transfer rate
 
@@ -103,7 +103,7 @@ Rectangle{
 
                 }
             }
-
+*/
         }
     }
 }

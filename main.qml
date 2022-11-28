@@ -56,17 +56,16 @@ ApplicationWindow{
                 id: sl
 
                 SplitView.fillHeight: true; SplitView.fillWidth: true
-                anchors.topMargin: 5
 
                 currentIndex: navigationPanel.currentIndex
 
-                Dashboard{ id: dashboard; visible: true }
+                Dashboard{ id: dashboard }
 
-                Scene{ id: scene; visible: false}
+                Scene{ id: scene }
 
-                Network{ id: network; visible: false;  }
+                Network{ id: network }
 
-                SettingsView{ id: settingsView; visible: false }
+                SettingsView{ id: settingsView }
             }
         }
 
