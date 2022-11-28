@@ -10,20 +10,27 @@ import Widgets 1.0
 TableView{
     id: tv
 
-    property int _rowHeight: 40
+    property int _rowHeight: 34
     property int _columnWidth: width/model.columnCount
 
     property int timeInterval: 1
 
+    columnWidthProvider: function (column) { return tv.width/tv.model.columnCount }
+    rowHeightProvider: function (row) { return _rowHeight }
+
     clip: true
     boundsBehavior: Flickable.StopAtBounds
+    rowSpacing: 2
+
+//    contentWidth: width
+//    contentHeight: height
+
+    onWidthChanged: forceLayout()
 
     selectionModel: ItemSelectionModel{
         id: ism
         model: tv.model
     }
-
-    // onWidthChanged: console.log(width/model.columnCount)
 
     model: TableModel{
 
@@ -48,7 +55,6 @@ TableView{
                 status: "Status",
                 openMode: "Open Mode"
             },
-
             // rdt
             {
                 host: "F/T Sensor",
@@ -63,6 +69,7 @@ TableView{
         ]
     }
 
+
     delegate: DelegateChooser{
 
         // header
@@ -71,22 +78,22 @@ TableView{
 
             row: 0
             ItemDelegate{
+
                 required property bool selected
 
-                // width: tv.width/tv.model.columnCount; height: _rowHeight
-
-                onWidthChanged: console.log("bb", width)
-
-                background: Rectangle{
-                    color: AppStyle.foreground
-                    opacity: 0.10
-                }
+                implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
 
                 contentItem: Text{
+                    verticalAlignment: Text.AlignVCenter
                     text: model.display
                     color: AppStyle.foreground
                     font{family: "Roboto"; pixelSize: 14; bold: true }
                     opacity: AppStyle.emphasis.high
+                }
+
+                background: Rectangle{
+                    color: AppStyle.foreground
+                    opacity: 0.12
                 }
             }
         }
@@ -98,26 +105,53 @@ TableView{
 
                 required property bool selected
 
-                background: Rectangle{
-                    color: AppStyle.foreground
-                    opacity: 0.20
-                    // visible: parent.selected
-                }
+                implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
 
                 contentItem: Text{
+                    verticalAlignment: Text.AlignVCenter
                     text: model.display
                     color: AppStyle.foreground
                     font: AppStyle.fonts.body
                     opacity: AppStyle.emphasis.high
                 }
 
-                MouseArea{
-                    anchors.fill: parent
-                    onClicked: selected != selected
+                background: Rectangle{
+                    color: AppStyle.foreground
+                    opacity: parent.selected ? 0.12 : 0.07
+                }
+
+                onClicked: {
+                    console.log(row)
+                    const index = tv.model.index(row,0)
+                    ism.select(index, ItemSelectionModel.Select | ItemSelectionModel.Rows)
                 }
             }
         }
     }
+
+//    delegate: ItemDelegate{
+
+//        required property bool selected
+
+//        implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
+//        leftPadding: 10
+
+//        background: Rectangle{
+//            color: AppStyle.foreground
+//            opacity: 0.40
+//        }
+
+//        contentItem: Text{
+//            verticalAlignment: Text.AlignVCenter
+//            text: model.display
+//            color: AppStyle.foreground
+//            font{family: "Roboto"; pixelSize: 14; bold: true }
+//            opacity: AppStyle.emphasis.high
+//        }
+//    }
+
+
+
 }
 
 //    // rdt

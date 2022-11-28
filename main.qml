@@ -63,7 +63,7 @@ ApplicationWindow{
 
                 Scene{ id: scene }
 
-                Network{ id: network }
+                Network{ id: network;  }
 
                 SettingsView{ id: settingsView }
             }
