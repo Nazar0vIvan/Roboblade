@@ -6,22 +6,30 @@ import Qt.labs.settings 1.0
 import AppStyle 1.0
 import Components 1.0
 
-Rectangle{
+Item{
     id: root
 
-    color: AppStyle.background
+    Rectangle{
+        id: pane
 
-    ListView{
-        id: lv
+        anchors{ fill: parent; topMargin: 2 }
+        color: AppStyle.background
 
-        anchors{ fill: parent; margins: 10 }
-        model: ["3D", "RSI on/off"]
+        ListView{
+            id: lv
 
-        delegate: Text{
-            color: AppStyle.foreground
-            text: modelData
+            anchors{ fill: parent; margins: 10 }
+            model: ["3D", "RSI on/off"]
+
+            delegate: Text{
+                color: AppStyle.foreground
+                text: modelData
+            }
         }
     }
+
+
+
 }
 
 

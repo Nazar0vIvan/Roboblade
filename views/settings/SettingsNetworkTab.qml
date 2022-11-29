@@ -24,31 +24,34 @@ ListView{
     signal requestSocketsInfo()
     signal requestParseConfigFile(string url)
 
-    function slotUUISocketRSI(localAddress, localPort, peerAddress, peerPort, protocol, status, openMode){
-        krcLocalAddress.field.text = localAddress
-        krcLocalPort.field.text = localPort
-        krcPeerAddress.field.text = peerAddress
-        krcPeerPort.field.text = peerPort ? peerPort : "N/D"
-        krcOnlySend.field.text = openMode === 1 ? "TRUE" : "FALSE"
-    }
-
-    function slotUUISocketRDT(localAddress, localPort, peerAddress, peerPort, protocol, status, openMode){
-        ftsLocalAddress.field.text = localAddress
-        ftsLocalPort.field.text = localPort
-        ftsPeerAddress.field.text = peerAddress
-        ftsPeerPort.field.text = peerPort
-    }
-
-    function slotUUISocketHou(localAddress, localPort, peerAddress, peerPort, protocol, status, openMode){
-        houLocalPort.field.text = localPort
-        houPeerPort.field.text = peerPort
-    }
-
-    function slotUUISocketVFDA65(localAddress, localPort, peerAddress, peerPort, protocol, status, openMode){
-        vfdA65LocalAddress.field.text = localAddress
-        vfdA65LocalPort.field.text = localPort
-        vfdA65PeerAddress.field.text = peerAddress
-        vfdA65PeerPort.field.text = peerPort
+    function slotUpdateUI(socketID, hostName, localAddress, localPort, peerAddress, peerPort, protocol, status, openMode){
+        switch(socketID){
+            case 0:{
+                krcLocalAddress.field.text = localAddress
+                krcLocalPort.field.text = localPort
+                krcPeerAddress.field.text = peerAddress
+                krcPeerPort.field.text = peerPort ? peerPort : "N/D"
+                krcOnlySend.field.text = openMode === 1 ? "TRUE" : "FALSE"
+                break
+            }
+            case 1:{
+                ftsLocalAddress.field.text = localAddress
+                ftsLocalPort.field.text = localPort
+                ftsPeerAddress.field.text = peerAddress
+                ftsPeerPort.field.text = peerPort
+                break
+            }
+            case 2:{
+                houLocalPort.field.text = localPort
+                houPeerPort.field.text = peerPort
+                break
+            }
+            case 3:
+                vfdA65LocalAddress.field.text = localAddress
+                vfdA65LocalPort.field.text = localPort
+                vfdA65PeerAddress.field.text = peerAddress
+                vfdA65PeerPort.field.text = peerPort
+            }
     }
 
     signal ftsLocalPortChanged(int localPort)
@@ -299,10 +302,10 @@ ListView{
         requestSocketsInfo.connect(socketHou.slotRequestSocketInfo)
         requestSocketsInfo.connect(socketVFDA65.slotRequestSocketInfo)
 
-        socketRSI.sendSocketInfo.connect(slotUUISocketRSI)
-        socketRDT.sendSocketInfo.connect(slotUUISocketRDT)
-        socketHou.sendSocketInfo.connect(slotUUISocketHou)
-        socketVFDA65.sendSocketInfo.connect(slotUUISocketVFDA65)
+        socketRSI.sendSocketInfo.connect(slotUpdateUI)
+        socketRDT.sendSocketInfo.connect(slotUpdateUI)
+        socketHou.sendSocketInfo.connect(slotUpdateUI)
+        socketVFDA65.sendSocketInfo.connect(slotUpdateUI)
 
         ftsLocalPortChanged.connect(socketRDT.slotLocalPortChanged)
         ftsPeerAddressChanged.connect(socketRDT.slotPeerAddressChanged)

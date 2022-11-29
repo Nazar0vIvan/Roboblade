@@ -10,21 +10,20 @@ import Widgets 1.0
 TableView{
     id: tv
 
-    property int _rowHeight: 34
-    property int _columnWidth: width/model.columnCount
-
+    property int rowHeight: 30
     property int timeInterval: 1
 
+    signal requestSocketsInfo()
+
     columnWidthProvider: function (column) { return tv.width/tv.model.columnCount }
-    rowHeightProvider: function (row) { return _rowHeight }
+    rowHeightProvider: function (row) { return rowHeight }
 
     clip: true
     boundsBehavior: Flickable.StopAtBounds
     rowSpacing: 2
 
-//    contentWidth: width
-//    contentHeight: height
-
+    // !! calling this function re-evaluates the size and position of each visible row and column
+    // !! needed cause tableview loaded in stacklayout
     onWidthChanged: forceLayout()
 
     selectionModel: ItemSelectionModel{
@@ -34,7 +33,21 @@ TableView{
 
     model: TableModel{
 
-        TableModelColumn{ display: "host" }
+        function slotUpdateUI(socketID, hostName, localAddress, localPort, peerAddress, peerPort, protocol, status, openMode){
+            var row = socketID + 1
+            setRow(row, {
+                hostName: hostName,
+                localAddress: localAddress ? localAddress : "N/D",
+                localPort: localPort ? localPort : "N/D",
+                peerAddress: peerAddress ? peerAddress : "N/D",
+                peerPort: peerPort ? peerPort : "N/D",
+                protocol: protocol,
+                status: status ? "OPEN" : "CLOSED",
+                openMode: openMode === 1 ? "R" : openMode === 3 ? "R/W" : "NOT OPEN"
+            })
+        }
+
+        TableModelColumn{ display: "hostName" }
         TableModelColumn{ display: "localAddress" }
         TableModelColumn{ display: "localPort" }
         TableModelColumn{ display: "peerAddress" }
@@ -44,9 +57,8 @@ TableView{
         TableModelColumn{ display: "openMode" }
 
         rows:[
-            // header
             {
-                host: "Host",
+                hostName: "Host",
                 localAddress: "Local Address",
                 localPort: "Local Port",
                 peerAddress: "Peer Address",
@@ -55,20 +67,24 @@ TableView{
                 status: "Status",
                 openMode: "Open Mode"
             },
-            // rdt
-            {
-                host: "F/T Sensor",
-                localAddress: "192.168.1.1",
-                localPort: "59152",
-                peerAddress: "192.168.1.2",
-                peerPort: "49152",
-                protocol: "RDT",
-                status: "CLOSE",
-                openMode: "ReadOnly"
-            }
         ]
-    }
 
+        Component.onCompleted:{
+
+            requestSocketsInfo.connect(socketRSI.slotRequestSocketInfo)
+            requestSocketsInfo.connect(socketRDT.slotRequestSocketInfo)
+            requestSocketsInfo.connect(socketHou.slotRequestSocketInfo)
+            requestSocketsInfo.connect(socketVFDA65.slotRequestSocketInfo)
+
+            socketRSI.sendSocketInfo.connect(slotUpdateUI)
+            socketRDT.sendSocketInfo.connect(slotUpdateUI)
+            socketHou.sendSocketInfo.connect(slotUpdateUI)
+            socketVFDA65.sendSocketInfo.connect(slotUpdateUI)
+
+            // initialize model
+            requestSocketsInfo()
+        }
+    }
 
     delegate: DelegateChooser{
 
@@ -77,115 +93,83 @@ TableView{
             id: headerDC
 
             row: 0
-            ItemDelegate{
+            NetworkTableItemDelegate{
+                implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
+                text: model.display
+                font{ family: "Roboto"; pixelSize: 14; bold: true }
+                overlay: 0.2
+            }
+        }
+        // last column
+        DelegateChoice{
+            id: lastColumnDC
+
+            column: model.columnCount - 1
+            NetworkTableItemDelegate{
 
                 required property bool selected
 
                 implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
+                text: model.display
+                font: AppStyle.fonts.body
+                overlay: selected ? 0.12 : 0.07
 
-                contentItem: Text{
-                    verticalAlignment: Text.AlignVCenter
-                    text: model.display
-                    color: AppStyle.foreground
-                    font{family: "Roboto"; pixelSize: 14; bold: true }
-                    opacity: AppStyle.emphasis.high
+                onClicked: {
+                    const index = tv.model.index(row,0)
+                    ism.select(index, ItemSelectionModel.SelectCurrent | ItemSelectionModel.Rows)
                 }
 
-                background: Rectangle{
-                    color: AppStyle.foreground
-                    opacity: 0.12
+                Rectangle{
+                    id: selectIndicator
+
+                    implicitWidth: 3; implicitHeight: parent.height
+                    anchors.right: parent.right
+                    color: AppStyle.secondary.base
+                    visible: parent.selected
                 }
             }
         }
-        // row
+        // status column
         DelegateChoice{
-            id: rowDC
+            id: statusDC
 
-            ItemDelegate{
+            column: 6
+            NetworkTableItemDelegate{
 
                 required property bool selected
 
                 implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
-
-                contentItem: Text{
-                    verticalAlignment: Text.AlignVCenter
-                    text: model.display
-                    color: AppStyle.foreground
-                    font: AppStyle.fonts.body
-                    opacity: AppStyle.emphasis.high
-                }
-
-                background: Rectangle{
-                    color: AppStyle.foreground
-                    opacity: parent.selected ? 0.12 : 0.07
-                }
+                text: model.display
+                font: AppStyle.fonts.body
+                color: text === "OPEN" ? AppStyle.dashboard.minColor : AppStyle.dashboard.maxColor
+                overlay: selected ? 0.12 : 0.07
 
                 onClicked: {
-                    console.log(row)
                     const index = tv.model.index(row,0)
-                    ism.select(index, ItemSelectionModel.Select | ItemSelectionModel.Rows)
+                    ism.select(index, ItemSelectionModel.SelectCurrent | ItemSelectionModel.Rows)
+                }
+            }
+        }
+        // rest
+        DelegateChoice{
+            id: restDC
+
+            NetworkTableItemDelegate{
+
+                required property bool selected
+
+                implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
+                text: model.display
+                font: AppStyle.fonts.body
+                overlay: selected ? 0.12 : 0.07
+
+                onClicked: {
+                    const index = tv.model.index(row,0)
+                    ism.select(index, ItemSelectionModel.SelectCurrent | ItemSelectionModel.Rows)
                 }
             }
         }
     }
-
-//    delegate: ItemDelegate{
-
-//        required property bool selected
-
-//        implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
-//        leftPadding: 10
-
-//        background: Rectangle{
-//            color: AppStyle.foreground
-//            opacity: 0.40
-//        }
-
-//        contentItem: Text{
-//            verticalAlignment: Text.AlignVCenter
-//            text: model.display
-//            color: AppStyle.foreground
-//            font{family: "Roboto"; pixelSize: 14; bold: true }
-//            opacity: AppStyle.emphasis.high
-//        }
-//    }
-
-
-
 }
 
-//    // rdt
-//    {
-//        hostName: "F/T Sensor",
-//        localPort: socketRDT.localPort ? socketRDT.localPort : "N/D",
-//        localAddress: socketRDT.localAddress ? socketRDT.localAddress : "N/D",
-//        peerPort: socketRDT.peerPort ? socketRDT.peerPort : "N/D",
-//        peerAddress: socketRDT.peerAddress ? socketRDT.peerAddress : "N/D",
-//        protocol: "RDT",
-//        status: socketRDT.openMode ? "OPEN" : "CLOSE",
-//        openMode: "R/W"
-//    },
-//    // hou
-//    {
-//        hostName: "Houdini",
-//        localPort: socketRDT.localPort ? socketRDT.localPort : "N/D",
-//        localAddress: socketRDT.localAddress ? socketRDT.localAddress : "N/D",
-//        peerPort: socketRDT.peerPort ? socketRDT.peerPort : "N/D",
-//        peerAddress: socketRDT.peerAddress ? socketRDT.peerAddress : "N/D",
-//        protocol: "UDP/IP",
-//        status: socketRDT.openMode ? "OPEN" : "CLOSE",
-//        openMode: "R/W"
 
-//    },
-//    // vfd/A65
-//    {
-//        hostName: "VFD/A65",
-//        localPort: socketRDT.localPort ? socketRDT.localPort : "N/D",
-//        localAddress: socketRDT.localAddress ? socketRDT.localAddress : "N/D",
-//        peerPort: socketRDT.peerPort ? socketRDT.peerPort : "N/D",
-//        peerAddress: socketRDT.peerAddress ? socketRDT.peerAddress : "N/D",
-//        protocol: "RDT",
-//        status: socketRDT.openMode ? "OPEN" : "CLOSE",
-//        openMode: "R/W"
-
-//    }

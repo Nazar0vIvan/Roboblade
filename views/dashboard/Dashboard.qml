@@ -8,15 +8,13 @@ import Widgets 1.0
 
 import "sidePanel"
 
-Rectangle{
+Item{
     id: root
-
-    color: "transparent"
 
     RowLayout{
         id: rootRL
 
-        anchors{ fill: parent; topMargin: 1 } // !!!!
+        anchors{ fill: parent; topMargin: 2 } // !!!!
         spacing: 1
 
         ColumnLayout{

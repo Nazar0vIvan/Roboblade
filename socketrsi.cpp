@@ -3,6 +3,7 @@
 SocketRSI::SocketRSI(const QString &name, QObject *parent) : Socket(name, parent)
 {
   m_protocol = "RSI";
+  m_id = 0;
 
   setPeerAddress(QHostAddress(RSI_PEER_ADDRESS));
 
@@ -56,5 +57,5 @@ void SocketRSI::slotParseConfigFile(const QUrl& url)
   setLocalPort(rsiLocalPort);
   setOpenMode(rsiOpenMode);
 
-  emit sendSocketInfo(localAddress().toString(), localPort(), peerAddress().toString(), 0, protocol(), isOpen(), openMode());
+  emit sendSocketInfo(m_id, hostName(), localAddress().toString(), localPort(), peerAddress().toString(), 0, m_protocol, isOpen(), openMode());
 }

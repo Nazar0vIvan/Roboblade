@@ -2,7 +2,8 @@
 
 SocketHou::SocketHou(const QString& name, QObject *parent) : Socket(name, parent)
 {
-  m_protocol = "Modbus TCP";
+  m_protocol = "UDP/IP";
+  m_id = 2;
 
   setLocalAddress(QHostAddress::LocalHost);
   setLocalPort(HOU_LOCAL_PORT);

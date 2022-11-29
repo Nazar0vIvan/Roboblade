@@ -135,41 +135,27 @@ class Socket : public QUdpSocket
 //  Q_PROPERTY(int peerPort READ peerPort WRITE setPeerPort NOTIFY peerPortChanged)
 
 public:
-  explicit Socket(const QString& name, QObject* parent = nullptr);
+  explicit Socket(const QString& hostName, QObject* parent = nullptr);
 
   ~Socket(){ delete m_parmsModel; }
 
   ParametersTableModel* parmsModel() const { return m_parmsModel; }
   void setParmsModel(ParametersTableModel* parmModel) { m_parmsModel = parmModel; }
 
+  QString hostName(){ return m_hostName; }
+
   QString openModeToString(QIODevice::OpenMode openMode);
-  QString protocol(){ return m_protocol; }
-
-//  QString localAddress() const { return m_localAddress; }
-//  void setLocalAddress(const QString& localAddress){ m_localAddress = localAddress; }
-
-//  int localPort() const { return m_localPort; }
-//  void setLocalPort(int localPort){ m_localPort = localPort; }
-
-//  QString peerAddress() const { return m_peerAddress; }
-//  void setPeerAddress(const QString& peerAddress){ m_peerAddress = peerAddress; }
-
-//  int peerPort() const { return m_peerPort; }
-//  void setPeerPort(int peerPort){ m_peerPort = peerPort; }
 
   // Q_INVOKABLES
   Q_INVOKABLE QString stateToString();
 
 protected:
   QString m_protocol;
+  int m_id;
 
 private:
-  QString m_name;
+  QString m_hostName;
   ParametersTableModel* m_parmsModel;
-//  QString m_localAddress = "";
-//  int m_localPort = 0;
-//  QString m_peerAddress = "";
-//  int m_peerPort = 0;
 
 signals:
  void localAddressChanged();
@@ -177,14 +163,17 @@ signals:
  void peerAddressChanged();
  void peerPortChanged();
 
- void sendSocketInfo(const QString& localAddress,
-                     int localPort,
-                     const QString& peerAddress,
-                     int peerPort,
-                     const QString& protocol,
-                     bool isOpen,
-                     QIODeviceBase::OpenMode openModeFlag
-                     );
+ void sendSocketInfo(
+     int id,
+     const QString& hostName,
+     const QString& localAddress,
+     int localPort,
+     const QString& peerAddress,
+     int peerPort,
+     const QString& protocol,
+     bool isOpen,
+     QIODeviceBase::OpenMode openModeFlag
+ );
 
  void stateChangedMessage(const QString& message);
  void errorOccuredMessage(const QString& message);

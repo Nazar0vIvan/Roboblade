@@ -23,23 +23,23 @@ ApplicationWindow{
     menuBar: AppMenuBar{ height: 30 }
 
     SplitView{ // top - logger
-        id: vSplitView
+        id: verticalSV
 
         anchors.fill: parent
         orientation: Qt.Vertical
         handle: Rectangle{
-            implicitHeight: 1
+            implicitHeight: 2
             color: SplitHandle.pressed | SplitHandle.hovered ? AppStyle.foreground : "transparent"
             opacity: SplitHandle.pressed ? AppStyle.emphasis.high : (SplitHandle.hovered ? AppStyle.emphasis.medium : 1.0)
         }
 
         SplitView{ // navigation nav - view
-            id: hSplitView
+            id: horiznotalSV
 
             SplitView.fillWidth: true; SplitView.fillHeight: true
             orientation: Qt.Horizontal
             handle: Rectangle{
-                implicitWidth: 1
+                implicitWidth: 2
                 color: SplitHandle.pressed | SplitHandle.hovered ? AppStyle.foreground : "transparent"
                 opacity: SplitHandle.pressed ? AppStyle.emphasis.high: (SplitHandle.hovered ? AppStyle.emphasis.medium : 1.0)
             }

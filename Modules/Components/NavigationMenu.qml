@@ -11,14 +11,14 @@ Item{
 
     required property var model
 
-    property int elementHeight: 50
-    property int elementIconSize: 25
+    property int elemHeight: 50
+    property int elemIconSize: 25
 
-    property color elementSelectionIconColor: AppStyle.primary.base
-    property color elementDefaultIconColor: "#a6a6a6"
+    property color elemSelectionIconColor: AppStyle.primary.base
+    property color elemDefaultIconColor: "#a6a6a6"
 
     ListView{
-        id: listView
+        id: lv
 
         anchors.fill: parent
         spacing: 0
@@ -27,17 +27,17 @@ Item{
         model: root.model
 
         delegate: NavigationMenuDelegate {
-            width: parent.width; height: root.elementHeight
-            iconSize: root.elementIconSize
-            selectionIconColor: root.elementSelectionIconColor
-            defaultIconColor: root.elementDefaultIconColor
+            width: parent.width; height: root.elemHeight
+            iconSize: root.elemIconSize
+            selectionIconColor: root.elemSelectionIconColor
+            defaultIconColor: root.elemDefaultIconColor
         }
         highlightFollowsCurrentItem: false
 
         section.property: "type"
         section.criteria: ViewSection.FullString
         section.delegate: Rectangle {
-            width: parent.width; height: 40
+            width: parent.width; height: lv.height - elemHeight * lv.count
             color: "transparent"
         }
 

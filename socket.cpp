@@ -1,6 +1,6 @@
 #include "socket.h"
 
-Socket::Socket(const QString& name, QObject *parent) : QUdpSocket(parent), m_name(name)
+Socket::Socket(const QString& hostName, QObject *parent) : QUdpSocket(parent), m_hostName(hostName)
 {
   setLocalAddress(QHostAddress(LOCAL_ADDRESS));
 
@@ -39,7 +39,7 @@ void Socket::stateChangeToMessage(QAbstractSocket::SocketState socketState)
 {
   QString message;
   message.append(QDateTime::currentDateTime().toString("[yyyy-MM-dd hh:mm:ss] "));
-  message.append(m_name + ": ");
+  message.append(m_hostName + ": ");
   switch(socketState){
     /*0*/case QAbstractSocket::UnconnectedState: { message.append("socket is unconnected"); break;}
     /*1*/case QAbstractSocket::HostLookupState:  { message.append("socket is looking up for a host"); break;}
@@ -105,6 +105,6 @@ void Socket::slotBindAndOpenPort()
 
 void Socket::slotRequestSocketInfo()
 {
-  emit sendSocketInfo(localAddress().toString(), localPort(), peerAddress().toString(), peerPort(), m_protocol, isOpen(), openMode());
+  emit sendSocketInfo(m_id, m_hostName, localAddress().toString(), localPort(), peerAddress().toString(), peerPort(), m_protocol, isOpen(), openMode());
 }
 

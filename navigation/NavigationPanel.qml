@@ -8,8 +8,6 @@ import Components 1.0
 Rectangle{
     id: root
 
-    // signal currentIndexChanged(int index)
-
     property int currentIndex: 0
 
     NavigationMenu{

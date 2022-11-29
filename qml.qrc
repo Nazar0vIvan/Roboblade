@@ -24,5 +24,6 @@
         <file>views/dashboard/DashboardToolBar.qml</file>
         <file>views/scene/Scene.qml</file>
         <file>AppMenuBar.qml</file>
+        <file>views/network/NetworkTableItemDelegate.qml</file>
     </qresource>
 </RCC>
