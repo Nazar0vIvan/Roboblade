@@ -2,7 +2,8 @@
 
 SocketRDT::SocketRDT(const QString& name, QObject* parent) : Socket(name, parent)
 {
-  m_protocol = "RDT";
+  setID(2);
+  setProtocolName("RDT");
 
   setLocalAddress(QHostAddress(LOCAL_ADDRESS));
   setLocalPort(RDT_LOCAL_PORT);
@@ -11,18 +12,16 @@ SocketRDT::SocketRDT(const QString& name, QObject* parent) : Socket(name, parent
 
   setOpenMode(QIODeviceBase::ReadWrite);
 
-  QList<Parameter> parms;
-  parms.append({ "rdt_seq", "int",    "ct"  });
-  parms.append({ "ft_seq",  "int",    "ct"  });
-  parms.append({ "status",  "int",    "ct"  });
-  parms.append({ "Fx",      "double", "N",  -1980.0, 1980.0 });
-  parms.append({ "Fy",      "double", "N",  -660.0,  660.0  });
-  parms.append({ "Fz",      "double", "N",  -660.0,  660.0  });
-  parms.append({ "Tx",      "double", "Nm", -60.0,    60.0  });
-  parms.append({ "Ty",      "double", "Nm", -60.0,    60.0  });
-  parms.append({ "Tz",      "double", "Nm", -60.0,    60.0  });
-
-
+  parmsModel()->setID("rdt");
+  parmsModel()->appendParameter("rdt_seq", "int", "ct");
+  parmsModel()->appendParameter("ft_seq",  "int", "ct");
+  parmsModel()->appendParameter("status",  "int", "ct");
+  parmsModel()->appendParameter("Fx", "double", "N",  -1980.0, 1980.0);
+  parmsModel()->appendParameter("Fy", "double", "N",  -660.0,  660.0);
+  parmsModel()->appendParameter("Fz", "double", "N",  -660.0,  660.0);
+  parmsModel()->appendParameter("Tx", "double", "Nm", -60.0,    60.0);
+  parmsModel()->appendParameter("Ty", "double", "Nm", -60.0,    60.0);
+  parmsModel()->appendParameter("Tz", "double", "Nm", -60.0,    60.0);
 }
 
 QNetworkDatagram SocketRDT::RDTRequest2QNetworkDatagram(const RDTRequest& request)

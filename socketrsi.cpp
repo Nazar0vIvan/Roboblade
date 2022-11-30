@@ -2,17 +2,16 @@
 
 SocketRSI::SocketRSI(const QString &name, QObject *parent) : Socket(name, parent)
 {
-  m_protocol = "RSI";
-  m_id = 0;
+  setID(1);
+  setProtocolName("RSI");
 
   setPeerAddress(QHostAddress(RSI_PEER_ADDRESS));
 
+  parmsModel()->setID("rsi");
   QList<Parameter> parms;
   for(int i=0; i < 5; ++i){
-    parms.append( {QString::number(i),"int","ct"} );
+    parmsModel()->appendParameter(QString::number(i), "int", "ct");
   }
-
-  setParmsModel(new ParametersTableModel(name, parms)); 
 }
 
 void SocketRSI::slotParseConfigFile(const QUrl& url)
@@ -57,5 +56,5 @@ void SocketRSI::slotParseConfigFile(const QUrl& url)
   setLocalPort(rsiLocalPort);
   setOpenMode(rsiOpenMode);
 
-  emit sendSocketInfo(m_id, hostName(), localAddress().toString(), localPort(), peerAddress().toString(), 0, m_protocol, isOpen(), openMode());
+  emit sendSocketInfo(id(), hostName(), localAddress().toString(), localPort(), peerAddress().toString(), 0, protocolName(), isOpen(), openMode());
 }

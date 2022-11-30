@@ -107,6 +107,6 @@ void Socket::slotBindAndOpenPort()
 
 void Socket::slotRequestSocketInfo()
 {
-  emit sendSocketInfo(m_id, m_hostName, localAddress().toString(), localPort(), peerAddress().toString(), peerPort(), m_protocol, isOpen(), openMode());
+  emit sendSocketInfo(m_id, m_hostName, localAddress().toString(), localPort(), peerAddress().toString(), peerPort(), protocolName(), isOpen(), openMode());
 }
 

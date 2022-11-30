@@ -33,7 +33,7 @@ TableView{
     model: TableModel{
 
         function slotUpdateUI(socketID, hostName, localAddress, localPort, peerAddress, peerPort, protocol, status, openMode){
-            var row = socketID + 1
+            var row = socketID
             setRow(row, {
                 hostName: hostName,
                 localAddress: localAddress ? localAddress : "N/D",

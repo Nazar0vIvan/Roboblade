@@ -68,7 +68,6 @@ TableView{
                 font: AppStyle.fonts.body
             }
         }
-
     }
 }
 

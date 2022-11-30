@@ -2,8 +2,8 @@
 
 SocketModbusTCP::SocketModbusTCP(const QString& name, QObject* parent) : Socket(name, parent)
 {
-  m_protocol = "Modbus TCP";
-  m_id = 3;
+  setID(4);
+  setProtocolName("Modbus TCP");
 
   setLocalAddress(QHostAddress(LOCAL_ADDRESS));
   setLocalPort(VFDA65_LOCAL_PORT);
@@ -11,4 +11,6 @@ SocketModbusTCP::SocketModbusTCP(const QString& name, QObject* parent) : Socket(
   setPeerPort(VFDA65_PEER_PORT);
 
   setOpenMode(QIODeviceBase::ReadWrite);
+
+  parmsModel()->setID("vfdA65");
 }

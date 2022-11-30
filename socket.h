@@ -17,7 +17,7 @@ struct Parameter{
   QString  unit;
   double   min = 0.0;
   double   max = 0.0;
-  QVariant value = NULL;
+  QVariant value = 0;
   bool isSelected = false;
 };
 
@@ -68,15 +68,17 @@ public:
 
   ParametersTableModel(QObject* parent = nullptr) : QAbstractTableModel(parent) {}
 
-protected:
-  void appendParameter(const QString& name, const QString& type, const QString& unit, double min, double max){
+  void setID(const QString& id){ m_id = id; }
+  QString id() const { return m_id; }
+
+  void appendParameter(const QString& name, const QString& type, const QString& unit, double min = 0.0, double max = 0.0){
     ParameterData parmData;
     parmData[NAME] = name;
     parmData[TYPE] = type;
     parmData[UNIT] = unit;
     parmData[MIN] = min;
     parmData[MAX] = max;
-    parmData[VALUE] = NULL;
+    parmData[VALUE] = 0;
     parmData[SELECTED] = false;
 
     int row = m_parms.count();
@@ -92,13 +94,21 @@ protected:
   }
   Q_INVOKABLE int columnCount(const QModelIndex& parent = QModelIndex()) const override {
     Q_UNUSED(parent);
-    return roleNames().size();
+    return 5;
   }
   Q_INVOKABLE QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override{
     if (!index.isValid() || index.row() > m_parms.count() || role != Qt::DisplayRole)
       return QVariant();
 
-    return m_parms[index.row()][RoleName(index.column())];
+    switch (role) {
+        case Qt::DisplayRole:
+            return m_parms[index.row()][RoleName(index.column())];
+        default:
+            break;
+    }
+
+    return QVariant();
+
 
 //    if(role == Qt::DisplayRole){
 //      switch(index.column()){
@@ -119,16 +129,19 @@ protected:
   }
 
   Q_INVOKABLE QHash<int, QByteArray> roleNames() const override{
-    QHash<int, QByteArray> roles = {
-      { NAME, "Name" },
-      { TYPE, "Type" },
-      { MIN,  "Min"  },
-      { MAX,  "Max"  },
-      { UNIT, "Unit" },
-      { SELECTED, "Selected" },
-    };
-    return roles;
+    return { {Qt::DisplayRole, "display"} };
   }
+
+//  Q_INVOKABLE QHash<int, QByteArray> roleNames() const override{
+//    QHash<int, QByteArray> roles = {
+//      { NAME, "Name" },
+//      { TYPE, "Type" },
+//      { MIN,  "Min"  },
+//      { MAX,  "Max"  },
+//      { UNIT, "Unit" },
+//    };
+//    return roles;
+//  }
 
   Q_INVOKABLE QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override {
     Q_UNUSED(orientation)
@@ -143,11 +156,9 @@ protected:
     }
   }
 
-  Q_INVOKABLE QString id() const { return m_id; }
-
 private:
   QString m_id;
-  Parameters m_parms;
+  Parameters m_parms; // QList<QHash<RoleName, QVariant>>
 };
 
 // ----------------------------------------------------------------------------------------------------
@@ -167,23 +178,28 @@ public:
 
   ~Socket(){ delete m_parmsModel; }
 
-  ParametersTableModel* parmsModel() const { return m_parmsModel; }
+  ParametersTableModel* parmsModel() { return m_parmsModel; }
   void setParmsModel(ParametersTableModel* parmModel) { m_parmsModel = parmModel; }
 
   QString hostName(){ return m_hostName; }
+  void setHostName(const QString& hostName){ m_hostName = hostName; }
+
+  QString protocolName(){ return m_protocolName; }
+  void setProtocolName(const QString& protocolName){ m_protocolName = protocolName; }
 
   QString openModeToString(QIODevice::OpenMode openMode);
+
+  int id(){ return m_id; }
+  void setID(int id){ m_id = id; }
 
   // Q_INVOKABLES
   Q_INVOKABLE QString stateToString();
 
-protected:
-  QString m_protocol;
-  int m_id;
-
 private:
   QString m_hostName;
+  QString m_protocolName;
   ParametersTableModel* m_parmsModel;
+  int m_id;
 
 signals:
  void localAddressChanged();

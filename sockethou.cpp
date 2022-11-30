@@ -1,9 +1,9 @@
 #include "sockethou.h"
 
 SocketHou::SocketHou(const QString& name, QObject *parent) : Socket(name, parent)
-{
-  m_protocol = "UDP/IP";
-  m_id = 2;
+{ 
+  setID(3);
+  setProtocolName("UDP/IP");
 
   setLocalAddress(QHostAddress::LocalHost);
   setLocalPort(HOU_LOCAL_PORT);
@@ -11,4 +11,6 @@ SocketHou::SocketHou(const QString& name, QObject *parent) : Socket(name, parent
   setPeerPort(HOU_PEER_PORT);
 
   setOpenMode(QIODeviceBase::ReadWrite);
+
+  parmsModel()->setID("hou");
 }
