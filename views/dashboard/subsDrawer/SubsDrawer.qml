@@ -215,7 +215,7 @@ Drawer{
 
             Layout.fillWidth: true; Layout.fillHeight: true
             model: socketRSI.parmsModel
-            widget: root.widget
+            // widget: root.widget
         }
 
         Rectangle{

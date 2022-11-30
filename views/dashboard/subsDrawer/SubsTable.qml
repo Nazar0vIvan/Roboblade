@@ -1,10 +1,85 @@
 import QtQuick
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
+import Qt.labs.qmlmodels
 
 import AppStyle 1.0
 import Components 1.0
 
+
+TableView{
+    id: tv
+
+    property int rowHeight: 30
+
+    signal requestSocketsInfo()
+
+    columnWidthProvider: function (column) { return tv.width/tv.model.columnCount() }
+    rowHeightProvider: function (row) { return rowHeight }
+
+    clip: true
+    boundsBehavior: Flickable.StopAtBounds
+    rowSpacing: 2
+
+    // !! calling this function re-evaluates the size and position of each visible row and column
+    // !! needed cause tableview loaded in stacklayout
+    onWidthChanged: forceLayout()
+
+    selectionModel: ItemSelectionModel{
+        id: ism
+        model: tv.model
+    }
+
+    delegate: DelegateChooser{
+
+        // header
+        DelegateChoice{
+            id: headerDC
+
+            row: 0
+            SubsTableItemDelegate{
+                implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
+                text: Name
+                font{ family: "Roboto"; pixelSize: 14; bold: true }
+                overlay: 0.2
+            }
+        }
+
+        // first column
+        DelegateChoice{
+            id: firstColumnDC
+
+            column: 0
+            CheckDelegate{
+
+                required property bool selected
+
+                implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
+                text: Name
+                font: AppStyle.fonts.body
+            }
+        }
+
+        // rest
+        DelegateChoice{
+            id: restDC
+
+            SubsTableItemDelegate{
+
+                required property bool selected
+
+                implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
+                text: column === 1 ? Type :
+                      column === 2 ? Min :
+                      column === 3 ? Max : Unit
+                font: AppStyle.fonts.body
+            }
+        }
+
+    }
+}
+
+/*
 Item{
     id: root
 
@@ -165,3 +240,4 @@ Item{
         }
     }
 }
+*/

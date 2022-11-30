@@ -51,7 +51,6 @@ Item{
                 NetworkTable{
                     id: networkTable
 
-                    rowHeight: 30
                     SplitView.fillWidth: true; SplitView.preferredHeight: SplitView.minimumHeight + 5
                     SplitView.minimumHeight: (rowHeight + rowSpacing) * model.rowCount
                 }

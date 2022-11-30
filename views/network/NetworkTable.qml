@@ -11,7 +11,6 @@ TableView{
     id: tv
 
     property int rowHeight: 30
-    property int timeInterval: 1
 
     signal requestSocketsInfo()
 
