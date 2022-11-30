@@ -17,7 +17,8 @@ struct Parameter{
   QString  unit;
   double   min = 0.0;
   double   max = 0.0;
-  QVariant value = 0.0;
+  QVariant value = NULL;
+  bool isSelected = false;
 };
 
 /*
@@ -57,19 +58,34 @@ private:
 class ParametersTableModel : public QAbstractTableModel{
 
   Q_OBJECT
-  QML_ELEMENT
   Q_PROPERTY(QString id READ id CONSTANT)
 
 public:
-  enum RoleName{ NAME = 0, TYPE = 1, UNIT = 2, MIN = 3, MAX = 4 };
+  enum RoleName{ NAME = 0, TYPE = 1, UNIT = 2, MIN = 3, MAX = 4, VALUE = 5, SELECTED = 6 };
 
-  ParametersTableModel(const QString& id, const QList<Parameter>& parms = QList<Parameter>(), QObject* parent = nullptr)
-    : QAbstractTableModel(parent), m_id(id), m_parms(parms){}
+  typedef QHash<RoleName, QVariant> ParameterData;
+  typedef QList<ParameterData> Parameters;
 
-  void setParameters(const QList<Parameter>& parms) { m_parms = parms; }
+  ParametersTableModel(QObject* parent = nullptr) : QAbstractTableModel(parent) {}
+
+protected:
+  void appendParameter(const QString& name, const QString& type, const QString& unit, double min, double max){
+    ParameterData parmData;
+    parmData[NAME] = name;
+    parmData[TYPE] = type;
+    parmData[UNIT] = unit;
+    parmData[MIN] = min;
+    parmData[MAX] = max;
+    parmData[VALUE] = NULL;
+    parmData[SELECTED] = false;
+
+    int row = m_parms.count();
+    beginInsertRows(QModelIndex(), row, row);
+    m_parms.append(parmData);
+    endInsertRows();
+  }
 
   // Q_INVOKABLES
-protected:
   Q_INVOKABLE int rowCount(const QModelIndex& parent = QModelIndex()) const override {
     Q_UNUSED(parent);
     return m_parms.size();
@@ -79,23 +95,41 @@ protected:
     return roleNames().size();
   }
   Q_INVOKABLE QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override{
-    int row = index.row();
-    switch(role){
-      case NAME: return m_parms.at(row).name; break;
-      case TYPE: return m_parms.at(row).type; break;
-      case UNIT: return m_parms.at(row).unit; break;
-      case MIN:  return m_parms.at(row).min == 0.0 ? "-" : QString::number(m_parms.at(row).min);  break;
-      case MAX:  return m_parms.at(row).max == 0.0 ? "-" : QString::number(m_parms.at(row).max);  break;
-    }
-    return QVariant();
+    if (!index.isValid() || index.row() > m_parms.count() || role != Qt::DisplayRole)
+      return QVariant();
+
+    return m_parms[index.row()][RoleName(index.column())];
+
+//    if(role == Qt::DisplayRole){
+//      switch(index.column()){
+//        case /*NAME*/ 0: return m_parms.at(index.row()).name; break;
+//        case /*TYPE*/ 1: return m_parms.at(index.row()).type; break;
+//        case /*MIN*/  2: return m_parms.at(index.row()).min ? QString::number(m_parms.at(index.row()).min) : "-";  break;
+//        case /*MAX*/  3: return m_parms.at(index.row()).max ? QString::number(m_parms.at(index.row()).max) : "-";  break;
+//        case /*UNIT*/ 4: return m_parms.at(index.row()).unit; break;
+//          // case SELECTED: return m_parms.at(row).isSelected; break;
+//      }
+//    }
+
   }
+
   Q_INVOKABLE QModelIndex index(int row, int column, const QModelIndex& parent = QModelIndex()) const override {
     Q_UNUSED(parent)
     return createIndex(row,column);
   }
+
   Q_INVOKABLE QHash<int, QByteArray> roleNames() const override{
-    return m_roles;
+    QHash<int, QByteArray> roles = {
+      { NAME, "Name" },
+      { TYPE, "Type" },
+      { MIN,  "Min"  },
+      { MAX,  "Max"  },
+      { UNIT, "Unit" },
+      { SELECTED, "Selected" },
+    };
+    return roles;
   }
+
   Q_INVOKABLE QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override {
     Q_UNUSED(orientation)
     Q_UNUSED(role)
@@ -108,18 +142,12 @@ protected:
       default:   return QVariant();
     }
   }
+
   Q_INVOKABLE QString id() const { return m_id; }
 
 private:
   QString m_id;
-  QList<Parameter> m_parms;
-  QHash<int, QByteArray> m_roles = {
-    { NAME, "Name" },
-    { TYPE, "Type" },
-    { MIN,  "Min"  },
-    { MAX,  "Max"  },
-    { UNIT, "Unit" },
-  };
+  Parameters m_parms;
 };
 
 // ----------------------------------------------------------------------------------------------------
@@ -191,7 +219,5 @@ private slots:
   void errorOccurrenceToMessage(QAbstractSocket::SocketError socketError);
   void slotBindAndOpenPort();
 };
-
-Q_DECLARE_METATYPE(ParametersTableModel)
 
 #endif // SOCKET_H

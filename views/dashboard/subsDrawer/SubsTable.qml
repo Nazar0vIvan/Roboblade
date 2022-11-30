@@ -6,7 +6,6 @@ import Qt.labs.qmlmodels
 import AppStyle 1.0
 import Components 1.0
 
-
 TableView{
     id: tv
 
@@ -14,16 +13,12 @@ TableView{
 
     signal requestSocketsInfo()
 
-    columnWidthProvider: function (column) { return tv.width/tv.model.columnCount() }
-    rowHeightProvider: function (row) { return rowHeight }
-
     clip: true
     boundsBehavior: Flickable.StopAtBounds
     rowSpacing: 2
 
     // !! calling this function re-evaluates the size and position of each visible row and column
     // !! needed cause tableview loaded in stacklayout
-    onWidthChanged: forceLayout()
 
     selectionModel: ItemSelectionModel{
         id: ism
@@ -38,9 +33,9 @@ TableView{
 
             row: 0
             SubsTableItemDelegate{
-                implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
-                text: Name
+                implicitWidth: tv.width/tv.model.columnCount(); implicitHeight: rowHeight
                 font{ family: "Roboto"; pixelSize: 14; bold: true }
+                text: model.display
                 overlay: 0.2
             }
         }
@@ -54,8 +49,8 @@ TableView{
 
                 required property bool selected
 
-                implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
-                text: Name
+                implicitWidth: tv.width/tv.model.columnCount(); implicitHeight: rowHeight
+                text: model.display
                 font: AppStyle.fonts.body
             }
         }
@@ -68,10 +63,8 @@ TableView{
 
                 required property bool selected
 
-                implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
-                text: column === 1 ? Type :
-                      column === 2 ? Min :
-                      column === 3 ? Max : Unit
+                implicitWidth: tv.width/tv.model.columnCount(); implicitHeight: rowHeight
+                text: model.display
                 font: AppStyle.fonts.body
             }
         }

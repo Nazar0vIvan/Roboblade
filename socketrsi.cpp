@@ -8,7 +8,7 @@ SocketRSI::SocketRSI(const QString &name, QObject *parent) : Socket(name, parent
   setPeerAddress(QHostAddress(RSI_PEER_ADDRESS));
 
   QList<Parameter> parms;
-  for(int i=0; i < 3; ++i){
+  for(int i=0; i < 5; ++i){
     parms.append( {QString::number(i),"int","ct"} );
   }
 

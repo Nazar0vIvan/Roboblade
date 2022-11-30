@@ -3,7 +3,6 @@
 SocketRDT::SocketRDT(const QString& name, QObject* parent) : Socket(name, parent)
 {
   m_protocol = "RDT";
-  m_id = 1;
 
   setLocalAddress(QHostAddress(LOCAL_ADDRESS));
   setLocalPort(RDT_LOCAL_PORT);
@@ -23,7 +22,7 @@ SocketRDT::SocketRDT(const QString& name, QObject* parent) : Socket(name, parent
   parms.append({ "Ty",      "double", "Nm", -60.0,    60.0  });
   parms.append({ "Tz",      "double", "Nm", -60.0,    60.0  });
 
-  setParmsModel(new ParametersTableModel(name, parms));
+
 }
 
 QNetworkDatagram SocketRDT::RDTRequest2QNetworkDatagram(const RDTRequest& request)

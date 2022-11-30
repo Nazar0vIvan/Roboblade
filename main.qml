@@ -16,7 +16,7 @@ ApplicationWindow{
     id: app
 
     width: 1100; height: 650
-    color: "#353535" // AppStyle.surface
+    color: "#353535"
     title: qsTr("Roboblade")
     visible: true
 

@@ -2,6 +2,8 @@
 
 Socket::Socket(const QString& hostName, QObject *parent) : QUdpSocket(parent), m_hostName(hostName)
 {
+  m_parmsModel = new ParametersTableModel();
+
   setLocalAddress(QHostAddress(LOCAL_ADDRESS));
 
   connect(this, &Socket::stateChanged, this, &Socket::stateChangeToMessage);
