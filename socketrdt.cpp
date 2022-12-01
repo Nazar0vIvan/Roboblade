@@ -13,15 +13,15 @@ SocketRDT::SocketRDT(const QString& name, QObject* parent) : Socket(name, parent
   setOpenMode(QIODeviceBase::ReadWrite);
 
   parmsModel()->setID("rdt");
-  parmsModel()->appendParameter("rdt_seq", "int", "ct");
-  parmsModel()->appendParameter("ft_seq",  "int", "ct");
-  parmsModel()->appendParameter("status",  "int", "ct");
-  parmsModel()->appendParameter("Fx", "double", "N",  -1980.0, 1980.0);
-  parmsModel()->appendParameter("Fy", "double", "N",  -660.0,  660.0);
-  parmsModel()->appendParameter("Fz", "double", "N",  -660.0,  660.0);
-  parmsModel()->appendParameter("Tx", "double", "Nm", -60.0,    60.0);
-  parmsModel()->appendParameter("Ty", "double", "Nm", -60.0,    60.0);
-  parmsModel()->appendParameter("Tz", "double", "Nm", -60.0,    60.0);
+  parmsModel()->appendParameter("rdt_seq", "int",    "ct");
+  parmsModel()->appendParameter("ft_seq",  "int",    "ct");
+  parmsModel()->appendParameter("status",  "int",    "ct");
+  parmsModel()->appendParameter("Fx",      "double", "N",  -1980.0, 1980.0);
+  parmsModel()->appendParameter("Fy",      "double", "N",  -660.0,  660.0);
+  parmsModel()->appendParameter("Fz",      "double", "N",  -660.0,  660.0);
+  parmsModel()->appendParameter("Tx",      "double", "Nm", -60.0,    60.0);
+  parmsModel()->appendParameter("Ty",      "double", "Nm", -60.0,    60.0);
+  parmsModel()->appendParameter("Tz",      "double", "Nm", -60.0,    60.0);
 }
 
 QNetworkDatagram SocketRDT::RDTRequest2QNetworkDatagram(const RDTRequest& request)
@@ -74,7 +74,7 @@ void SocketRDT::slotReadData()
     QNetworkDatagram FTNetResponseDatagram = receiveDatagram(pendingDatagramSize());
     uint32_t rdt_sequence = qFromBigEndian<uint32_t>(FTNetResponseDatagram.data().left(4).data());
     uint32_t ft_sequence = qFromBigEndian<uint32_t>(FTNetResponseDatagram.data().right(32).left(4).data());
-    uint32_t status = qFromBigEndian<uint32_t>(FTNetResponseDatagram.data().right(28).left(4).data());
+    uint32_t status = qFromBigEndian<uint32_t>( FTNetResponseDatagram.data().right(28).left(4).data());
     int32_t Fx = qFromBigEndian<int32_t>(FTNetResponseDatagram.data().right(24).left(4).data());
     int32_t Fy = qFromBigEndian<int32_t>(FTNetResponseDatagram.data().right(20).left(4).data());
     int32_t Fz = qFromBigEndian<int32_t>(FTNetResponseDatagram.data().right(16).left(4).data());
@@ -82,7 +82,7 @@ void SocketRDT::slotReadData()
     int32_t Ty = qFromBigEndian<int32_t>(FTNetResponseDatagram.data().right(8).left(4).data());
     int32_t Tz = qFromBigEndian<int32_t>(FTNetResponseDatagram.data().right(4).data());
 
-    emit responceChanged( RDTResponse{rdt_sequence, ft_sequence, status, Fx, Fy, Fz, Tx, Ty, Tz} );
+    emit responceChanged(RDTResponse{ rdt_sequence, ft_sequence, status, Fx, Fy, Fz, Tx, Ty, Tz });
 
   } while(hasPendingDatagrams());
 }

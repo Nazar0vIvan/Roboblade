@@ -1,4 +1,4 @@
-    #include <QApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QSurfaceFormat>
@@ -59,6 +59,13 @@ int main(int argc, char *argv[])
     qmlRegisterSingletonType(QUrl("qrc:/AppStyle.qml"), "AppStyle", 1, 0, "AppStyle" );
 
     engine.load(url);
+
+    // timer
+    QTimer timer;
+    timer.setInterval(1000);
+    rootContext->setContextProperty("timer", &timer);
+
+    QObject::connect(&timer, &QTimer::timeout, &socketRDT, &Socket::readyRead);
 
     return app.exec();
 }

@@ -54,6 +54,7 @@ TableView{
         TableModelColumn{ display: "protocol" }
         TableModelColumn{ display: "status" }
         TableModelColumn{ display: "openMode" }
+        TableModelColumn{ display: "is" }
 
         rows:[
             {
@@ -64,7 +65,8 @@ TableView{
                 peerPort: "Peer Port",
                 protocol: "Protocol",
                 status: "Status",
-                openMode: "Open Mode"
+                tx: "Tx",
+                rx: "Rx"
             },
         ]
 

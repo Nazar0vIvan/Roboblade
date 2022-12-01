@@ -28,7 +28,7 @@ DashboardWidget{
     property color midColor: AppStyle.dashboard.midColor
     property color maxColor: AppStyle.dashboard.maxColor
 
-    property int _margins: 10
+    property int _margins: 8
 
 //    property int barWidth: 6
 //    property int barMargin: 0
@@ -67,7 +67,7 @@ DashboardWidget{
         anchors{
             top: parent.top
             left: parent.left
-            margins: root.background.radius >= 10 ? root.background.radius : _margins
+            margins: root.background.radius >= 10 ? root.background.radius/2 : _margins
         }
         spacing: 10
 

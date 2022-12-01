@@ -5,7 +5,7 @@ import QtQml.Models 2.15
 
 import AppStyle 1.0
 
-Rectangle{
+Item{
     id: root
 
     enum ResizeType{ TopLeft, TopRight, BottomLeft, BottomRight, Left, Right, Top, Bottom, None }
@@ -72,7 +72,6 @@ Rectangle{
         root.y = Math.round(root.y/flick.gridStep)*flick.gridStep
     }
 
-    color: "transparent"
     focus: isSelected
     Drag.active: rootMA.drag.active
 
@@ -83,6 +82,20 @@ Rectangle{
         color: content.children.length ? "transparent" : AppStyle.dashboard.surface
         radius: 0
         border{ width: 1; color: "gray" }
+    }
+
+    Rectangle{
+        id: dataTransferIndicator
+
+        anchors{
+            right: parent.right
+            top: parent.top
+            rightMargin: background.radius >= 10 ? root.background.radius/2 : 8
+            topMargin: background.radius >= 10 ? root.background.radius/2 : 8
+        }
+        width: 8; height: 8
+        radius: width/2
+        color: AppStyle.dashboard.maxColor
     }
 
     Item { id: content }
@@ -96,8 +109,8 @@ Rectangle{
         function isCursorBottomRight(){ return ((mouseX > root.width - resizeMark.w) && (mouseY > root.height - resizeMark.h)) }
         function isCursorTop(){ return (((mouseX > resizeMark.w) && (mouseX < root.width - resizeMark.w)) && (mouseY < resizeMark.h)) }
         function isCursorBottom(){ return (((mouseX > resizeMark.w) && (mouseX < root.width - resizeMark.w)) && ((mouseY > root.height - resizeMark.h))) }
-        function isCursorLeft(){ return ((mouseX < resizeMark.w) && ((mouseY > resizeMark.h) && (mouseY < root.height - resizeMark.h))) }
-        function isCursorRight(){ return ((mouseX > root.width - resizeMark.w) && ((mouseY > resizeMark.h) && (mouseY < root.height - resizeMark.h))) }
+        function isCursorLeft(){ return ((mouseX < resizeMark.w) && ((mouseY > resizeMark.h) && (mouseY < rootMA.height - resizeMark.h))) }
+        function isCursorRight(){ return ((mouseX > rootMA.width - resizeMark.w) && ((mouseY > resizeMark.h) && (mouseY < root.height - resizeMark.h))) }
 
         function resizeLeft(){
             const dbMouseX = root.mapToItem(flick.contentItem, mouseX, mouseY).x
