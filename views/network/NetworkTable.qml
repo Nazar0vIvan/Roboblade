@@ -34,6 +34,7 @@ TableView{
 
         function slotUpdateUI(socketID, hostName, localAddress, localPort, peerAddress, peerPort, protocol, status, openMode){
             var row = socketID
+            console.log(socketID)
             setRow(row, {
                 hostName: hostName,
                 localAddress: localAddress ? localAddress : "N/D",
@@ -54,7 +55,6 @@ TableView{
         TableModelColumn{ display: "protocol" }
         TableModelColumn{ display: "status" }
         TableModelColumn{ display: "openMode" }
-        TableModelColumn{ display: "is" }
 
         rows:[
             {
@@ -65,8 +65,7 @@ TableView{
                 peerPort: "Peer Port",
                 protocol: "Protocol",
                 status: "Status",
-                tx: "Tx",
-                rx: "Rx"
+                openMode: "Open Mode"
             },
         ]
 
