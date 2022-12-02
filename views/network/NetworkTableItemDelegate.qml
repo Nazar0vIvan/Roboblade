@@ -6,7 +6,7 @@ import AppStyle 1.0
 ItemDelegate{
     id: control
 
-    property real overlay
+    property real overlayOpacity: 0.0
     property color color: AppStyle.foreground
 
     contentItem: Text{
@@ -19,6 +19,6 @@ ItemDelegate{
 
     background: Rectangle{
         color: AppStyle.foreground
-        opacity: control.overlay
+        opacity: control.overlayOpacity
     }
 }

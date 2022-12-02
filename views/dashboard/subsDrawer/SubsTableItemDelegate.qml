@@ -7,8 +7,10 @@ import AppStyle 1.0
 ItemDelegate{
     id: control
 
-    property real overlay
+    property real overlayOpacity: 0.0
     property color color: AppStyle.foreground
+
+    font: AppStyle.fonts.body
 
     contentItem: Text{
         verticalAlignment: Text.AlignVCenter
@@ -20,7 +22,7 @@ ItemDelegate{
 
     background: Rectangle{
         color: AppStyle.foreground
-        opacity: control.overlay
+        opacity: control.overlayOpacity
     }
 }
 

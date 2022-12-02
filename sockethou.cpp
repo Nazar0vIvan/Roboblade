@@ -13,4 +13,7 @@ SocketHou::SocketHou(const QString& name, QObject *parent) : Socket(name, parent
   setOpenMode(QIODeviceBase::ReadWrite);
 
   parmsModel()->setID("hou");
+  for(int i = 0; i < 5; ++i){
+    parmsModel()->appendParameter(QString::number(i), "int", "ct");
+  }
 }

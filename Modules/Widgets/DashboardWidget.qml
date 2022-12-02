@@ -25,8 +25,8 @@ Item{
     property bool isSquare: false
 
     // socket name -> set of parameter's names
-    property var subs: new Map([["rsi",    new Set([])],
-                                ["rdt",    new Set([])],
+    property var subs: new Map([["krc4",   new Set([])],
+                                ["fts",    new Set([])],
                                 ["hou",    new Set([])],
                                 ["vfdA65", new Set([])]
                                ])

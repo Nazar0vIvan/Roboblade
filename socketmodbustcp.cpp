@@ -13,4 +13,7 @@ SocketModbusTCP::SocketModbusTCP(const QString& name, QObject* parent) : Socket(
   setOpenMode(QIODeviceBase::ReadWrite);
 
   parmsModel()->setID("vfdA65");
+  for(int i= 0; i < 5; ++i){
+    parmsModel()->appendParameter(QString::number(i), "int", "ct");
+  }
 }

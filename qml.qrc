@@ -25,5 +25,6 @@
         <file>views/scene/Scene.qml</file>
         <file>AppMenuBar.qml</file>
         <file>views/network/NetworkTableItemDelegate.qml</file>
+        <file>views/dashboard/subsDrawer/SubsTableCheckDelegate.qml</file>
     </qresource>
 </RCC>

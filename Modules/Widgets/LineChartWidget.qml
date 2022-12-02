@@ -59,7 +59,6 @@ DashboardWidget{
             interval: 1000; running: true; repeat: true
             onTriggered:{
                 root.seriesData.forEach(obj => {
-                    console.log(obj.name)
                     const value = Math.random() * (max - min) + min
                     chartView.series(obj.name).append(currentTime, value)
                 })

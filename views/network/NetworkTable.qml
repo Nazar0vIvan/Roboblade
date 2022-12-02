@@ -34,7 +34,6 @@ TableView{
 
         function slotUpdateUI(socketID, hostName, localAddress, localPort, peerAddress, peerPort, protocol, status, openMode){
             var row = socketID
-            console.log(socketID)
             setRow(row, {
                 hostName: hostName,
                 localAddress: localAddress ? localAddress : "N/D",
@@ -97,7 +96,7 @@ TableView{
                 implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
                 text: model.display
                 font{ family: "Roboto"; pixelSize: 14; bold: true }
-                overlay: 0.2
+                overlayOpacity: 0.2
             }
         }
         // last column
@@ -112,7 +111,7 @@ TableView{
                 implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
                 text: model.display
                 font: AppStyle.fonts.body
-                overlay: selected ? 0.12 : 0.07
+                overlayOpacity: selected ? 0.12 : 0.07
 
                 onClicked: {
                     const index = tv.model.index(row,0)
@@ -122,8 +121,8 @@ TableView{
                 Rectangle{
                     id: selectIndicator
 
-                    implicitWidth: 3; implicitHeight: parent.height
                     anchors.right: parent.right
+                    implicitWidth: 3; implicitHeight: parent.height
                     color: AppStyle.secondary.base
                     visible: parent.selected
                 }
@@ -142,9 +141,9 @@ TableView{
                 text: model.display
                 font: AppStyle.fonts.body
                 color: text === "OPEN" ? AppStyle.dashboard.minColor : AppStyle.dashboard.maxColor
-                overlay: selected ? 0.12 : 0.07
+                overlayOpacity: selected ? 0.12 : 0.07
 
-                onClicked: {
+                onClicked:{
                     const index = tv.model.index(row,0)
                     ism.select(index, ItemSelectionModel.SelectCurrent | ItemSelectionModel.Rows)
                 }
@@ -161,7 +160,7 @@ TableView{
                 implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
                 text: model.display
                 font: AppStyle.fonts.body
-                overlay: selected ? 0.12 : 0.07
+                overlayOpacity: selected ? 0.12 : 0.07
 
                 onClicked: {
                     const index = tv.model.index(row,0)

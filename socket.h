@@ -64,9 +64,10 @@ class ParametersTableModel : public QAbstractTableModel{
   Q_OBJECT
   Q_PROPERTY(QString id READ id CONSTANT)
 
+
 public:
   enum DisplayRoleName{ NAME = 0, TYPE = 1, UNIT = 2, MIN = 3, MAX = 4, LAST = 5, VALUE = 6, SELECTED = 7 };
-//  enum UserRoleName{ SELECTED = 5, VALUE = 6 };
+  // enum UserRoleName{ SELECTED = 5, VALUE = 6 };
 
   typedef QHash<int, QVariant> ParameterData;
   typedef QList<ParameterData> Parameters;
@@ -92,12 +93,11 @@ public:
     endInsertRows();
   }
 
-  // Q_INVOKABLES
-  Q_INVOKABLE int rowCount(const QModelIndex& parent = QModelIndex()) const override {
+  int rowCount(const QModelIndex& parent = QModelIndex()) const override {
     Q_UNUSED(parent);
     return m_parms.size();
   }
-  Q_INVOKABLE int columnCount(const QModelIndex& parent = QModelIndex()) const override {
+  int columnCount(const QModelIndex& parent = QModelIndex()) const override {
     Q_UNUSED(parent);
     return LAST;
   }
@@ -115,32 +115,16 @@ public:
     }
 
     return QVariant();
-
-
-//    if(role == Qt::DisplayRole){
-//      switch(index.column()){
-//        case /*NAME*/ 0: return m_parms.at(index.row()).name; break;
-//        case /*TYPE*/ 1: return m_parms.at(index.row()).type; break;
-//        case /*MIN*/  2: return m_parms.at(index.row()).min ? QString::number(m_parms.at(index.row()).min) : "-";  break;
-//        case /*MAX*/  3: return m_parms.at(index.row()).max ? QString::number(m_parms.at(index.row()).max) : "-";  break;
-//        case /*UNIT*/ 4: return m_parms.at(index.row()).unit; break;
-//        case SELECTED: return m_parms.at(row).isSelected; break;
-//      }
-//    }
-
-
   }
 
-
-
-  Q_INVOKABLE QModelIndex index(int row, int column, const QModelIndex& parent = QModelIndex()) const override {
+  QModelIndex index(int row, int column, const QModelIndex& parent = QModelIndex()) const override {
     Q_UNUSED(parent)
     return createIndex(row,column);
   }
 
-  Q_INVOKABLE QHash<int, QByteArray> roleNames() const override{
+  QHash<int, QByteArray> roleNames() const override{
     return { {Qt::DisplayRole, "display"} };
-//    return { {Qt::UserRole, "user"} };
+    return { {Qt::UserRole, "user"} };
   }
 
 //  Q_INVOKABLE QHash<int, QByteArray> roleNames() const override{
@@ -158,12 +142,12 @@ public:
     Q_UNUSED(orientation)
     Q_UNUSED(role)
     switch(section){
-      case NAME: return "Name";
-      case TYPE: return "Type";
-      case MIN:  return "Min";
-      case MAX:  return "Max";
-      case UNIT: return "Unit";
-      default:   return QVariant();
+      case 0:  return "Name";
+      case 1:  return "Type";
+      case 2:  return "Min";
+      case 3:  return "Max";
+      case 4:  return "Unit";
+      default: return QVariant();
     }
   }
 

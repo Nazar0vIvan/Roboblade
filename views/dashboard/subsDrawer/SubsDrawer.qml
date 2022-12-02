@@ -113,9 +113,9 @@ Drawer{
 
             onCurrentIndexChanged: {
                 switch(currentIndex){
-                    case 0: subsTable.updateModel(socketRSI.parmsModel); break
-                    case 1: subsTable.updateModel(socketRDT.parmsModel); break
-                    case 2: subsTable.updateModel(socketHou.parmsModel); break
+                    case 0: subsTable.model = socketRSI.parmsModel; break
+                    case 1: subsTable.model = socketRDT.parmsModel; break
+                    case 2: subsTable.model = socketHou.parmsModel; break
                 }
             }
         }
