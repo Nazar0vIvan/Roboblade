@@ -6,15 +6,10 @@ import AppStyle 1.0
 import Widgets 1.0
 import Components 1.0
 
-import "subsDrawer"
-
 Rectangle{
     id: root
 
-    property int subsDrawerMargin: 5
-
     signal selectionChanged(var wgt)
-    signal subsDrawerStateChanged()
 
     function slotGrid(){ flick.isGrid = !flick.isGrid; flick.adjustWidgetsPositionsToGrid() }
     function slotSnap(){ flick.isSnap  = !flick.isSnap }
@@ -277,21 +272,6 @@ Rectangle{
         iopacity: 0.5
         iborderc: "gray"
         iborderw: 1
-    }
-
-    SubsDrawer{
-        id: subsDrawer
-
-        function slotSelectionChanged(wgt){ if(wgt !== null) widget = wgt; else visible = false }
-        function slotStateChanged(){ visible = !visible }
-
-        y: 80
-        width: 550; height: root.height - 10
-    }
-
-    Component.onCompleted:{
-        root.subsDrawerStateChanged.connect(subsDrawer.slotStateChanged)
-        root.selectionChanged.connect(subsDrawer.slotSelectionChanged)
     }
 }
 

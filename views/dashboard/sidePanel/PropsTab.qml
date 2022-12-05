@@ -16,6 +16,8 @@ ListView{
                                               [3, lineChartPropsObjectModel],
                                               [8, defaultObjectModel]])
 
+    function slotSelectionChanged(wgt){ if(wgt !== null) root.setModel(wgt); else root.model = null }
+
     function setModel(wgt){
         root.model = widgetTypeToModel.get(wgt.type)
         root.model.setWidget(wgt)

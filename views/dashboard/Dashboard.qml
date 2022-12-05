@@ -57,9 +57,7 @@ Item{
         dbToolBar.gridOpacityChanged.connect(dbScene.slotGridOpacityChanged)
         dbToolBar.snapSpacingChanged.connect(dbScene.slotSnapSpacingChanged)
 
-        dbScene.selectionChanged.connect(dbSidePanel.slotSelectionChanged)
-
-        dbSidePanel.subsDrawerStateChanged.connect(dbScene.subsDrawerStateChanged)
+        dbScene.selectionChanged.connect(dbSidePanel.selectionChanged)
     }
 }
 

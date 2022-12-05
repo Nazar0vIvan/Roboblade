@@ -64,9 +64,8 @@ class ParametersTableModel : public QAbstractTableModel{
   Q_OBJECT
   Q_PROPERTY(QString id READ id CONSTANT)
 
-
 public:
-  enum DisplayRoleName{ NAME = 0, TYPE = 1, UNIT = 2, MIN = 3, MAX = 4, LAST = 5, VALUE = 6, SELECTED = 7 };
+  enum DisplayRoleName{ NAME = 0, TYPE = 1, UNIT = 2, MIN = 3, MAX = 4, LAST = 5, VALUE = 6 };
   // enum UserRoleName{ SELECTED = 5, VALUE = 6 };
 
   typedef QHash<int, QVariant> ParameterData;
@@ -75,7 +74,7 @@ public:
   ParametersTableModel(QObject* parent = nullptr) : QAbstractTableModel(parent) {}
 
   void setID(const QString& id){ m_id = id; }
-  QString id() const { return m_id; }
+  Q_INVOKABLE QString id() const { return m_id; }
 
   void appendParameter(const QString& name, const QString& type, const QString& unit, double min = 0.0, double max = 0.0){
     ParameterData parmData;
@@ -85,7 +84,6 @@ public:
     parmData[MIN] = min;
     parmData[MAX] = max;
     parmData[VALUE] = 0;
-    parmData[SELECTED] = false;
 
     int row = m_parms.count();
     beginInsertRows(QModelIndex(), row, row);
@@ -149,6 +147,7 @@ public:
       case 4:  return "Unit";
       default: return QVariant();
     }
+    return QVariant();
   }
 
 private:

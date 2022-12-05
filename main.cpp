@@ -54,18 +54,17 @@ int main(int argc, char *argv[])
     SocketModbusTCP socketVFDA65("VFD/A65");
     rootContext->setContextProperty("socketVFDA65", &socketVFDA65);
 
+    // test timer
+    QTimer testTimer;
+    testTimer.setInterval(1000);
+    rootContext->setContextProperty("testTimer", &testTimer);
+    QObject::connect(&testTimer, &QTimer::timeout, &socketRDT, &SocketRDT::readyRead);
+
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app, [url](QObject *obj, const QUrl &objUrl){if (!obj && url == objUrl) QCoreApplication::exit(-1);}, Qt::QueuedConnection);
 
     qmlRegisterSingletonType(QUrl("qrc:/AppStyle.qml"), "AppStyle", 1, 0, "AppStyle" );
 
     engine.load(url);
-
-    // timer
-    QTimer timer;
-    timer.setInterval(1000);
-    rootContext->setContextProperty("timer", &timer);
-
-    QObject::connect(&timer, &QTimer::timeout, &socketRDT, &Socket::readyRead);
 
     return app.exec();
 }

@@ -5,13 +5,20 @@ import QtQuick.Layouts 1.15
 import AppStyle 1.0
 import Components 1.0
 
+import "subsDrawer"
+
 Item{
     id: root
 
-    signal subsDrawerStateChanged()
-
-    property bool isSubsDrawerOpen: false
-    property alias enabled: subsButton.enabled
+    function slotSelectionChanged(wgt){
+        if(wgt !== null){
+            subsDrawer.widget = wgt
+            subsButton.enabled = true
+        }
+        else{
+            subsButton.enabled = false
+        }
+    }
 
     ColumnLayout{
         id: rootCL
@@ -43,18 +50,9 @@ Item{
             iconPath: "/dashboard/arrow_left.png"
             iconColor: enabled ? "black" : "gray"
 
-            onClicked: { root.subsDrawerStateChanged() }
+            onClicked: subsDrawer.visible ? subsDrawer.close() : subsDrawer.open()
             onHoveredChanged: shiftAnimation.start()
 
-//            NumberAnimation{
-//                id: rotateAnimation
-
-//                target: subsButton.contentItem.icon
-//                from: isSubsPopupOpen ? 180 : 0
-//                to:   isSubsPopupOpen ? 0 : 180
-//                property: "rotation";
-//                duration: 200
-//            }
             NumberAnimation{
                 id: shiftAnimation
 
@@ -65,5 +63,12 @@ Item{
                 duration: 200
             }
         }
+    }
+
+    SubsDrawer{
+        id: subsDrawer
+
+        y: 80
+        width: 550; height: parent.height - y - 5
     }
 }

@@ -10,18 +10,7 @@ import Widgets 1.0
 Rectangle{
     id: root
 
-    function slotSelectionChanged(wgt){
-        if(wgt !== null){
-            propsTab.setModel(wgt)
-            subsTab.enabled = true
-        }
-        else {
-            propsTab.model = null
-            subsTab.enabled = false
-        }
-    }
-
-    signal subsDrawerStateChanged()
+    signal selectionChanged(var wgt)
 
     ColumnLayout{
         id: rootCL
@@ -72,15 +61,18 @@ Rectangle{
             PropsTab{
                 id: propsTab
 
-                Layout.fillWidth: true; Layout.fillHeight: true
+                // Layout.fillWidth: true; Layout.fillHeight: true
             }
             SubsTab{
                 id: subsTab
 
-                Layout.fillWidth: true; Layout.fillHeight: true
-
-                onSubsDrawerStateChanged: { root.subsDrawerStateChanged(); isSubsDrawerOpen = !isSubsDrawerOpen }
+                // Layout.fillWidth: true; Layout.fillHeight: true
             }
         }
+    }
+
+    Component.onCompleted:{
+        root.selectionChanged.connect(subsTab.slotSelectionChanged)
+        root.selectionChanged.connect(propsTab.slotSelectionChanged)
     }
 }

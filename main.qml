@@ -4,6 +4,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
 
+import "menu"
 import "navigation"
 import "views/settings"
 import "views/dashboard"

@@ -9,6 +9,7 @@ Item{
     id: root
 
     property alias source: icon.source
+    property bool isMasked: mask.visible
     property color color: AppStyle.foreground
 
     Image{

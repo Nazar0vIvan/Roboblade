@@ -3,28 +3,29 @@
         <file>main.qml</file>
         <file>Logger.qml</file>
         <file>AppStyle.qml</file>
+        <file>menu/AppMenuBar.qml</file>
         <file>navigation/Logo.qml</file>
         <file>navigation/NavigationPanel.qml</file>
         <file>views/settings/SettingsNetworkTab.qml</file>
         <file>views/settings/SettingsSection.qml</file>
         <file>views/settings/SettingsView.qml</file>
         <file>views/settings/SettingsDashboardTab.qml</file>
-        <file>views/network/Network.qml</file>
-        <file>views/network/NetworkTable.qml</file>
         <file>views/dashboard/sidePanel/BasePropsModel.qml</file>
         <file>views/dashboard/sidePanel/PropsTab.qml</file>
         <file>views/dashboard/sidePanel/SubsTab.qml</file>
         <file>views/dashboard/sidePanel/DashboardSidePanel.qml</file>
-        <file>views/dashboard/subsDrawer/SubsDrawer.qml</file>
-        <file>views/dashboard/subsDrawer/SubsTable.qml</file>
-        <file>views/dashboard/subsDrawer/SubsTableHeaderDelegate.qml</file>
-        <file>views/dashboard/subsDrawer/SubsTableItemDelegate.qml</file>
+        <file>views/dashboard/sidePanel/subsDrawer/SubsDrawer.qml</file>
+        <file>views/dashboard/sidePanel/subsDrawer/SubsTable.qml</file>
+        <file>views/dashboard/sidePanel/subsDrawer/SubsTableHeaderDelegate.qml</file>
+        <file>views/dashboard/sidePanel/subsDrawer/SubsTableItemDelegate.qml</file>
+        <file>views/dashboard/sidePanel/subsDrawer/SubsTableCheckDelegate.qml</file>
         <file>views/dashboard/Dashboard.qml</file>
         <file>views/dashboard/DashboardScene.qml</file>
         <file>views/dashboard/DashboardToolBar.qml</file>
         <file>views/scene/Scene.qml</file>
-        <file>AppMenuBar.qml</file>
         <file>views/network/NetworkTableItemDelegate.qml</file>
-        <file>views/dashboard/subsDrawer/SubsTableCheckDelegate.qml</file>
+        <file>views/network/Network.qml</file>
+        <file>views/network/NetworkTable.qml</file>
+        <file>menu/AppMenu.qml</file>
     </qresource>
 </RCC>

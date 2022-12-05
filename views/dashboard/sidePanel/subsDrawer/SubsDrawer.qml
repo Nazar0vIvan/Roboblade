@@ -45,20 +45,6 @@ Drawer{
                 color: AppStyle.foreground
                 opacity: AppStyle.emphasis.high
             }
-
-            AppToolButton{
-                id: hideToolButton
-
-                Layout.preferredWidth: 24; Layout.preferredHeight: 24
-                type: 9
-                iconPath: "/dashboard/allow_left_long.png"
-                todo: Action{ onTriggered: { root.visible = false } }
-                size: 18
-
-                pressedColor: AppStyle.secondary.base
-                hoverColor: AppStyle.secondary.light
-                defaultColor: AppStyle.secondary.base
-            }
         }
 
         TabBar{
