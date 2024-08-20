@@ -28,7 +28,6 @@ Item{
 
     property alias defaultTxt: txtField.defaultTxt
     property alias defaultTxtColor: txtField.defaultTxtColor
-    property alias defaultTxtOpacity: txtField.defaultTxtOpacity
 
     property int btnMargins: 4
     property int btnPadding: 3
@@ -69,7 +68,7 @@ Item{
 
                 Rectangle{
                     anchors.fill: parent
-                    color: AppStyle.foreground
+                    color: AppStyle.foreground.high
                     radius: parent.radius
                     opacity: btnBrowse.pressed ? AppStyle.overlays.outlined.pressed
                                                : btnBrowse.hovered ? AppStyle.overlays.outlined.hovered : 0

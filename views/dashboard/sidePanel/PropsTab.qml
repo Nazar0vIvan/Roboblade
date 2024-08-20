@@ -9,62 +9,62 @@ import Components 1.0
 import Properties 1.0
 
 ListView{
-    id: root
+  id: root
 
-    property var widgetTypeToModel: new Map([ [0, numericPropsObjectModel],
-                                              [1, gaugePropsObjectModel],
-                                              [3, lineChartPropsObjectModel],
-                                              [8, defaultObjectModel]])
+  property var widgetTypeToModel: new Map([ [0, numericPropsObjectModel],
+                                           [1, gaugePropsObjectModel],
+                                           [3, lineChartPropsObjectModel],
+                                           [8, defaultObjectModel]])
 
-    function slotSelectionChanged(wgt){ if(wgt !== null) root.setModel(wgt); else root.model = null }
+  function slotSelectionChanged(wgt){ if(wgt !== null) root.setModel(wgt); else root.model = null }
 
-    function setModel(wgt){
-        root.model = widgetTypeToModel.get(wgt.type)
-        root.model.setWidget(wgt)
+  function setModel(wgt){
+    root.model = widgetTypeToModel.get(wgt.type)
+    root.model.setWidget(wgt)
+  }
+
+  spacing: 0
+  clip: true
+  boundsBehavior: Flickable.StopAtBounds
+
+  // default model
+  BasePropsModel{
+    id: defaultObjectModel
+  }
+
+  // numeric model
+  BasePropsModel{
+    id: numericPropsObjectModel
+
+    PropertiesSection{
+      id: numericBackgroundPropsSection
+
+      titleName: qsTr("Background")
+      properties:[
+        ColorProperty{  id: numericBackgroundColorProp; Layout.leftMargin: -5 },
+        ColorProperty{  id: numericBorderColorProp; Layout.leftMargin: -5 },
+        BorderProperty{ id: numericBorderProp }
+      ]
     }
 
-    spacing: 0
-    clip: true
-    boundsBehavior: Flickable.StopAtBounds
-
-    // default model
-    BasePropsModel{
-        id: defaultObjectModel
+    PropertiesSection{
+      id: numericTitlePropsSection
+      titleName: qsTr("Title")
+      properties:[
+        TextProperty{ id: numericTitleTextProp; Layout.leftMargin: -5 },
+        ColorProperty{ id: numericTitleTextColorProp; Layout.leftMargin: -5}
+      ]
     }
 
-    // numeric model
-    BasePropsModel{
-        id: numericPropsObjectModel
-
-        PropertiesSection{
-            id: numericBackgroundPropsSection
-
-            titleName: qsTr("Background")
-            properties:[
-                ColorProperty{  id: numericBackgroundColorProp; Layout.leftMargin: -5 },
-                ColorProperty{  id: numericBorderColorProp; Layout.leftMargin: -5 },
-                BorderProperty{ id: numericBorderProp }
-            ]
+    PropertiesSection{
+      id: numericValuePropsSection
+      titleName: qsTr("Value")
+      properties:[
+        TextProperty{ id: numericValueTextProp; Layout.leftMargin: -5; readonly: true }
+      ]
         }
 
-        PropertiesSection{
-            id: numericTitlePropsSection
-            titleName: qsTr("Title")
-            properties:[
-                TextProperty{ id: numericTitleTextProp; Layout.leftMargin: -5 },
-                ColorProperty{ id: numericTitleTextColorProp; Layout.leftMargin: -5}
-            ]
-        }
-
-        PropertiesSection{
-            id: numericValuePropsSection
-            titleName: qsTr("Value")
-            properties:[
-                TextProperty{ id: numericValueTextProp; Layout.leftMargin: -5; readonly: true }
-            ]
-        }
-
-        onWgtChanged:{
+          onWgtChanged:{
             if(wgt === null) return
             // background
             numericBackgroundColorProp.setColor(wgt.background.color)
@@ -85,15 +85,15 @@ ListView{
             numericTitleTextColorProp.setColor(wgt.titleColor)
 
             numericTitleTextProp.textEditingFinished.connect(
-                        function(){ wgt.titleText = numericTitleTextProp.getText() })
+                  function(){ wgt.titleText = numericTitleTextProp.getText() })
             numericTitleTextProp.familyEditingFinished.connect(
-                        function(){ wgt.titleFont.family = numericTitleTextProp.getFamily() })
+                  function(){ wgt.titleFont.family = numericTitleTextProp.getFamily() })
             numericTitleTextProp.weightEditingFinished.connect(
-                        function(){ wgt.titleFont.weight = numericTitleTextProp.getWeight() })
+                  function(){ wgt.titleFont.weight = numericTitleTextProp.getWeight() })
             numericTitleTextProp.pixelSizeEditingFinished.connect(
-                        function(){ wgt.titleFont.pixelSize = numericTitleTextProp.getPixelSize() })
+                  function(){ wgt.titleFont.pixelSize = numericTitleTextProp.getPixelSize() })
             numericTitleTextColorProp.editingFinished.connect(
-                        function(){ wgt.titleColor = numericTitleTextColorProp.getColor() })
+                  function(){ wgt.titleColor = numericTitleTextColorProp.getColor() })
 
             // value
             numericValueTextProp.setFamily(wgt.valueFont.family)
@@ -101,96 +101,96 @@ ListView{
             numericValueTextProp.setPixelSize(wgt.valueFont.pixelSize)
 
             numericValueTextProp.familyEditingFinished.connect(
-                        function(){ wgt.valueFont.family = numericValueTextProp.getFamily() })
+                  function(){ wgt.valueFont.family = numericValueTextProp.getFamily() })
             numericValueTextProp.weightEditingFinished.connect(
-                        function(){ wgt.valueFont.weight = numericValueTextProp.getWeight() })
+                  function(){ wgt.valueFont.weight = numericValueTextProp.getWeight() })
             numericValueTextProp.pixelSizeEditingFinished.connect(
-                        function(){ wgt.valueFont.pixelSize = numericValueTextProp.getPixelSize() })
+                  function(){ wgt.valueFont.pixelSize = numericValueTextProp.getPixelSize() })
+          }
         }
-    }
 
-    BasePropsModel{
-        id: gaugePropsObjectModel
+        BasePropsModel{
+          id: gaugePropsObjectModel
 
-        PropertiesSection{
+          PropertiesSection{
             id: gaugeBackgroundPropsSection
 
             titleName: qsTr("Background")
             properties:[
-                ColorProperty{ id: gaugeBackgroundColorProp; Layout.leftMargin: -5 },
-                ColorProperty{ id: gaugeBorderColorProp; Layout.leftMargin: -5 },
-                BorderProperty{ id: gaugeBorderProp }
+              ColorProperty{ id: gaugeBackgroundColorProp; Layout.leftMargin: -5 },
+              ColorProperty{ id: gaugeBorderColorProp; Layout.leftMargin: -5 },
+              BorderProperty{ id: gaugeBorderProp }
             ]
-        }
+          }
 
-        PropertiesSection{
+          PropertiesSection{
             id: gaugeTitlePropsSection
             titleName: qsTr("Title")
             properties:[
-                TextProperty{ id: gaugeTitleTextProp; Layout.leftMargin: -5 },
-                ColorProperty{ id: gaugeTitleTextColorProp; Layout.leftMargin: -5}
+              TextProperty{ id: gaugeTitleTextProp; Layout.leftMargin: -5 },
+              ColorProperty{ id: gaugeTitleTextColorProp; Layout.leftMargin: -5}
             ]
-        }
-        PropertiesSection{
+          }
+          PropertiesSection{
             id: gaugeValuePropsSection
             titleName: qsTr("Value")
             properties:[
-                TextProperty{ id: gaugeValueTextProp; Layout.leftMargin: -5; readonly: true }
+              TextProperty{ id: gaugeValueTextProp; Layout.leftMargin: -5; readonly: true }
             ]
-        }
+              }
 
-        onWgtChanged:{
-            if(wgt === null) return
-            // background
-            gaugeBackgroundColorProp.setColor(wgt.background.color)
-            gaugeBorderColorProp.setColor(wgt.background.border.color)
-            gaugeBorderProp.setRadius(wgt.background.radius)
-            gaugeBorderProp.setLineWidth(wgt.background.border.width)
+                onWgtChanged:{
+                  if(wgt === null) return
+                  // background
+                  gaugeBackgroundColorProp.setColor(wgt.background.color)
+                  gaugeBorderColorProp.setColor(wgt.background.border.color)
+                  gaugeBorderProp.setRadius(wgt.background.radius)
+                  gaugeBorderProp.setLineWidth(wgt.background.border.width)
 
-            gaugeBackgroundColorProp.editingFinished.connect(function(){ wgt.background.color = gaugeBackgroundColorProp.getColor() })
-            gaugeBorderColorProp.editingFinished.connect(function(){ wgt.background.border.color = gaugeBorderColorProp.getColor() })
-            gaugeBorderProp.radiusEditingFinished.connect(function(){ wgt.background.radius = gaugeBorderProp.getRadius() })
-            gaugeBorderProp.lineWidthEditingFinished.connect(function(){ wgt.background.border.width = gaugeBorderProp.getLineWidth() })
+                  gaugeBackgroundColorProp.editingFinished.connect(function(){ wgt.background.color = gaugeBackgroundColorProp.getColor() })
+                  gaugeBorderColorProp.editingFinished.connect(function(){ wgt.background.border.color = gaugeBorderColorProp.getColor() })
+                  gaugeBorderProp.radiusEditingFinished.connect(function(){ wgt.background.radius = gaugeBorderProp.getRadius() })
+                  gaugeBorderProp.lineWidthEditingFinished.connect(function(){ wgt.background.border.width = gaugeBorderProp.getLineWidth() })
 
-            // title
-            gaugeTitleTextProp.setText(wgt.titleText)
-            gaugeTitleTextProp.setFamily(wgt.titleFont.family)
-            gaugeTitleTextProp.setWeight(wgt.titleFont.weight)
-            gaugeTitleTextProp.setPixelSize(wgt.titleFont.pixelSize)
-            gaugeTitleTextColorProp.setColor(wgt.titleColor)
+                  // title
+                  gaugeTitleTextProp.setText(wgt.titleText)
+                  gaugeTitleTextProp.setFamily(wgt.titleFont.family)
+                  gaugeTitleTextProp.setWeight(wgt.titleFont.weight)
+                  gaugeTitleTextProp.setPixelSize(wgt.titleFont.pixelSize)
+                  gaugeTitleTextColorProp.setColor(wgt.titleColor)
 
-            gaugeTitleTextProp.textEditingFinished.connect(
+                  gaugeTitleTextProp.textEditingFinished.connect(
                         function(){ wgt.titleText = gaugeTitleTextProp.getText() })
-            gaugeTitleTextProp.familyEditingFinished.connect(
+                  gaugeTitleTextProp.familyEditingFinished.connect(
                         function(){ wgt.titleFont.family = gaugeTitleTextProp.getFamily() })
-            gaugeTitleTextProp.weightEditingFinished.connect(
+                  gaugeTitleTextProp.weightEditingFinished.connect(
                         function(){ wgt.titleFont.weight = gaugeTitleTextProp.getWeight() })
-            gaugeTitleTextProp.pixelSizeEditingFinished.connect(
+                  gaugeTitleTextProp.pixelSizeEditingFinished.connect(
                         function(){ wgt.titleFont.pixelSize = gaugeTitleTextProp.getPixelSize() })
-            gaugeTitleTextColorProp.editingFinished.connect(
+                  gaugeTitleTextColorProp.editingFinished.connect(
                         function(){ wgt.titleColor = gaugeTitleTextColorProp.getColor() })
 
-            // value
-            gaugeValueTextProp.setFamily(wgt.valueFont.family)
-            gaugeValueTextProp.setWeight(wgt.valueFont.weight)
-            gaugeValueTextProp.setPixelSize(wgt.valueFont.pixelSize)
+                  // value
+                  gaugeValueTextProp.setFamily(wgt.valueFont.family)
+                  gaugeValueTextProp.setWeight(wgt.valueFont.weight)
+                  gaugeValueTextProp.setPixelSize(wgt.valueFont.pixelSize)
 
-            gaugeValueTextProp.familyEditingFinished.connect(
+                  gaugeValueTextProp.familyEditingFinished.connect(
                         function(){ wgt.valueFont.family = gaugeValueTextProp.getFamily() })
-            gaugeValueTextProp.weightEditingFinished.connect(
+                  gaugeValueTextProp.weightEditingFinished.connect(
                         function(){ wgt.valueFont.weight = gaugeValueTextProp.getWeight() })
-            gaugeValueTextProp.pixelSizeEditingFinished.connect(
+                  gaugeValueTextProp.pixelSizeEditingFinished.connect(
                         function(){ wgt.valueFont.pixelSize = gaugeValueTextProp.getPixelSize() })
-        }
+                }
 
 
-    }
+              }
 
-    // line chart
-    BasePropsModel{
-        id: lineChartPropsObjectModel
+              // line chart
+              BasePropsModel{
+                id: lineChartPropsObjectModel
 
-    /*
+                /*
         onWgtChanged:{
             lineChartTitleProp.wgt = lineChartModel.wgt
 
@@ -245,8 +245,8 @@ ListView{
         }
 */
 
-    }
+              }
 
 
-}
+          }
 

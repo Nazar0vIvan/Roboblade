@@ -4,18 +4,17 @@ import QtQuick.Layouts 1.15
 
 import AppStyle 1.0
 
-Rectangle{
+Rectangle {
     id: root
 
-    property color backgroundColor: AppStyle.surface
+    property color backgroundColor: AppStyle.background.dp01
     property int borderWidth: 0
     property int hoverBorderWidth: 0
     property int borderRadius: 4
     property color borderColor: "gray"
 
     property alias defaultTxt: defaultTxt.text
-    property color defaultTxtColor: AppStyle.foreground
-    property real defaultTxtOpacity: AppStyle.emphasis.disabled
+    property color defaultTxtColor: AppStyle.foreground.high
 
     property alias validator: txtField.validator
     property alias readOnly: txtField.readOnly
@@ -27,12 +26,12 @@ Rectangle{
 
     color: txtField.readOnly ? "transparent" : backgroundColor
     radius: borderRadius
-    border{
+    border {
         width: root.readOnly ? 0 : txtField.activeFocus ? 2 : root.hovered ? hoverBorderWidth : borderWidth
         color: txtField.activeFocus ? AppStyle.primary.base : borderColor
     }
 
-    TextField{
+    TextField {
         id: txtField
 
         anchors.fill: parent
@@ -40,8 +39,7 @@ Rectangle{
         verticalAlignment: Text.AlignVCenter
         leftPadding: 5
         font: AppStyle.fonts.body
-        color: AppStyle.foreground
-        opacity: root.readOnly ? AppStyle.emphasis.disabled : AppStyle.emphasis.high
+        color: root.readOnly ? AppStyle.foreground.disabled : AppStyle.foreground.high
         selectionColor: AppStyle.primary.highlight
         selectByMouse : true
 
@@ -52,14 +50,13 @@ Rectangle{
         onFocusChanged: if(focus) selectAll()
     }
 
-    Text{
+    Text {
         id: defaultTxt
 
         anchors.fill: parent
         verticalAlignment: Text.AlignVCenter
         leftPadding: 5
         color: defaultTxtColor
-        opacity: AppStyle.emphasis.disabled
         visible: !(txtField.activeFocus || txtField.text)
         font.italic: true
     }

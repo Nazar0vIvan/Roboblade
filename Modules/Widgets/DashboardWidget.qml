@@ -80,7 +80,7 @@ Item{
         id: background
 
         anchors.fill: parent
-        color: content.children.length ? "transparent" : AppStyle.dashboard.surface
+        color: content.children.length ? "transparent" : AppStyle.background.dp01
         radius: 0
         border{ width: 1; color: "gray" }
     }
@@ -96,7 +96,7 @@ Item{
         }
         width: 8; height: 8
         radius: width/2
-        color: AppStyle.dashboard.maxColor
+        color: AppStyle.maxColor
     }
 
     Item { id: content }
@@ -252,7 +252,7 @@ Item{
 
             x: -topLeft.width/2; y: -topLeft.height/2
             width: resizeMark.w; height: resizeMark.h
-            color: AppStyle.foreground
+            color: AppStyle.foreground.high
             border{ width: 1; color: AppStyle.secondary.base }
         }
         Rectangle{
@@ -260,7 +260,7 @@ Item{
 
             x: borderRect.width - topRight.width/2; y: -topRight.height/2
             width: resizeMark.w; height: resizeMark.h
-            color: AppStyle.foreground
+            color: AppStyle.foreground.high
             border{ width: 1; color: AppStyle.secondary.base }
         }
         Rectangle{
@@ -268,7 +268,7 @@ Item{
 
             x: -bottomLeft.width/2; y: -bottomLeft.height/2+borderRect.height
             width: resizeMark.w; height: resizeMark.h
-            color: AppStyle.foreground
+            color: AppStyle.foreground.high
             border{ width: 1; color: AppStyle.secondary.base }
 
         }
@@ -277,7 +277,7 @@ Item{
 
             x: -bottomRight.width/2+borderRect.width; y: -bottomRight.height/2+borderRect.height
             width: resizeMark.w; height: resizeMark.h
-            color: AppStyle.foreground
+            color: AppStyle.foreground.high
             border{ width: 1; color: AppStyle.secondary.base }
         }
     }

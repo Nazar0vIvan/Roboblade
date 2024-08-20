@@ -10,7 +10,7 @@ Item{
 
     property alias source: icon.source
     property bool isMasked: mask.visible
-    property color color: AppStyle.foreground
+    property color color: AppStyle.foreground.high
 
     Image{
         id: icon

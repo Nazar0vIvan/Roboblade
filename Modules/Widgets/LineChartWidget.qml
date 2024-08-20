@@ -38,7 +38,7 @@ DashboardWidget{
 
         title: root.title
         titleFont: root.titleFont
-        titleColor: AppStyle.foreground
+        titleColor: AppStyle.foreground.high
 
         backgroundColor: "transparent"
         backgroundRoundness: 5
@@ -48,7 +48,7 @@ DashboardWidget{
         margins{ bottom: 5; top: 5; left: 5; right: 5 }
 
         legend.font: root.legendFont
-        legend.labelColor: AppStyle.foreground
+        legend.labelColor: AppStyle.foreground.high
         legend.visible: true
 
         Timer{
@@ -72,13 +72,13 @@ DashboardWidget{
             min: 0
             max: 180
 
-            color: AppStyle.foreground
+            color: AppStyle.foreground.high
 
             gridLineColor: "gray"
             gridVisible: true
 
             labelsFont: root.axisFont
-            labelsColor: AppStyle.foreground
+            labelsColor: AppStyle.foreground.high
             labelsVisible: true
         }
 
@@ -88,17 +88,17 @@ DashboardWidget{
             min: root.min
             max: root.max
 
-            color: AppStyle.foreground
+            color: AppStyle.foreground.high
 
             gridLineColor: "gray"
             gridVisible: true
 
             titleText: root.axisYTitle
             titleFont: root.axisFont
-            titleBrush: AppStyle.foreground
+            titleBrush: AppStyle.foreground.high
 
             labelsFont: root.axisFont
-            labelsColor: AppStyle.foreground
+            labelsColor: AppStyle.foreground.high
             labelsVisible: true
         }
 

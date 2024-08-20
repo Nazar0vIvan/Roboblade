@@ -14,65 +14,65 @@ import "views/scene"
 import AppStyle 1.0
 
 ApplicationWindow{
-    id: app
+  id: app
 
-    width: 1100; height: 650
-    color: "#353535"
-    title: qsTr("Roboblade")
-    visible: true
+  width: 1100; height: 650
+  color: "#353535"
+  title: qsTr("Roboblade")
+  visible: true
 
-    menuBar: AppMenuBar{ height: 30 }
+  menuBar: AppMenuBar{ height: 30 }
 
-    SplitView{ // top - logger
-        id: verticalSV
+  SplitView{ // top - logger
+    id: verticalSV
 
-        anchors.fill: parent
-        orientation: Qt.Vertical
-        handle: Rectangle{
-            implicitHeight: 2
-            color: SplitHandle.pressed | SplitHandle.hovered ? AppStyle.foreground : "transparent"
-            opacity: SplitHandle.pressed ? AppStyle.emphasis.high : (SplitHandle.hovered ? AppStyle.emphasis.medium : 1.0)
-        }
-
-        SplitView{ // navigation nav - view
-            id: horiznotalSV
-
-            SplitView.fillWidth: true; SplitView.fillHeight: true
-            orientation: Qt.Horizontal
-            handle: Rectangle{
-                implicitWidth: 2
-                color: SplitHandle.pressed | SplitHandle.hovered ? AppStyle.foreground : "transparent"
-                opacity: SplitHandle.pressed ? AppStyle.emphasis.high: (SplitHandle.hovered ? AppStyle.emphasis.medium : 1.0)
-            }
-
-            NavigationPanel{
-                id: navigationPanel
-
-                SplitView.preferredWidth: 50; SplitView.fillHeight: true
-                SplitView.minimumWidth: 50; SplitView.maximumWidth: 50
-                color: AppStyle.navigationPanelBackground
-            }
-
-            StackLayout{
-                id: sl
-
-                SplitView.fillHeight: true; SplitView.fillWidth: true
-
-                currentIndex: navigationPanel.currentIndex
-
-                Dashboard{ id: dashboard }
-
-                Scene{ id: scene }
-
-                Network{ id: network;  }
-
-                SettingsView{ id: settingsView }
-            }
-        }
-
-        Logger{
-            SplitView.fillWidth: true; SplitView.preferredHeight: 0
-            SplitView.maximumHeight: 200
-        }
+    anchors.fill: parent
+    orientation: Qt.Vertical
+    handle: Rectangle{
+      implicitHeight: 2
+      color: SplitHandle.pressed | SplitHandle.hovered ? AppStyle.foreground.high : "transparent"
+      //            opacity: SplitHandle.pressed ? AppStyle.emphasis.high : (SplitHandle.hovered ? AppStyle.emphasis.medium : 1.0)
     }
+
+    SplitView{ // navigation nav - view
+      id: horiznotalSV
+
+      SplitView.fillWidth: true; SplitView.fillHeight: true
+      orientation: Qt.Horizontal
+      handle: Rectangle{
+        implicitWidth: 2
+        color: SplitHandle.pressed | SplitHandle.hovered ? AppStyle.foreground : "transparent"
+        opacity: SplitHandle.pressed ? AppStyle.emphasis.high: (SplitHandle.hovered ? AppStyle.emphasis.medium : 1.0)
+      }
+
+      NavigationPanel{
+        id: navigationPanel
+
+        SplitView.preferredWidth: 50; SplitView.fillHeight: true
+        SplitView.minimumWidth: 50; SplitView.maximumWidth: 50
+        color: AppStyle.background.dp00
+      }
+
+      StackLayout{
+        id: sl
+
+        SplitView.fillHeight: true; SplitView.fillWidth: true
+
+        currentIndex: navigationPanel.currentIndex
+
+        Dashboard{ id: dashboard }
+
+        Scene{ id: scene }
+
+        Network{ id: network;  }
+
+        SettingsView{ id: settingsView }
+      }
+    }
+
+    Logger{
+      SplitView.fillWidth: true; SplitView.preferredHeight: 0
+      SplitView.maximumHeight: 200
+    }
+  }
 }

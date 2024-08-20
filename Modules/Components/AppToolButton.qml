@@ -21,7 +21,7 @@ ToolButton{
 
     property color pressedColor: AppStyle.secondary.base
     property color hoverColor: AppStyle.secondary.light
-    property color defaultColor: AppStyle.foreground
+    property color defaultColor: AppStyle.foreground.high
 
     implicitWidth: controlRL.width
     implicitHeight: image.height

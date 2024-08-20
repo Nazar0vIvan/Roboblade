@@ -39,8 +39,7 @@ Item{
 
                 anchors{ left: parent.left; right: parent.right }
                 height: 1
-                color: AppStyle.foreground
-                opacity: AppStyle.emphasis.medium
+                color: AppStyle.foreground.high
                 visible: root.isSeparator
             }
             RowLayout{
@@ -56,8 +55,7 @@ Item{
                     Layout.alignment: Qt.AlignVCenter
                     verticalAlignment: Text.AlignVCenter
                     font: AppStyle.fonts.subtitle
-                    color: AppStyle.foreground
-                    opacity: AppStyle.emphasis.high
+                    color: AppStyle.foreground.high
                 }
                 Control{
                     id: titleArrow

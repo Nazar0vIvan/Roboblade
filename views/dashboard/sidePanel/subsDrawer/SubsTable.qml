@@ -7,152 +7,152 @@ import AppStyle 1.0
 import Components 1.0
 
 Item{
-    id: root
+  id: root
 
-    property alias model: tv.model
+  property alias model: tv.model
 
-    ColumnLayout{
-        id: rootCL
+  ColumnLayout{
+    id: rootCL
 
-        anchors.fill: parent
+    anchors.fill: parent
 
-        // --> Header
-        HorizontalHeaderView{
-            id: header
+    // --> Header
+    HorizontalHeaderView{
+      id: header
 
-            syncView: tv
-            delegate: DelegateChooser{
+      syncView: tv
+      delegate: DelegateChooser{
 
-                // first header column
-                DelegateChoice{
-                    id: firstHeaderColumnDC
+        // first header column
+        DelegateChoice{
+          id: firstHeaderColumnDC
 
-                    column: 0
-                    SubsTableCheckDelegate{
+          column: 0
+          SubsTableCheckDelegate{
 
-                        required property bool selected
+            required property bool selected
 
-                        implicitWidth: root.width/tv.model.columnCount(); implicitHeight: tv.rowHeight
-                        text: model.display
-                        overlayOpacity: 0.12
+            implicitWidth: root.width/tv.model.columnCount(); implicitHeight: tv.rowHeight
+            text: model.display
+            overlayOpacity: 0.12
 
-                        onCheckedChanged: {
-                            const index = tv.model.index(row,0)
-                            ism.select(index, ItemSelectionModel.SelectCurrent | ItemSelectionModel.Rows)
-                        }
-                    }
-                }
-                // rest header
-                DelegateChoice{
-                    id: restHeaderDc
-
-                    delegate: SubsTableItemDelegate{
-
-                        text: model.display
-                        font: AppStyle.fonts.subtitle
-                        overlayOpacity: 0.12
-                    }
-                }
+            onCheckedChanged: {
+              const index = tv.model.index(row,0)
+              ism.select(index, ItemSelectionModel.SelectCurrent | ItemSelectionModel.Rows)
             }
+          }
         }
-        // <-- Header
+        // rest header
+        DelegateChoice{
+          id: restHeaderDc
 
-        // --> Table
-        TableView{
-            id: tv
+          delegate: SubsTableItemDelegate{
 
-            property int rowHeight: 30
-
-            function updateSubsParms(subsParmsNames){
-                let rowsNumbers = new Set([...Array(model.rowCount()).keys()])
-                for(let parmName of subsParmsNames){
-                    for(let row of rowsNumbers){
-                        const index = model.index(row,0)
-                        if(model.data(index,0) === parmName){
-                            tv.highlightRow(index)
-                            rowsNumbers.delete(row)
-                        }
-                    }
-                }
-                firstHeaderColumnDC.children[0].checked = (subsParmsNames.size === model.rowCount())
-            }
-
-            signal requestSocketsInfo()
-
-            Layout.fillWidth: true; Layout.fillHeight: true
-            clip: true
-            boundsBehavior: Flickable.StopAtBounds
-            rowSpacing: 2
-
-            // !! calling this function re-evaluates the size and position of each visible row and column
-            // !! needed cause tableview loaded in stacklayout
-
-            selectionModel: ItemSelectionModel{
-                id: ism
-                model: tv.model
-            }
-
-            delegate: DelegateChooser{
-                // first column
-                DelegateChoice{
-                    id: firstColumnDC
-
-                    column: 0
-                    SubsTableCheckDelegate{
-
-                        required property bool selected
-
-                        implicitWidth: root.width/tv.model.columnCount(); implicitHeight: tv.rowHeight
-                        text: model.display
-                        overlayOpacity: selected ? 0.07 : 0.0
-
-                        onCheckedChanged: {
-                            const index = tv.model.index(row,0)
-                            ism.select(index, ItemSelectionModel.Toggle | ItemSelectionModel.Rows)
-                        }
-                    }
-                }
-                // last column
-                DelegateChoice{
-                    id: lastColumnDC
-
-                    column: tv.model.columnCount() - 1
-                    SubsTableItemDelegate{
-
-                        required property bool selected
-
-                        implicitWidth: root.width/tv.model.columnCount(); implicitHeight: tv.rowHeight
-                        text: model.display
-                        overlayOpacity: selected ? 0.07 : 0.0
-
-                        Rectangle{
-                            id: selectIndicator
-
-                            implicitWidth: 3; implicitHeight: parent.height
-                            anchors.right: parent.right
-                            color: AppStyle.secondary.base
-                            visible: parent.selected
-                        }
-                    }
-                }
-                // rest
-                DelegateChoice{
-                    id: restDC
-
-                    SubsTableItemDelegate{
-
-                        required property bool selected
-
-                        implicitWidth: root.width/tv.model.columnCount(); implicitHeight: tv.rowHeight
-                        text: model.display
-                        overlayOpacity: selected ? 0.07 : 0.0
-                    }
-                }
-            }
+            text: model.display
+            font: AppStyle.fonts.subtitle
+            overlayOpacity: 0.12
+          }
         }
-        // <-- Table
-
+      }
     }
+    // <-- Header
+
+    // --> Table
+    TableView{
+      id: tv
+
+      property int rowHeight: 30
+
+      function updateSubsParms(subsParmsNames){
+        let rowsNumbers = new Set([...Array(model.rowCount()).keys()])
+        for(let parmName of subsParmsNames){
+          for(let row of rowsNumbers){
+            const index = model.index(row,0)
+            if(model.data(index,0) === parmName){
+              tv.highlightRow(index)
+              rowsNumbers.delete(row)
+            }
+          }
+        }
+        firstHeaderColumnDC.children[0].checked = (subsParmsNames.size === model.rowCount())
+      }
+
+      signal requestSocketsInfo()
+
+      Layout.fillWidth: true; Layout.fillHeight: true
+      clip: true
+      boundsBehavior: Flickable.StopAtBounds
+      rowSpacing: 2
+
+      // !! calling this function re-evaluates the size and position of each visible row and column
+      // !! needed cause tableview loaded in stacklayout
+
+      selectionModel: ItemSelectionModel{
+        id: ism
+        model: tv.model
+      }
+
+      delegate: DelegateChooser{
+        // first column
+        DelegateChoice{
+          id: firstColumnDC
+
+          column: 0
+          SubsTableCheckDelegate{
+
+            required property bool selected
+
+            implicitWidth: root.width/tv.model.columnCount(); implicitHeight: tv.rowHeight
+            text: model.display
+            overlayOpacity: selected ? 0.07 : 0.0
+
+            onCheckedChanged: {
+              const index = tv.model.index(row,0)
+              ism.select(index, ItemSelectionModel.Toggle | ItemSelectionModel.Rows)
+            }
+          }
+        }
+        // last column
+        DelegateChoice{
+          id: lastColumnDC
+
+          column: tv.model.columnCount() - 1
+          SubsTableItemDelegate{
+
+            required property bool selected
+
+            implicitWidth: root.width/tv.model.columnCount(); implicitHeight: tv.rowHeight
+            text: model.display
+            overlayOpacity: selected ? 0.07 : 0.0
+
+            Rectangle{
+              id: selectIndicator
+
+              implicitWidth: 3; implicitHeight: parent.height
+              anchors.right: parent.right
+              color: AppStyle.secondary.base
+              visible: parent.selected
+            }
+          }
+        }
+        // rest
+        DelegateChoice{
+          id: restDC
+
+          SubsTableItemDelegate{
+
+            required property bool selected
+
+            implicitWidth: root.width/tv.model.columnCount(); implicitHeight: tv.rowHeight
+            text: model.display
+            overlayOpacity: selected ? 0.07 : 0.0
+          }
+        }
+      }
+    }
+    // <-- Table
+
+  }
 
 
 }

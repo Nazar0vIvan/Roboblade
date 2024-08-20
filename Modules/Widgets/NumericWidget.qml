@@ -24,9 +24,9 @@ DashboardWidget{
 
     property string unit: "N"
 
-    property color minColor: AppStyle.dashboard.minColor
-    property color midColor: AppStyle.dashboard.midColor
-    property color maxColor: AppStyle.dashboard.maxColor
+    property color minColor: AppStyle.minColor
+    property color midColor: AppStyle.midColor
+    property color maxColor: AppStyle.maxColor
 
     property int _margins: 8
 
@@ -77,8 +77,7 @@ DashboardWidget{
             Layout.fillWidth: true
             text: "Fx"
             font: AppStyle.fonts.numericTitle
-            color: AppStyle.foreground
-            opacity: AppStyle.emphasis.high
+            color: AppStyle.foreground.high
         }
 
         RowLayout{
@@ -92,7 +91,6 @@ DashboardWidget{
                 Layout.preferredWidth: valueTM.advanceWidth
                 text: value.toFixed(precision)
                 font: AppStyle.fonts.numericValue
-                opacity: AppStyle.emphasis.high
                 color: linearGradient.getColor(value)
             }
 
@@ -102,7 +100,6 @@ DashboardWidget{
                 Layout.preferredWidth: unitTM.advanceWidth
                 text: unit
                 font: valueFont
-                opacity: AppStyle.emphasis.high
                 color: linearGradient.getColor(value)
             }
         }

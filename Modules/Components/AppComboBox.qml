@@ -21,9 +21,8 @@ ComboBox{
         verticalAlignment: TextInput.AlignVCenter
 
         text: control.currentText
-        color: AppStyle.foreground
+        color: AppStyle.foreground.high
         font: control.font
-        opacity: AppStyle.emphasis.high
 
         selectByMouse: true
         selectionColor: AppStyle.primary.highlight
@@ -33,7 +32,7 @@ ComboBox{
     }
 
     background: Rectangle{
-        color: AppStyle.background
+        color: AppStyle.background.dp00
         border{
             width: control.contentItem.activeFocus || control.hovered || control.popup.visible ? 1 : 0
             color: "gray"
@@ -68,7 +67,7 @@ ComboBox{
         }
 
         background: Rectangle {
-            color: AppStyle.background
+            color: AppStyle.background.dp00
             border{ width: 1; color: "gray" }
         }
     }
@@ -82,12 +81,11 @@ ComboBox{
         width: control.popup.width
         contentItem: Text {
             text: modelData.text === undefined ? modelData : modelData.text
-            color: AppStyle.foreground
+            color: AppStyle.foreground.high
             font: control.font
-            opacity: AppStyle.emphasis.high
             verticalAlignment: Text.AlignVCenter
         }
-        background: Rectangle{ color: hovered ? AppStyle.primary.highlight : AppStyle.background }
+        background: Rectangle { color: hovered ? AppStyle.primary.highlight : AppStyle.background }
     }
 
     onCurrentTextChanged: control.editingFinished()

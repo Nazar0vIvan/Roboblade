@@ -11,8 +11,7 @@ TabButton{
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignLeft
         text: root.text
-        color: root.checked ? AppStyle.secondary.base : AppStyle.foreground
-        opacity: root.checked ? 1.0 : AppStyle.emphasis.disabled
+        color: root.checked ? AppStyle.secondary.base : AppStyle.foreground.high
         font: root.checked ? AppStyle.fonts.subtitle : AppStyle.fonts.body
     }
     background: Rectangle{ color: "transparent" }

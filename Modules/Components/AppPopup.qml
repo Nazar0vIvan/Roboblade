@@ -21,7 +21,7 @@ Popup{
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
     padding: 10
     background: Rectangle{
-        color: AppStyle.background
+        color: AppStyle.background.dp00
         radius: 8
         border{ width: 1; color: "gray" }
     }

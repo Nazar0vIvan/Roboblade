@@ -8,27 +8,27 @@ import Components 1.0
 import Properties 1.0
 
 ListView {
-    id: root
+  id: root
 
-    property int maxAvailableWidth: root.contentWidth - root.width
-    property int maxAvailableHeight: root.contentHeight - root.height
+  property int maxAvailableWidth: root.contentWidth - root.width
+  property int maxAvailableHeight: root.contentHeight - root.height
 
-    readonly property int _componentHeight: 30
-    readonly property int _componentsSpacing: 10
+  readonly property int _componentHeight: 30
+  readonly property int _componentsSpacing: 10
 
-    readonly property int _labelWidth: 90
-    readonly property int _fieldWidth: 200
-    readonly property int _componentSpacing: 0
+  readonly property int _labelWidth: 90
+  readonly property int _fieldWidth: 200
+  readonly property int _componentSpacing: 0
 
-    property var signals: new Map()
+  property var signals: new Map()
 
-    spacing: 20
-    clip: true
-    boundsBehavior: Flickable.StopAtBounds
+  spacing: 20
+  clip: true
+  boundsBehavior: Flickable.StopAtBounds
 
-    model: ObjectModel{
+  model: ObjectModel{
 
-    }
+  }
 }
 
 /*

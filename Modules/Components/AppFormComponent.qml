@@ -13,8 +13,7 @@ Item{
     property string labelName
     property alias labelBackground: label.background
     property int labelWidth: 100
-    property color labelColor: AppStyle.foreground
-    property string labelOpacity: AppStyle.emphasis.high
+    property color labelColor: AppStyle.foreground.high
 
     required property Item field
 
@@ -37,7 +36,6 @@ Item{
             text: root.labelName
             font: root.font
             color: root.labelColor
-            opacity: root.labelOpacity
         }
         Component.onCompleted:{ field.parent = rootRL }
     }

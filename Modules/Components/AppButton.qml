@@ -10,9 +10,9 @@ import AppStyle 1.0
 Button{
     id: control
 
-    property color backgroundColor: AppStyle.background
-    property color borderColor: AppStyle.surface
-    property color color: AppStyle.foreground
+    property color backgroundColor: AppStyle.background.dp00
+    property color borderColor: AppStyle.background.dp01
+    property color color: AppStyle.foreground.high
     property int type: AppStyle.ButtonType.Contained
     readonly property var overlay: AppStyle.buttonType2Overlay.get(type)
     property int textFormat: Text.AutoText
@@ -42,7 +42,7 @@ Button{
             textFormat: control.textFormat
             font: control.font
             color: control.color
-            opacity: control.enabled ? AppStyle.emphasis.high : AppStyle.emphasis.disabled
+            opacity: control.enabled ? AppStyle.foreground.high : AppStyle.foreground.disabled
         }
     }
 
@@ -53,7 +53,7 @@ Button{
 
         Rectangle{
             anchors.fill: parent
-            color: AppStyle.foreground
+            color: AppStyle.foreground.high
             radius: parent.radius
             opacity: control.pressed ? overlay.pressed : control.hovered ? overlay.hovered : 0
         }

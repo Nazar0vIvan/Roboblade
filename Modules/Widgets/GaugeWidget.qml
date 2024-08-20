@@ -24,9 +24,9 @@ DashboardWidget{
 
     property string unit: "N"
 
-    property color minColor: AppStyle.dashboard.minColor
-    property color midColor: AppStyle.dashboard.midColor
-    property color maxColor: AppStyle.dashboard.maxColor
+    property color minColor: AppStyle.minColor
+    property color midColor: AppStyle.midColor
+    property color maxColor: AppStyle.maxColor
     property real beta: 100.0 // gap angle at the bottom of gauge
     property real offset: height/4*(1 - Math.cos(beta/2 * Math.PI/180.0))
     property real span: 360.0 - beta
@@ -140,7 +140,6 @@ DashboardWidget{
             text: value.toFixed(precision)
             font: AppStyle.fonts.gaugeValue
             color: linearGradient.getColor(value)
-            opacity: AppStyle.emphasis.high
         }
         Text{
             id: unitTxt
@@ -149,7 +148,6 @@ DashboardWidget{
             text: unit
             font: AppStyle.fonts.gaugeValue
             color: linearGradient.getColor(value)
-            opacity: AppStyle.emphasis.high
         }
     }
 
@@ -161,8 +159,7 @@ DashboardWidget{
 
         text: min.toFixed(precision)
         font: AppStyle.fonts.caption
-        color: AppStyle.foreground
-        opacity: AppStyle.emphasis.medium
+        color: AppStyle.foreground.medium
     }
 
     Text{
@@ -173,8 +170,7 @@ DashboardWidget{
 
         text: max.toFixed(precision)
         font: AppStyle.fonts.caption
-        color: AppStyle.foreground
-        opacity: AppStyle.emphasis.medium
+        color: AppStyle.foreground.medium
     }
 
     Text{
@@ -184,6 +180,6 @@ DashboardWidget{
         anchors{ top: parent.top; left: parent.left; margins: 10 }
         text: "Fx"
         font: AppStyle.fonts.gaugeTitle
-        color: AppStyle.foreground
+        color: AppStyle.foreground.high
     }
 }

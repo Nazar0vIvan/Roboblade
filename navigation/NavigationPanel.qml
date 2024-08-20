@@ -6,22 +6,22 @@ import AppStyle 1.0
 import Components 1.0
 
 Rectangle{
-    id: root
+  id: root
 
-    property int currentIndex: 0
+  property int currentIndex: 0
 
-    NavigationMenu{
-        id: navigationMenu
+  NavigationMenu{
+    id: navigationMenu
 
-        anchors.fill: parent
+    anchors.fill: parent
 
-        model: ListModel {
-            ListElement{ iconPath: "/navigation/dashboard.svg" }
-            ListElement{ iconPath: "/navigation/scene.svg"     }
-            ListElement{ iconPath: "/navigation/network.svg"   }
-            ListElement{ iconPath: "/navigation/settings.svg"; type: "second" }
-        }
-
-        onCurrentIndexChanged: index => { root.currentIndex = index }
+    model: ListModel {
+      ListElement{ iconPath: "/navigation/dashboard.svg" }
+      ListElement{ iconPath: "/navigation/scene.svg"     }
+      ListElement{ iconPath: "/navigation/network.svg"   }
+      ListElement{ iconPath: "/navigation/settings.svg"; type: "second" }
     }
+
+    onCurrentIndexChanged: index => { root.currentIndex = index }
+  }
 }

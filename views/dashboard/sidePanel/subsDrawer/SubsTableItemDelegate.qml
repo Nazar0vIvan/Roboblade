@@ -5,25 +5,24 @@ import QtQuick.Layouts 1.15
 import AppStyle 1.0
 
 ItemDelegate{
-    id: control
+  id: control
 
-    property real overlayOpacity: 0.0
-    property color color: AppStyle.foreground
+  property real overlayOpacity: 0.0
+  property color color: AppStyle.foreground.high
 
-    font: AppStyle.fonts.body
+  font: AppStyle.fonts.body
 
-    contentItem: Text{
-        verticalAlignment: Text.AlignVCenter
-        text: control.text
-        font: control.font
-        color: control.color
-        opacity: AppStyle.emphasis.high
-    }
+  contentItem: Text{
+    verticalAlignment: Text.AlignVCenter
+    text: control.text
+    font: control.font
+    color: control.color
+  }
 
-    background: Rectangle{
-        color: AppStyle.foreground
-        opacity: control.overlayOpacity
-    }
+  background: Rectangle{
+    color: AppStyle.foreground.high
+    opacity: control.overlayOpacity
+  }
 }
 
 /*

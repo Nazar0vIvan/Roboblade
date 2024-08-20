@@ -9,55 +9,55 @@ import Widgets 1.0
 import "sidePanel"
 
 Item{
-    id: root
+  id: root
 
-    RowLayout{
-        id: rootRL
+  RowLayout{
+    id: rootRL
 
-        anchors{ fill: parent; topMargin: 2 } // !!!!
-        spacing: 1
+    anchors{ fill: parent; topMargin: 2 } // !!!!
+    spacing: 1
 
-        ColumnLayout{
-            id: rootCL
+    ColumnLayout{
+      id: rootCL
 
-            Layout.fillWidth: true; Layout.fillHeight: true;
-            spacing: 1
+      Layout.fillWidth: true; Layout.fillHeight: true;
+      spacing: 1
 
-            DashboardToolBar{
-                id: dbToolBar
+      DashboardToolBar{
+        id: dbToolBar
 
-                Layout.fillWidth: true; Layout.preferredHeight: 45
-                color: AppStyle.background
-            }
+        Layout.fillWidth: true; Layout.preferredHeight: 45
+        color: AppStyle.background.dp00
+      }
 
-            DashboardScene{
-                id: dbScene
+      DashboardScene{
+        id: dbScene
 
-                Layout.fillWidth: true; Layout.fillHeight: true
-                color: AppStyle.background
-            }
-        }
-
-        DashboardSidePanel{
-            id: dbSidePanel
-
-            Layout.preferredWidth: AppStyle.drawerWidth; Layout.fillHeight: true
-            color: AppStyle.background
-        }
+        Layout.fillWidth: true; Layout.fillHeight: true
+        color: AppStyle.background.dp00
+      }
     }
 
-    Component.onCompleted: {
-        dbToolBar.grid.connect(dbScene.slotGrid)
-        dbToolBar.snap.connect(dbScene.slotSnap)
+    DashboardSidePanel{
+      id: dbSidePanel
 
-        dbToolBar.gridStepChanged.connect(dbScene.slotGridStepChanged)
-        dbToolBar.gridLineTypeChanged.connect(dbScene.slotGridLineTypeChanged)
-        dbToolBar.gridLineColorChanged.connect(dbScene.slotGridLineColorChanged)
-        dbToolBar.gridLineWidthChanged.connect(dbScene.slotGridWidthChanged)
-        dbToolBar.gridOpacityChanged.connect(dbScene.slotGridOpacityChanged)
-        dbToolBar.snapSpacingChanged.connect(dbScene.slotSnapSpacingChanged)
-
-        dbScene.selectionChanged.connect(dbSidePanel.selectionChanged)
+      Layout.preferredWidth: AppStyle.drawerWidth; Layout.fillHeight: true
+      color: AppStyle.background.dp00
     }
+  }
+
+  Component.onCompleted: {
+    dbToolBar.grid.connect(dbScene.slotGrid)
+    dbToolBar.snap.connect(dbScene.slotSnap)
+
+    dbToolBar.gridStepChanged.connect(dbScene.slotGridStepChanged)
+    dbToolBar.gridLineTypeChanged.connect(dbScene.slotGridLineTypeChanged)
+    dbToolBar.gridLineColorChanged.connect(dbScene.slotGridLineColorChanged)
+    dbToolBar.gridLineWidthChanged.connect(dbScene.slotGridWidthChanged)
+    dbToolBar.gridOpacityChanged.connect(dbScene.slotGridOpacityChanged)
+    dbToolBar.snapSpacingChanged.connect(dbScene.slotSnapSpacingChanged)
+
+    dbScene.selectionChanged.connect(dbSidePanel.selectionChanged)
+  }
 }
 

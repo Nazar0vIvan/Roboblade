@@ -7,26 +7,26 @@ import AppStyle 1.0
 import Components 1.0
 
 Item{
-    id: root
+  id: root
 
-    Rectangle{
-        id: pane
+  Rectangle{
+    id: pane
 
-        anchors{ fill: parent; topMargin: 2 }
-        color: AppStyle.background
+    anchors{ fill: parent; topMargin: 2 }
+    color: AppStyle.background.dp00
 
-        ListView{
-            id: lv
+    ListView{
+      id: lv
 
-            anchors{ fill: parent; margins: 10 }
-            model: ["3D", "RSI on/off"]
+      anchors{ fill: parent; margins: 10 }
+      model: ["3D", "RSI on/off"]
 
-            delegate: Text{
-                color: AppStyle.foreground
-                text: modelData
-            }
-        }
+      delegate: Text{
+        color: AppStyle.foreground.high
+        text: modelData
+      }
     }
+  }
 
 
 

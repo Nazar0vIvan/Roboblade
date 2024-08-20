@@ -6,24 +6,24 @@ import AppStyle 1.0
 import Properties 1.0
 
 ObjectModel{
-    id: root
+  id: root
 
-    property var wgt
+  property var wgt
 
-    function setWidget(wgt){ root.wgt = wgt }
+  function setWidget(wgt){ root.wgt = wgt }
 
-    // the initial properties, that every widget has  
-    PropertiesSection{
-        id: geometryPropsSection
+  // the initial properties, that every widget has
+  PropertiesSection{
+    id: geometryPropsSection
 
-        titleName: qsTr("Geometry")
-        isSeparator: false
-        properties:[ GeometryProperty{ id: geometryProp }]
+    titleName: qsTr("Geometry")
+    isSeparator: false
+    properties:[ GeometryProperty{ id: geometryProp }]
 
-    }
+  }
 
-    onWgtChanged:{
-        geometryProp.setWidget(wgt)
-    }
+  onWgtChanged:{
+    geometryProp.setWidget(wgt)
+  }
 }
 
