@@ -3,14 +3,14 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.2
 import Qt5Compat.GraphicalEffects
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 Item{
     id: root
 
     property alias source: icon.source
     property bool isMasked: mask.visible
-    property color color: AppStyle.foreground.high
+    property color color: Styles.foreground.high
 
     Image{
         id: icon

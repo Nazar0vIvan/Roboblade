@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import Qt.labs.qmlmodels
 
-import AppStyle 1.0
+import AppStyles 1.0
 import Components 1.0
 
 Item{
@@ -49,7 +49,7 @@ Item{
           delegate: SubsTableItemDelegate{
 
             text: model.display
-            font: AppStyle.fonts.subtitle
+            font: Styles.fonts.subtitle
             overlayOpacity: 0.12
           }
         }
@@ -130,7 +130,7 @@ Item{
 
               implicitWidth: 3; implicitHeight: parent.height
               anchors.right: parent.right
-              color: AppStyle.secondary.base
+              color: Styles.secondary.base
               visible: parent.selected
             }
           }
@@ -204,13 +204,13 @@ Item{
             id: header
 
             Layout.fillWidth: true; Layout.preferredHeight: _headerHeight
-            color: AppStyle.background
+            color: Styles.background
 
             Rectangle{
                 id: overlay
 
                 anchors.fill: parent
-                color: AppStyle.foreground
+                color: Styles.foreground
                 opacity: 0.10
             }
 

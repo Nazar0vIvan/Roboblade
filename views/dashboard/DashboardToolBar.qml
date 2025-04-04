@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 import Qt5Compat.GraphicalEffects
 
-import AppStyle 1.0
+import AppStyles 1.0
 import Widgets 1.0
 import Components 1.0
 import Properties 1.0
@@ -19,7 +19,7 @@ Rectangle{
   property int  _popupComponentHeight: 25
   property int  _popupComponentSpacing: 0
   property int  _popupSpacing: 5
-  property font _popupFont: AppStyle.fonts.caption
+  property font _popupFont: Styles.fonts.caption
 
   signal grid
   signal snap
@@ -171,7 +171,7 @@ Rectangle{
         required property string section
         required property var popup
 
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenter: parent ? parent.verticalCenter : undefined
         toolBar: root
         size: root.size
         isDropDown: popup.components.length
@@ -185,7 +185,7 @@ Rectangle{
         Rectangle{
           width: 1; height: parent.height
           anchors.verticalCenter: parent.verticalCenter
-          color: AppStyle.foreground.disabled
+          color: Styles.foreground.disabled
           anchors.left: parent.left
         }
       }

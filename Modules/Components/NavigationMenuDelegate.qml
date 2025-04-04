@@ -3,7 +3,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.2
 import Qt5Compat.GraphicalEffects
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 Item{
     id: root

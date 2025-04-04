@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app, [url](QObject *obj, const QUrl &objUrl){if (!obj && url == objUrl) QCoreApplication::exit(-1);}, Qt::QueuedConnection);
 
-    qmlRegisterSingletonType(QUrl("qrc:/AppStyle.qml"), "AppStyle", 1, 0, "AppStyle" );
+    // qmlRegisterSingletonType(QUrl("qrc:/Styles.qml"), "AppStyle", 1, 0, "AppStyle" );
 
     engine.load(url);
 

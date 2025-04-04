@@ -22,7 +22,6 @@
     </qresource>
     <qresource prefix="/dashboard">
         <file alias="adjust.svg">icons/dashboard/adjust.svg</file>
-        <file alias="arrow_down.svg">icons/dashboard/arrow_down.svg</file>
         <file alias="arrow_left.png">icons/dashboard/arrow_left.png</file>
         <file alias="arrow_right.svg">icons/dashboard/arrow_right.svg</file>
         <file alias="numeric.svg">icons/dashboard/numeric.svg</file>

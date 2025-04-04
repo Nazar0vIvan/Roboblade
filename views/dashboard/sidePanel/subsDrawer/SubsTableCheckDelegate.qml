@@ -1,17 +1,17 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.15
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 CheckDelegate{
   id: control
 
   property real overlayOpacity: 0.0
-  property color color: AppStyle.foreground
+  property color color: Styles.foreground.high
 
   property int _spacing: 10
 
-  font: AppStyle.fonts.body
+  font: Styles.fonts.body
 
   leftPadding: indicator.implicitWidth + 2*_spacing
 
@@ -25,8 +25,8 @@ CheckDelegate{
   indicator: Rectangle{
     anchors{ left: parent.left; leftMargin: _spacing; verticalCenter: parent.verticalCenter }
     implicitWidth: 16; implicitHeight: implicitWidth
-    color: control.checked ? AppStyle.secondary.base : "transparent"
-    border{ width: 1; color: control.checked ? AppStyle.secondary.base : "gray" }
+    color: control.checked ? Styles.secondary.base : "transparent"
+    border{ width: 1; color: control.checked ? Styles.secondary.base : "gray" }
 
     Image{
       anchors.centerIn: parent
@@ -40,7 +40,7 @@ CheckDelegate{
   }
 
   background: Rectangle {
-    color: AppStyle.foreground.high
+    color: Styles.foreground.high
     opacity: control.overlayOpacity
   }
 }

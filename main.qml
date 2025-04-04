@@ -11,13 +11,13 @@ import "views/dashboard"
 import "views/network"
 import "views/scene"
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 ApplicationWindow{
   id: app
 
   width: 1100; height: 650
-  color: "#353535"
+  color: Styles.background.dp01
   title: qsTr("Roboblade")
   visible: true
 
@@ -28,10 +28,11 @@ ApplicationWindow{
 
     anchors.fill: parent
     orientation: Qt.Vertical
-    handle: Rectangle{
-      implicitHeight: 2
-      color: SplitHandle.pressed | SplitHandle.hovered ? AppStyle.foreground.high : "transparent"
-      //            opacity: SplitHandle.pressed ? AppStyle.emphasis.high : (SplitHandle.hovered ? AppStyle.emphasis.medium : 1.0)
+    handle: Rectangle {
+      implicitHeight: 1
+      // color: SplitHandle.pressed | SplitHandle.hovered ? Styles.foreground.high : "transparent"
+      color: Styles.background.dp04
+      // opacity: SplitHandle.pressed ? Styles.emphasis.high : (SplitHandle.hovered ? Styles.emphasis.medium : 1.0)
     }
 
     SplitView{ // navigation nav - view
@@ -39,10 +40,10 @@ ApplicationWindow{
 
       SplitView.fillWidth: true; SplitView.fillHeight: true
       orientation: Qt.Horizontal
-      handle: Rectangle{
-        implicitWidth: 2
-        color: SplitHandle.pressed | SplitHandle.hovered ? AppStyle.foreground : "transparent"
-        opacity: SplitHandle.pressed ? AppStyle.emphasis.high: (SplitHandle.hovered ? AppStyle.emphasis.medium : 1.0)
+      handle: Rectangle {
+        implicitWidth: 1
+        //color: SplitHandle.pressed | SplitHandle.hovered ? Styles.foreground.high : "transparent"
+        color: Styles.background.dp04
       }
 
       NavigationPanel{
@@ -50,7 +51,7 @@ ApplicationWindow{
 
         SplitView.preferredWidth: 50; SplitView.fillHeight: true
         SplitView.minimumWidth: 50; SplitView.maximumWidth: 50
-        color: AppStyle.background.dp00
+        color: Styles.background.dp00
       }
 
       StackLayout{

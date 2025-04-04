@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 import Components 1.0
 
@@ -38,7 +38,7 @@ Item {
                 id: lineStyle
 
                 Layout.preferredWidth: 95; Layout.preferredHeight: parent.height
-                font: AppStyle.fonts.caption
+                font: Styles.fonts.caption
                 valueRole: "value"
                 textRole: "text"
                 model:[
@@ -54,7 +54,7 @@ Item {
                 id: lineWidth
 
                 Layout.preferredWidth: 60; Layout.preferredHeight: parent.height
-                font: AppStyle.fonts.caption
+                font: Styles.fonts.caption
                 model: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 
                 Component.onCompleted: { currentIndex = indexOfValue(1) }

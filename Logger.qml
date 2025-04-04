@@ -2,41 +2,40 @@ import QtQuick 2.12
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 Item {
   id: root
 
-  Rectangle{
+  Rectangle {
     anchors.fill: parent
-    color: AppStyle.background.dp00
+    color: Styles.background.dp00
 
-    ColumnLayout{
+    ColumnLayout {
       anchors.fill: parent
-      Label{
+      Label {
         text: "Log"
         Layout.fillWidth: true; Layout.preferredHeight: 30
         leftPadding: 10
-        color: AppStyle.foreground.high
-        font: AppStyle.fonts.body
+        color: Styles.foreground.high
+        font: Styles.fonts.body
         background: Rectangle {
-          color: AppStyle.background.dp01;
-          opacity: AppStyle.foreground.medium
+          color: Styles.background.dp01;
         }
         verticalAlignment: Text.AlignVCenter
       }
-      TextArea{
+      TextArea {
         id: textArea
 
         Layout.fillWidth: true; Layout.fillHeight: true
-        color: AppStyle.foreground.high
+        color: Styles.foreground.high
         readOnly: true
         selectByMouse: true
-        selectionColor: AppStyle.primary.transparent
-        font: AppStyle.fonts.log
-        background: Rectangle{ color: AppStyle.background.dp00 }
+        selectionColor: Styles.primary.transparent
+        font: Styles.fonts.log
+        background: Rectangle{ color: Styles.background.dp00 }
       }
-      Connections{
+      Connections {
         target: logger
         function onLogAdded(message){ textArea.append(message) }
       }

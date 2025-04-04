@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 
-import AppStyle 1.0
+import AppStyles 1.0
 import Components 1.0
 
 Item{
@@ -13,7 +13,7 @@ Item{
     property var wgt
 
     readonly property int _spacing: 0
-    readonly property font _font: AppStyle.fonts.caption
+    readonly property font _font: Styles.fonts.caption
     readonly property int _componentHeight: 25
     readonly property int _labelWidth: 20
     readonly property int _fieldWidth: 50
@@ -85,12 +85,12 @@ Item{
             spacing: _spacing
             labelWidth: _labelWidth
             labelName: "X"
-            font: AppStyle.fonts.caption
+            font: Styles.fonts.caption
             field: AppTextField{
                 width: _fieldWidth; height: _componentHeight
                 backgroundColor: "transparent"
                 validator: IntValidator{ bottom: 0 }
-                font: AppStyle.fonts.caption
+                font: Styles.fonts.caption
             }
         }
 
@@ -101,12 +101,12 @@ Item{
             spacing: _spacing
             labelWidth: _labelWidth
             labelName: "Y"
-            font: AppStyle.fonts.caption
+            font: Styles.fonts.caption
             field: AppTextField{
                 width: _fieldWidth; height: _componentHeight
                 backgroundColor: "transparent"
                 validator: IntValidator{ bottom: 0 }
-                font: AppStyle.fonts.caption
+                font: Styles.fonts.caption
             }
         }
 
@@ -117,12 +117,12 @@ Item{
             spacing: _spacing
             labelWidth: _labelWidth
             labelName: "W"
-            font: AppStyle.fonts.caption
+            font: Styles.fonts.caption
             field: AppTextField{
                 width: _fieldWidth; height: _componentHeight
                 backgroundColor: "transparent"
                 validator: IntValidator{ bottom: 0 }
-                font: AppStyle.fonts.caption
+                font: Styles.fonts.caption
             }
         }
 
@@ -133,12 +133,12 @@ Item{
             spacing: _spacing
             labelWidth: _labelWidth
             labelName: "H"
-            font: AppStyle.fonts.caption
+            font: Styles.fonts.caption
             field: AppTextField{
                 width: _fieldWidth; height: _componentHeight
                 backgroundColor: "transparent"
                 validator: IntValidator{ bottom: 0 }
-                font: AppStyle.fonts.caption
+                font: Styles.fonts.caption
             }
         }
     }

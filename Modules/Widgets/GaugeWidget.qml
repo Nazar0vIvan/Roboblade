@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.2
 // needs to add due to Qt6.3 and Windows bug: root.pressed doesn't work on Windows
 // import QtQuick.Controls.Basic
 
-import AppStyle 1.0
+import AppStyles 1.0
 import Components 1.0
 
 DashboardWidget{
@@ -24,9 +24,9 @@ DashboardWidget{
 
     property string unit: "N"
 
-    property color minColor: AppStyle.minColor
-    property color midColor: AppStyle.midColor
-    property color maxColor: AppStyle.maxColor
+    property color minColor: Styles.minColor
+    property color midColor: Styles.midColor
+    property color maxColor: Styles.maxColor
     property real beta: 100.0 // gap angle at the bottom of gauge
     property real offset: height/4*(1 - Math.cos(beta/2 * Math.PI/180.0))
     property real span: 360.0 - beta
@@ -138,7 +138,7 @@ DashboardWidget{
 
             Layout.alignment: Qt.AlignHCenter
             text: value.toFixed(precision)
-            font: AppStyle.fonts.gaugeValue
+            font: Styles.fonts.gaugeValue
             color: linearGradient.getColor(value)
         }
         Text{
@@ -146,7 +146,7 @@ DashboardWidget{
 
             Layout.alignment: Qt.AlignHCenter
             text: unit
-            font: AppStyle.fonts.gaugeValue
+            font: Styles.fonts.gaugeValue
             color: linearGradient.getColor(value)
         }
     }
@@ -158,8 +158,8 @@ DashboardWidget{
         y: barRadius * (1 + Math.cos(beta/2 * Math.PI/180.0)) + offset/2 + implicitHeight/2
 
         text: min.toFixed(precision)
-        font: AppStyle.fonts.caption
-        color: AppStyle.foreground.medium
+        font: Styles.fonts.caption
+        color: Styles.foreground.medium
     }
 
     Text{
@@ -169,8 +169,8 @@ DashboardWidget{
         y: barRadius * (1 + Math.cos(beta/2 * Math.PI/180.0)) + offset/2 + implicitHeight/2
 
         text: max.toFixed(precision)
-        font: AppStyle.fonts.caption
-        color: AppStyle.foreground.medium
+        font: Styles.fonts.caption
+        color: Styles.foreground.medium
     }
 
     Text{
@@ -179,7 +179,7 @@ DashboardWidget{
 
         anchors{ top: parent.top; left: parent.left; margins: 10 }
         text: "Fx"
-        font: AppStyle.fonts.gaugeTitle
-        color: AppStyle.foreground.high
+        font: Styles.fonts.gaugeTitle
+        color: Styles.foreground.high
     }
 }

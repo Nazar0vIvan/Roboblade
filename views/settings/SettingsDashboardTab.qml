@@ -3,7 +3,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.15
 import QtQml.Models 2.15
 
-import AppStyle 1.0
+import AppStyles 1.0
 import Components 1.0
 import Properties 1.0
 

@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Controls.Basic
 import QtQuick.Layouts 1.2
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 Item{
     id: root
@@ -14,7 +14,7 @@ Item{
     property bool isExpanded: false
     property bool isSeparator: true
 
-    implicitWidth: AppStyle.drawerWidth; implicitHeight: childrenRect.height
+    implicitWidth: Styles.drawerWidth; implicitHeight: childrenRect.height
 
     Behavior on height { NumberAnimation { duration: 500 } }
 
@@ -39,7 +39,7 @@ Item{
 
                 anchors{ left: parent.left; right: parent.right }
                 height: 1
-                color: AppStyle.foreground.high
+                color: Styles.foreground.high
                 visible: root.isSeparator
             }
             RowLayout{
@@ -54,8 +54,8 @@ Item{
                     Layout.fillWidth: true; Layout.preferredHeight: root.titleHeight
                     Layout.alignment: Qt.AlignVCenter
                     verticalAlignment: Text.AlignVCenter
-                    font: AppStyle.fonts.subtitle
-                    color: AppStyle.foreground.high
+                    font: Styles.fonts.subtitle
+                    color: Styles.foreground.high
                 }
                 Control{
                     id: titleArrow

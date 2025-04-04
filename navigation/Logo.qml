@@ -1,7 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Layouts 1.2
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 Item{
   id: root
@@ -31,8 +31,8 @@ Item{
         width: parent.width
         Layout.preferredWidth: 70
         text: "RoboBlade"
-        color: AppStyle.foreground.high
-        font: AppStyle.fonts.logo
+        color: Styles.foreground.high
+        font: Styles.fonts.logo
       }
       TextMetrics {
         id: txtMetricsLogo
@@ -52,7 +52,7 @@ Item{
           implicitWidth: 33
           Layout.fillWidth: true; Layout.preferredHeight: 1
           Layout.minimumWidth: orange.implicitWidth
-          color: AppStyle.secondary.base
+          color: Styles.secondary.base
 
         }
         Rectangle{
@@ -61,7 +61,7 @@ Item{
           implicitWidth: 33
           Layout.fillWidth: true; Layout.preferredHeight: 1
           Layout.minimumWidth: blue.implicitWidth
-          color: AppStyle.primary.base
+          color: Styles.primary.base
         }
         Rectangle{
           id: gray

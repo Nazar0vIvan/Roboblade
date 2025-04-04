@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.15
 
 import QtQuick.Controls.Basic
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 Item{
   id: control
@@ -29,8 +29,8 @@ Item{
 
       Layout.fillWidth: true; Layout.preferredHeight: control.height
       verticalAlignment: Text.AlignVCenter
-      color: AppStyle.foreground.high
-      font: AppStyle.fonts.caption
+      color: Styles.foreground.high
+      font: Styles.fonts.caption
     }
   }
 
@@ -60,7 +60,7 @@ Item{
       contentItem: Rectangle{
         anchors.verticalCenter: parent.verticalCenter
         implicitWidth: 16; implicitHeight: implicitWidth
-        color: checkbox.checked ? AppStyle.secondary.base : "transparent"
+        color: checkbox.checked ? Styles.secondary.base : "transparent"
         border{ width: 1; color: "gray" }
 
         Image {

@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 import QtQml.Models 2.15
 
-import AppStyle 1.0
+import AppStyles 1.0
 import Widgets 1.0
 import Components 1.0
 import Properties 1.0
@@ -228,7 +228,7 @@ ListView{
             id: propsSectionLineChartGrid
             titleName: qsTr("Grid")
             properties:[
-                FieldCheck{ id: lineChartGridCheckProp; labelName: "Enabled"; labelWidth: 100; font: AppStyle.fonts.caption },
+                FieldCheck{ id: lineChartGridCheckProp; labelName: "Enabled"; labelWidth: 100; font: Styles.fonts.caption },
                 ColorProperty {id: lineChartGridColorProp }
             ]
         }
@@ -237,7 +237,7 @@ ListView{
             id: propsSectionLineChartLegend
             titleName: qsTr("Legend")
             properties:[
-                FieldCheck{ id: lineChartLegendCheckProp; labelName: "Enabled"; labelWidth: 100; font: AppStyle.fonts.caption },
+                FieldCheck{ id: lineChartLegendCheckProp; labelName: "Enabled"; labelWidth: 100; font: Styles.fonts.caption },
                 TextProperty{ id: lineChartLegendTextProp },
                 AppComboBox {id: lineChartLegendMarkerShape },
                 AppComboBox {id: lineChartLegendAlignment }

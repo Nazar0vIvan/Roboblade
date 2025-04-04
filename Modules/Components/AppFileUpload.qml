@@ -6,7 +6,7 @@ import QtQuick.Dialogs
 // needs to add due to Qt6.3 and Windows bug: root.pressed doesn't work on Windows
 import QtQuick.Controls.Basic
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 Item{
     id: root
@@ -68,10 +68,10 @@ Item{
 
                 Rectangle{
                     anchors.fill: parent
-                    color: AppStyle.foreground.high
+                    color: Styles.foreground.high
                     radius: parent.radius
-                    opacity: btnBrowse.pressed ? AppStyle.overlays.outlined.pressed
-                                               : btnBrowse.hovered ? AppStyle.overlays.outlined.hovered : 0
+                    opacity: btnBrowse.pressed ? Styles.overlays.outlined.pressed
+                                               : btnBrowse.hovered ? Styles.overlays.outlined.hovered : 0
                 }
             }
             onClicked:{ fileDialogLoader.sourceComponent = fileDialogComp }

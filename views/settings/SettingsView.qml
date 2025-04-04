@@ -3,7 +3,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.15
 import Qt.labs.settings 1.0
 
-import AppStyle 1.0
+import AppStyles 1.0
 import Components 1.0
 
 Item{
@@ -15,7 +15,7 @@ Item{
     id: pane
 
     anchors{ fill: parent; topMargin: 2 }
-    color: AppStyle.background.dp00
+    color: Styles.background.dp00
 
     //    required property Loader settingsWindowLoader
     //    property var signals: new Map() // map settings_name -> settings_value, e.g. "Local Port" -> "2222"
@@ -34,8 +34,8 @@ Item{
 
       Text{
         text: qsTr("Settings")
-        font: AppStyle.fonts.headline1
-        color: AppStyle.foreground.high
+        font: Styles.fonts.headline1
+        color: Styles.foreground.high
       }
 
       // -> TabBar
@@ -51,7 +51,7 @@ Item{
           Rectangle{
             anchors.bottom: parent.bottom
             width: parent.width; height: 1
-            color: AppStyle.foreground.disabled
+            color: Styles.foreground.disabled
           }
         }
         AppTabButton{
@@ -115,7 +115,7 @@ Item{
           id: defaultButton
 
           Layout.preferredWidth: 80; Layout.preferredHeight: 30
-          type: AppStyle.ButtonType.Outlined
+          type: Styles.ButtonType.Outlined
           text: "Default"
           onClicked: {}
         }
@@ -123,9 +123,9 @@ Item{
           id: applyButton
 
           Layout.preferredWidth: 80; Layout.preferredHeight: 30
-          backgroundColor: AppStyle.secondary.base
-          type: AppStyle.ButtonType.Contained
-          color: AppStyle.background.dp00
+          backgroundColor: Styles.secondary.base
+          type: Styles.ButtonType.Contained
+          color: Styles.background.dp00
           text: "Apply"
           onClicked: {
             // for (const v1 of stgDashboardTab.signals.values()){ v1.signal(v1.arg) }

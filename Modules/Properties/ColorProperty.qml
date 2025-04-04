@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 
 import Components 1.0
-import AppStyle 1.0
+import AppStyles 1.0
 
 Item{
     id: root
@@ -75,16 +75,16 @@ Item{
                 color: "transparent"
                 border{
                     width: txtOpacity.activeFocus ? 2 : txtOpacity.hovered ? 1 : 0;
-                    color: txtOpacity.activeFocus ? AppStyle.primary.base : "gray"
+                    color: txtOpacity.activeFocus ? Styles.primary.base : "gray"
                 }
             }
 
             activeFocusOnPress: true
-            font: AppStyle.fonts.caption
-            color: AppStyle.foreground
-            opacity: AppStyle.emphasis.high
+            font: Styles.fonts.caption
+            color: Styles.foreground
+            opacity: Styles.emphasis.high
 
-            selectionColor: AppStyle.primary.highlight
+            selectionColor: Styles.primary.highlight
             selectByMouse: true
         }
         */

@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.2
 
 // import QtQuick.Controls.Basic
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 MenuBar{
   id: control
@@ -24,7 +24,7 @@ MenuBar{
   signal startTestTimer
   signal stopTestTimer
 
-  AppMenu{
+  AppMenu {
     title: qsTr("File")
 
     Action{ id: newFile; text: qsTr("New ...");     shortcut: StandardKey.New;  onTriggered: { control.newFile(); console.log("new") }}
@@ -41,7 +41,7 @@ MenuBar{
     Action{ id: quit; text: qsTr("Quit"); shortcut: StandardKey.Quit; onTriggered: { control.quit(); console.log("quit") }}
   }
 
-  AppMenu{
+  AppMenu {
     title: qsTr("Edit")
 
     Action{ id: undo; text: qsTr("Undo"); shortcut: StandardKey.Undo; onTriggered: { control.open(); console.log("undo") }}
@@ -59,17 +59,17 @@ MenuBar{
     Action{ id: paste; text: qsTr("Paste"); shortcut: StandardKey.Paste; onTriggered: { control.redo();   console.log("save") }}
   }
 
-  AppMenu{
+  AppMenu {
     title: qsTr("Tools")
 
-    Action{
+    Action {
       id: startTestTimerAction
 
       text: qsTr("Start Test Timer")
       icon.source: "/menu/play.svg"
       onTriggered: { control.startTestTimer(); console.log("start test timer"); enabled = false }
     }
-    Action{
+    Action {
       id: stopTestTimerAction
 
       text: qsTr("Stop Test Timer")
@@ -79,11 +79,11 @@ MenuBar{
     }
   }
 
-  AppMenu{
+  AppMenu {
     title: qsTr("View")
   }
 
-  AppMenu{
+  AppMenu {
     title: qsTr("Help")
   }
 
@@ -94,14 +94,14 @@ MenuBar{
       verticalAlignment: Text.AlignVCenter
       leftPadding: 8; rightPadding: 8
       text: menuBarItem.text
-      font: AppStyle.fonts.body
-      color: AppStyle.foreground.high
+      font: Styles.fonts.body
+      color: Styles.foreground.high
     }
     background: Rectangle {
-      color: menuBarItem.hovered ? AppStyle.primary.transparent : "transparent"
+      color: menuBarItem.hovered ? Styles.primary.transparent : "transparent"
     }
   }
-  background: Rectangle{ color: AppStyle.background.dp00 }
+  background: Rectangle{ color: Styles.background.dp00 }
 
   Component.onCompleted: {
     control.startTestTimer.connect(testTimer.start);

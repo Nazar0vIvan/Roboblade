@@ -1,7 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 import Widgets 1.0
 import Components 1.0
@@ -121,8 +121,8 @@ Rectangle{
 
       x: 0; y: 0
       width: 0; height: 0
-      color: AppStyle.primary.transparent
-      border.color: AppStyle.primary.base
+      color: Styles.primary.transparent
+      border.color: Styles.primary.base
     }
 
     // to move over flickable using middle mouse button
@@ -253,7 +253,7 @@ Rectangle{
     color: "transparent"
 
     iradius: vBar.width/2
-    icolor: AppStyle.background.dp01
+    icolor: Styles.background.dp01
     iopacity: 0.5
     iborderc: "gray"
     iborderw: 1
@@ -268,7 +268,7 @@ Rectangle{
     color: "transparent"
 
     iradius: hBar.width/2
-    icolor: AppStyle.background.dp01
+    icolor: Styles.background.dp01
     iopacity: 0.5
     iborderc: "gray"
     iborderw: 1

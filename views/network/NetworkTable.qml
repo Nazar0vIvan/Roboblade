@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import Qt.labs.qmlmodels
 
-import AppStyle 1.0
+import AppStyles 1.0
 import Components 1.0
 import Widgets 1.0
 
@@ -110,7 +110,7 @@ TableView{
 
         implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
         text: model.display
-        font: AppStyle.fonts.body
+        font: Styles.fonts.body
         overlayOpacity: selected ? 0.12 : 0.07
 
         onClicked: {
@@ -123,7 +123,7 @@ TableView{
 
           anchors.right: parent.right
           implicitWidth: 3; implicitHeight: parent.height
-          color: AppStyle.secondary.base
+          color: Styles.secondary.base
           visible: parent.selected
         }
       }
@@ -139,8 +139,8 @@ TableView{
 
         implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
         text: model.display
-        font: AppStyle.fonts.body
-        color: text === "OPEN" ? AppStyle.minColor : AppStyle.maxColor
+        font: Styles.fonts.body
+        color: text === "OPEN" ? Styles.minColor : Styles.maxColor
         overlayOpacity: selected ? 0.12 : 0.07
 
         onClicked:{
@@ -159,7 +159,7 @@ TableView{
 
         implicitWidth: tv.columnWidthProvider(column); implicitHeight: tv.rowHeightProvider(row)
         text: model.display
-        font: AppStyle.fonts.body
+        font: Styles.fonts.body
         overlayOpacity: selected ? 0.12 : 0.07
 
         onClicked: {

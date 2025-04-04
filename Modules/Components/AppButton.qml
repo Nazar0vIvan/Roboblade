@@ -5,23 +5,23 @@ import QtQuick.Layouts 1.2
 // needs to add due to Qt6.3 and Windows bug: control.pressed doesn't work on Windows
 import QtQuick.Controls.Basic
 
-import AppStyle 1.0
+import AppStyles 1.0
 
-Button{
+Button {
     id: control
 
-    property color backgroundColor: AppStyle.background.dp00
-    property color borderColor: AppStyle.background.dp01
-    property color color: AppStyle.foreground.high
-    property int type: AppStyle.ButtonType.Contained
-    readonly property var overlay: AppStyle.buttonType2Overlay.get(type)
+    property color backgroundColor: Styles.background.dp00
+    property color borderColor: Styles.background.dp01
+    property color color: Styles.foreground.high
+    property int type: Styles.ButtonType.Contained
+    readonly property var overlay: Styles.buttonType2Overlay.get(type)
     property int textFormat: Text.AutoText
 
     property int iconSize: 0
     property string iconPath: ""
     property color iconColor: "black"
 
-    font: AppStyle.fonts.body
+    font: Styles.fonts.body
 
     contentItem: RowLayout{
 
@@ -36,13 +36,13 @@ Button{
             color: control.iconColor
         }
 
-        Text{
+        Text {
             Layout.alignment: iconPath ? Qt.AlignLeft : Qt.AlignCenter
             text: control.text
             textFormat: control.textFormat
             font: control.font
             color: control.color
-            opacity: control.enabled ? AppStyle.foreground.high : AppStyle.foreground.disabled
+            // opacity: control.enabled ? Styles.foreground.high : Styles.foreground.disabled
         }
     }
 
@@ -53,7 +53,7 @@ Button{
 
         Rectangle{
             anchors.fill: parent
-            color: AppStyle.foreground.high
+            color: Styles.foreground.high
             radius: parent.radius
             opacity: control.pressed ? overlay.pressed : control.hovered ? overlay.hovered : 0
         }

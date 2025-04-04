@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Controls.Basic
 import QtQuick.Layouts 1.2
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 ComboBox{
     id: control
@@ -14,25 +14,25 @@ ComboBox{
 
     implicitWidth: 165; implicitHeight: 25
     editable: true
-    font: AppStyle.fonts.body
+    font: Styles.fonts.body
 
     contentItem: TextField {
         leftPadding: 5
         verticalAlignment: TextInput.AlignVCenter
 
         text: control.currentText
-        color: AppStyle.foreground.high
+        color: Styles.foreground.high
         font: control.font
 
         selectByMouse: true
-        selectionColor: AppStyle.primary.highlight
+        selectionColor: Styles.primary.highlight
 
         activeFocusOnPress: true
         background: Rectangle{ color: "transparent" }
     }
 
     background: Rectangle{
-        color: AppStyle.background.dp00
+        color: Styles.background.dp00
         border{
             width: control.contentItem.activeFocus || control.hovered || control.popup.visible ? 1 : 0
             color: "gray"
@@ -67,7 +67,7 @@ ComboBox{
         }
 
         background: Rectangle {
-            color: AppStyle.background.dp00
+            color: Styles.background.dp00
             border{ width: 1; color: "gray" }
         }
     }
@@ -81,11 +81,11 @@ ComboBox{
         width: control.popup.width
         contentItem: Text {
             text: modelData.text === undefined ? modelData : modelData.text
-            color: AppStyle.foreground.high
+            color: Styles.foreground.high
             font: control.font
             verticalAlignment: Text.AlignVCenter
         }
-        background: Rectangle { color: hovered ? AppStyle.primary.highlight : AppStyle.background }
+        background: Rectangle { color: hovered ? Styles.primary.highlight : Styles.background }
     }
 
     onCurrentTextChanged: control.editingFinished()

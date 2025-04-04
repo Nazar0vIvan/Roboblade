@@ -2,18 +2,18 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.15
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 Item{
     id: root
 
-    property font font: AppStyle.fonts.body
+    property font font: Styles.fonts.body
     property alias spacing: rootRL.spacing
 
     property string labelName
     property alias labelBackground: label.background
     property int labelWidth: 100
-    property color labelColor: AppStyle.foreground.high
+    property color labelColor: Styles.foreground.high
 
     required property Item field
 

@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 import QtQml.Models 2.15
 
-import AppStyle 1.0
+import AppStyles 1.0
 import Widgets 1.0
 
 import "sidePanel"
@@ -14,7 +14,7 @@ Item{
   RowLayout{
     id: rootRL
 
-    anchors{ fill: parent; topMargin: 2 } // !!!!
+    anchors{ fill: parent; topMargin: 1 } // !!!!
     spacing: 1
 
     ColumnLayout{
@@ -27,22 +27,22 @@ Item{
         id: dbToolBar
 
         Layout.fillWidth: true; Layout.preferredHeight: 45
-        color: AppStyle.background.dp00
+        color: Styles.background.dp00
       }
 
       DashboardScene{
         id: dbScene
 
         Layout.fillWidth: true; Layout.fillHeight: true
-        color: AppStyle.background.dp00
+        color: Styles.background.dp00
       }
     }
 
     DashboardSidePanel{
       id: dbSidePanel
 
-      Layout.preferredWidth: AppStyle.drawerWidth; Layout.fillHeight: true
-      color: AppStyle.background.dp00
+      Layout.preferredWidth: Styles.drawerWidth; Layout.fillHeight: true
+      color: Styles.background.dp00
     }
   }
 

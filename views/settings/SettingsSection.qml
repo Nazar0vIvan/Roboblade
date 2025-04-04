@@ -3,7 +3,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.15
 import QtQml.Models 2.15
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 Item {
   id: root
@@ -34,8 +34,8 @@ Item {
       Layout.fillWidth: true; Layout.preferredHeight: titleHeight
       Layout.alignment: Qt.AlignVCenter
       verticalAlignment: Text.AlignVCenter
-      color: AppStyle.foreground.high
-      font: AppStyle.fonts.headline2
+      color: Styles.foreground.high
+      font: Styles.fonts.headline2
     }
 
     ColumnLayout{
@@ -75,7 +75,7 @@ Item {
       id: separator
 
       Layout.fillWidth: true; Layout.preferredHeight: 1; Layout.rightMargin: 16
-      color: AppStyle.foreground.disabled
+      color: Styles.foreground.disabled
     }
   }
 

@@ -3,7 +3,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.15
 import Qt.labs.settings 1.0
 
-import AppStyle 1.0
+import AppStyles 1.0
 import Components 1.0
 
 Item{
@@ -13,7 +13,7 @@ Item{
     id: pane
 
     anchors{ fill: parent; topMargin: 2 }
-    color: AppStyle.background.dp00
+    color: Styles.background.dp00
 
     ListView{
       id: lv
@@ -22,7 +22,7 @@ Item{
       model: ["3D", "RSI on/off"]
 
       delegate: Text{
-        color: AppStyle.foreground.high
+        color: Styles.foreground.high
         text: modelData
       }
     }

@@ -2,15 +2,15 @@ import QtQuick 2.12
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 ItemDelegate{
   id: control
 
   property real overlayOpacity: 0.0
-  property color color: AppStyle.foreground.high
+  property color color: Styles.foreground.high
 
-  font: AppStyle.fonts.body
+  font: Styles.fonts.body
 
   contentItem: Text{
     verticalAlignment: Text.AlignVCenter
@@ -20,7 +20,7 @@ ItemDelegate{
   }
 
   background: Rectangle{
-    color: AppStyle.foreground.high
+    color: Styles.foreground.high
     opacity: control.overlayOpacity
   }
 }
@@ -45,7 +45,7 @@ Rectangle{
         id: overlay;
 
         anchors.fill: parent
-        color: AppStyle.foreground
+        color: Styles.foreground
         opacity: 0.10
         visible: control.selected
     }
@@ -61,10 +61,10 @@ Rectangle{
 
             Layout.fillWidth: true; Layout.preferredHeight: control.height
             verticalAlignment: Text.AlignVCenter
-            color: AppStyle.foreground
-            font: AppStyle.fonts.caption
-            opacity: control.enabled ? AppStyle.emphasis.high : AppStyle.emphasis.disabled
-            selectionColor: AppStyle.primary.highlight
+            color: Styles.foreground
+            font: Styles.fonts.caption
+            opacity: control.enabled ? Styles.emphasis.high : Styles.emphasis.disabled
+            selectionColor: Styles.primary.highlight
             selectByMouse : true
             readOnly: true
         }
@@ -95,14 +95,14 @@ Rectangle{
             contentItem: Rectangle{
                 anchors.verticalCenter: parent.verticalCenter
                 implicitWidth: 16; implicitHeight: implicitWidth
-                color: checkbox.checked && !isExclusiveSelection ? AppStyle.secondary.base : "transparent"
-                border{ width: 1; color: checkbox.checked ? AppStyle.secondary.base : "gray" }
+                color: checkbox.checked && !isExclusiveSelection ? Styles.secondary.base : "transparent"
+                border{ width: 1; color: checkbox.checked ? Styles.secondary.base : "gray" }
                 radius: isExclusiveSelection ? implicitWidth/2 : 2
 
                 Rectangle{ // radiobutton pick
                     anchors.centerIn: parent
                     width: 10; height: width
-                    color: AppStyle.secondary.base
+                    color: Styles.secondary.base
                     radius: width/2
                     antialiasing: true
                     visible: checkbox.checked && isExclusiveSelection
@@ -143,7 +143,7 @@ Rectangle{
             id: selectIndicator
 
             implicitWidth: 2
-            color: AppStyle.secondary.base
+            color: Styles.secondary.base
             visible: control.selected
         }
     }

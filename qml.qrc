@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>Logger.qml</file>
-        <file>AppStyle.qml</file>
         <file>menu/AppMenuBar.qml</file>
         <file>navigation/Logo.qml</file>
         <file>navigation/NavigationPanel.qml</file>

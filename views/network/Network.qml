@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtCharts 2.2
 
-import AppStyle 1.0
+import AppStyles 1.0
 import Components 1.0
 
 Item{
@@ -13,7 +13,7 @@ Item{
     id: pane
 
     anchors{ fill: parent; topMargin: 2 }
-    color: AppStyle.background.dp00
+    color: Styles.background.dp00
 
     ColumnLayout{
       id: rootCL
@@ -31,8 +31,8 @@ Item{
         id: title
 
         text: qsTr("Network")
-        font: AppStyle.fonts.headline1
-        color: AppStyle.foreground.high
+        font: Styles.fonts.headline1
+        color: Styles.foreground.high
       }
 
       SplitView{
@@ -43,7 +43,7 @@ Item{
 
         handle: Rectangle {
           implicitHeight: 2
-          color: SplitHandle.pressed | SplitHandle.hovered ? AppStyle.foreground.high : "gray"
+          color: SplitHandle.pressed | SplitHandle.hovered ? Styles.foreground.high : "gray"
         }
 
         NetworkTable{
@@ -69,13 +69,13 @@ Item{
             min: 0
             max: 60
 
-            color: AppStyle.foreground.high
+            color: Styles.foreground.high
 
             gridLineColor: "gray"
             gridVisible: true
 
-            labelsColor: AppStyle.foreground.high
-            labelsFont: AppStyle.fonts.caption
+            labelsColor: Styles.foreground.high
+            labelsFont: Styles.fonts.caption
             labelsVisible: true
           }
 
@@ -85,13 +85,13 @@ Item{
             min: 0
             max: 100
 
-            color: AppStyle.foreground.high
+            color: Styles.foreground.high
 
             gridLineColor: "gray"
             gridVisible: true
 
-            labelsColor: AppStyle.foreground.high
-            labelsFont: AppStyle.fonts.caption
+            labelsColor: Styles.foreground.high
+            labelsFont: Styles.fonts.caption
             labelsVisible: true
           }
 

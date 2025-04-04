@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.2
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 Item{
     id: root
@@ -14,7 +14,7 @@ Item{
     property int elemHeight: 50
     property int elemIconSize: 25
 
-    property color elemSelectionIconColor: AppStyle.primary.base
+    property color elemSelectionIconColor: Styles.primary.base
     property color elemDefaultIconColor: "#a6a6a6"
 
     ListView{

@@ -1,13 +1,13 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.15
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 ItemDelegate{
   id: control
 
   property real overlayOpacity: 0.0
-  property color color: AppStyle.foreground.high
+  property color color: Styles.foreground.high
 
   contentItem: Text{
     verticalAlignment: Text.AlignVCenter
@@ -17,7 +17,7 @@ ItemDelegate{
   }
 
   background: Rectangle{
-    color: AppStyle.foreground.high
+    color: Styles.foreground.high
     opacity: control.overlayOpacity
   }
 }

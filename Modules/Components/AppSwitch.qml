@@ -2,20 +2,20 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.15
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 Switch {
     id: control
 
     property int bgdWidth: 34
     property int bgdHeight: 12
-    property color bgdCheckedColor: AppStyle.secondary.light
+    property color bgdCheckedColor: Styles.secondary.light
     property color bgdUncheckedColor: "gray"
 
     property int handleWidth: 20
     property int handleHeight: 20
-    property color handleCheckedColor: AppStyle.secondary.base
-    property color handleUncheckedColor: AppStyle.foreground
+    property color handleCheckedColor: Styles.secondary.base
+    property color handleUncheckedColor: Styles.foreground
 
     signal editingFinished()
 

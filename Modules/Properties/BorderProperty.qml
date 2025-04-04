@@ -2,14 +2,14 @@ import QtQuick 2.12
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 
-import AppStyle 1.0
+import AppStyles 1.0
 import Components 1.0
 
 Item {
     id: root
 
     readonly property int _spacing: 0
-    readonly property font _font: AppStyle.fonts.caption
+    readonly property font _font: Styles.fonts.caption
     readonly property int _componentHeight: 25
     readonly property int _labelWidth: 20
     readonly property int _fieldWidth: 50
@@ -50,7 +50,7 @@ Item {
 
                 width: _fieldWidth; height: _componentHeight
                 color: "transparent"
-                font: AppStyle.fonts.caption
+                font: Styles.fonts.caption
                 validator: IntValidator{ bottom: 0 }
 
                 onEditingFinished: root.radiusEditingFinished() // !!!
@@ -76,7 +76,7 @@ Item {
 
                 width: _fieldWidth; height: _componentHeight
                 color: "transparent"
-                font: AppStyle.fonts.caption
+                font: Styles.fonts.caption
                 validator: IntValidator{ bottom: 0 }
 
                 onEditingFinished: { root.lineWidthEditingFinished() } // !!!

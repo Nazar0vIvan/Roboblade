@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.2
 // needs to add due to Qt6.3 and Windows bug: root.pressed doesn't work on Windows
 // import QtQuick.Controls.Basic
 
-import AppStyle 1.0
+import AppStyles 1.0
 import Components 1.0
 
 DashboardWidget{
@@ -24,9 +24,9 @@ DashboardWidget{
 
     property string unit: "N"
 
-    property color minColor: AppStyle.minColor
-    property color midColor: AppStyle.midColor
-    property color maxColor: AppStyle.maxColor
+    property color minColor: Styles.minColor
+    property color midColor: Styles.midColor
+    property color maxColor: Styles.maxColor
 
     property int _margins: 8
 
@@ -76,8 +76,8 @@ DashboardWidget{
 
             Layout.fillWidth: true
             text: "Fx"
-            font: AppStyle.fonts.numericTitle
-            color: AppStyle.foreground.high
+            font: Styles.fonts.numericTitle
+            color: Styles.foreground.high
         }
 
         RowLayout{
@@ -90,7 +90,7 @@ DashboardWidget{
 
                 Layout.preferredWidth: valueTM.advanceWidth
                 text: value.toFixed(precision)
-                font: AppStyle.fonts.numericValue
+                font: Styles.fonts.numericValue
                 color: linearGradient.getColor(value)
             }
 

@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.15
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 Popup{
     id: control
@@ -21,7 +21,7 @@ Popup{
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
     padding: 10
     background: Rectangle{
-        color: AppStyle.background.dp00
+        color: Styles.background.dp00
         radius: 8
         border{ width: 1; color: "gray" }
     }

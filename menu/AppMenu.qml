@@ -3,10 +3,10 @@ import QtQuick.Controls 2.15
 import Qt5Compat.GraphicalEffects
 
 import Components 1.0
-import AppStyle 1.0
+import AppStyles 1.0
 
-Menu{
-  delegate: MenuItem{
+Menu {
+  delegate: MenuItem {
     id: menuItem
 
     implicitWidth: 180; implicitHeight: 35
@@ -37,17 +37,17 @@ Menu{
       leftPadding: menuItem.icon.source ? menuItem.indicator.width : 0
       verticalAlignment: Text.AlignVCenter
       text: menuItem.text
-      font: AppStyle.fonts.caption
-      color: parent.enabled ? AppStyle.foreground.high : AppStyle.foreground.disabled
+      font: Styles.fonts.caption
+      color: parent.enabled ? Styles.foreground.high : Styles.foreground.disabled
     }
     background: Rectangle {
-      color: menuItem.hovered ? AppStyle.primary.transparent : AppStyle.background
+      color: menuItem.hovered ? Styles.primary.transparent : Styles.background.dp00
     }
   }
 
   background: Rectangle {
     implicitWidth: 180; implicitHeight: 30
-    color: AppStyle.background.dp00
+    color: Styles.background.dp00
     border{ width: 1; color: "gray" }
   }
 }

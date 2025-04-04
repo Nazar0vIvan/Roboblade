@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 import QtCharts 2.3
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 DashboardWidget{
     id: root
@@ -18,12 +18,12 @@ DashboardWidget{
     property real max: 1980
 
     property string title: "Forces"
-    property font titleFont: AppStyle.fonts.chartTitle
+    property font titleFont: Styles.fonts.chartTitle
 
-    property font legendFont: AppStyle.fonts.chartLegend
+    property font legendFont: Styles.fonts.chartLegend
 
     property string axisYTitle: "N"
-    property font axisFont: AppStyle.fonts.chartAxisLabel
+    property font axisFont: Styles.fonts.chartAxisLabel
 
     implicitWidth: 400; implicitHeight: 400
 
@@ -38,7 +38,7 @@ DashboardWidget{
 
         title: root.title
         titleFont: root.titleFont
-        titleColor: AppStyle.foreground.high
+        titleColor: Styles.foreground.high
 
         backgroundColor: "transparent"
         backgroundRoundness: 5
@@ -48,7 +48,7 @@ DashboardWidget{
         margins{ bottom: 5; top: 5; left: 5; right: 5 }
 
         legend.font: root.legendFont
-        legend.labelColor: AppStyle.foreground.high
+        legend.labelColor: Styles.foreground.high
         legend.visible: true
 
         Timer{
@@ -72,13 +72,13 @@ DashboardWidget{
             min: 0
             max: 180
 
-            color: AppStyle.foreground.high
+            color: Styles.foreground.high
 
             gridLineColor: "gray"
             gridVisible: true
 
             labelsFont: root.axisFont
-            labelsColor: AppStyle.foreground.high
+            labelsColor: Styles.foreground.high
             labelsVisible: true
         }
 
@@ -88,17 +88,17 @@ DashboardWidget{
             min: root.min
             max: root.max
 
-            color: AppStyle.foreground.high
+            color: Styles.foreground.high
 
             gridLineColor: "gray"
             gridVisible: true
 
             titleText: root.axisYTitle
             titleFont: root.axisFont
-            titleBrush: AppStyle.foreground.high
+            titleBrush: Styles.foreground.high
 
             labelsFont: root.axisFont
-            labelsColor: AppStyle.foreground.high
+            labelsColor: Styles.foreground.high
             labelsVisible: true
         }
 

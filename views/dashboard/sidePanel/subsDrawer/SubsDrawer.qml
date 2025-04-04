@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import Qt.labs.qmlmodels
 
-import AppStyle 1.0
+import AppStyles 1.0
 import Components 1.0
 
 // change checkbox rectangle to circle in case of widget types 0 and 1
@@ -20,7 +20,7 @@ Drawer{
   closePolicy: Popup.NoAutoClose
   modal: false
   background: Rectangle{
-    color: AppStyle.background.dp00
+    color: Styles.background.dp00
     border{ width: 1; color: "gray" }
   }
 
@@ -41,8 +41,8 @@ Drawer{
 
         Layout.fillWidth: true; Layout.alignment: Qt.AlignLeft
         text: qsTr("Sockets")
-        font: AppStyle.fonts.headline2
-        color: AppStyle.foreground.high
+        font: Styles.fonts.headline2
+        color: Styles.foreground.high
       }
     }
 
@@ -53,12 +53,12 @@ Drawer{
 
       Layout.fillWidth: true; Layout.preferredHeight: 35
       spacing: 0
-      background: Rectangle{
+      background: Rectangle {
         color: "transparent"
-        Rectangle{
+        Rectangle {
           anchors.bottom: parent.bottom
           width: parent.width; height: 1
-          color: AppStyle.foreground.disabled
+          color: Styles.foreground.disabled
         }
       }
 
@@ -109,8 +109,8 @@ Drawer{
 
       Layout.topMargin: 16; Layout.bottomMargin: 16
       text: qsTr("Parameters")
-      font: AppStyle.fonts.headline2
-      color: AppStyle.foreground.high
+      font: Styles.fonts.headline2
+      color: Styles.foreground.high
     }
 
     RowLayout{
@@ -133,8 +133,8 @@ Drawer{
         }
 
         leftPadding: root._searchBarHeight + 8
-        font: AppStyle.fonts.caption
-        color: AppStyle.foreground.high
+        font: Styles.fonts.caption
+        color: Styles.foreground.high
         activeFocusOnPress: true
 
         RowLayout{
@@ -160,8 +160,8 @@ Drawer{
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignLeft
             text: qsTr("Search ...")
-            font: AppStyle.fonts.caption
-            color: AppStyle.foreground.medium
+            font: Styles.fonts.caption
+            color: Styles.foreground.medium
             visible: !(searchField.activeFocus || searchField.text)
           }
         }
@@ -201,7 +201,7 @@ Drawer{
 
     Rectangle{
       Layout.fillWidth: true; Layout.preferredHeight: root._searchBarHeight
-      color: AppStyle.background.dp01
+      color: Styles.background.dp01
     }
   }
 

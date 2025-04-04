@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 
-import AppStyle 1.0
+import AppStyles 1.0
 import Components 1.0
 
 Item {
@@ -38,7 +38,7 @@ Item {
 
             Layout.fillWidth: true; Layout.preferredHeight: 25
             color: "transparent"
-            font: AppStyle.fonts.caption
+            font: Styles.fonts.caption
             visible: !readOnly
 
             onEditingFinished: root.textEditingFinished()
@@ -48,7 +48,7 @@ Item {
             id: fontFamilies
 
             Layout.fillWidth: true; Layout.preferredHeight: 25
-            font: AppStyle.fonts.caption
+            font: Styles.fonts.caption
             model: Qt.fontFamilies()
 
             onEditingFinished: root.familyEditingFinished()
@@ -64,7 +64,7 @@ Item {
                 id: fontWeights
 
                 Layout.preferredWidth: 95; Layout.preferredHeight: parent.height
-                font: AppStyle.fonts.caption
+                font: Styles.fonts.caption
                 valueRole: "value"
                 textRole: "text"
                 model:[
@@ -86,7 +86,7 @@ Item {
                 id: fontPixelSizes
 
                 Layout.preferredWidth: 60; Layout.preferredHeight: parent.height
-                font: AppStyle.fonts.caption
+                font: Styles.fonts.caption
                 model: [10, 11, 12, 13, 14, 15, 16, 20, 22, 24, 28, 32, 36, 40, 48, 64, 96, 128]
 
                 onEditingFinished: { root.pixelSizeEditingFinished() }

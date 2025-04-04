@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.2
 // needs to add due to Qt6.3 and Windows bug: control.pressed doesn't work on Windows
 import QtQuick.Controls.Basic
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 ToolButton{
     id: control
@@ -19,9 +19,9 @@ ToolButton{
     property bool isDropDown: false
     property real aspectRatio: image.implicitWidth/image.implicitHeight
 
-    property color pressedColor: AppStyle.secondary.base
-    property color hoverColor: AppStyle.secondary.light
-    property color defaultColor: AppStyle.foreground.high
+    property color pressedColor: Styles.secondary.base
+    property color hoverColor: Styles.secondary.light
+    property color defaultColor: Styles.foreground.high
 
     implicitWidth: controlRL.width
     implicitHeight: image.height

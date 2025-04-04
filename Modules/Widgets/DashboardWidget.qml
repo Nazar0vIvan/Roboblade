@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 import QtQml.Models 2.15
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 Item{
     id: root
@@ -80,7 +80,7 @@ Item{
         id: background
 
         anchors.fill: parent
-        color: content.children.length ? "transparent" : AppStyle.background.dp01
+        color: content.children.length ? "transparent" : Styles.background.dp01
         radius: 0
         border{ width: 1; color: "gray" }
     }
@@ -96,7 +96,7 @@ Item{
         }
         width: 8; height: 8
         radius: width/2
-        color: AppStyle.maxColor
+        color: Styles.maxColor
     }
 
     Item { id: content }
@@ -243,7 +243,7 @@ Item{
         id: borderRect
 
         anchors.fill: parent
-        border{ width: 1; color: AppStyle.secondary.base }
+        border{ width: 1; color: Styles.secondary.base }
         color: "transparent"
         visible: (isSelected && !rootMA.drag.active)
 
@@ -252,24 +252,24 @@ Item{
 
             x: -topLeft.width/2; y: -topLeft.height/2
             width: resizeMark.w; height: resizeMark.h
-            color: AppStyle.foreground.high
-            border{ width: 1; color: AppStyle.secondary.base }
+            color: Styles.foreground.high
+            border{ width: 1; color: Styles.secondary.base }
         }
         Rectangle{
             id: topRight
 
             x: borderRect.width - topRight.width/2; y: -topRight.height/2
             width: resizeMark.w; height: resizeMark.h
-            color: AppStyle.foreground.high
-            border{ width: 1; color: AppStyle.secondary.base }
+            color: Styles.foreground.high
+            border{ width: 1; color: Styles.secondary.base }
         }
         Rectangle{
             id: bottomLeft
 
             x: -bottomLeft.width/2; y: -bottomLeft.height/2+borderRect.height
             width: resizeMark.w; height: resizeMark.h
-            color: AppStyle.foreground.high
-            border{ width: 1; color: AppStyle.secondary.base }
+            color: Styles.foreground.high
+            border{ width: 1; color: Styles.secondary.base }
 
         }
         Rectangle{
@@ -277,8 +277,8 @@ Item{
 
             x: -bottomRight.width/2+borderRect.width; y: -bottomRight.height/2+borderRect.height
             width: resizeMark.w; height: resizeMark.h
-            color: AppStyle.foreground.high
-            border{ width: 1; color: AppStyle.secondary.base }
+            color: Styles.foreground.high
+            border{ width: 1; color: Styles.secondary.base }
         }
     }
 

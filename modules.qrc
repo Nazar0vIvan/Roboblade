@@ -28,5 +28,7 @@
         <file>Modules/Components/NavigationMenuDelegate.qml</file>
         <file>Modules/Components/AppIcon.qml</file>
         <file>Modules/Components/AppToolButton.qml</file>
+        <file>Modules/AppStyles/qmldir</file>
+        <file>Modules/AppStyles/Styles.qml</file>
     </qresource>
 </RCC>

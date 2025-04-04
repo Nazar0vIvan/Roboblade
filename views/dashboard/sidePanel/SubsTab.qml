@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
-import AppStyle 1.0
+import AppStyles 1.0
 import Components 1.0
 
 import "subsDrawer"
@@ -20,19 +20,19 @@ Item{
     }
   }
 
-  ColumnLayout{
+  ColumnLayout {
     id: rootCL
 
     anchors.fill: parent
 
-    Rectangle{
+    Rectangle {
       id: subsInfo
 
       Layout.fillWidth: true; Layout.fillHeight: true
       color: "transparent"
     }
 
-    AppButton{
+    AppButton {
       id: subsButton
 
       Layout.preferredHeight: 30;  Layout.preferredWidth: 100;
@@ -40,9 +40,9 @@ Item{
       Layout.bottomMargin: 10; Layout.leftMargin: 10
       leftPadding: 10
       text: qsTr("Subscribe")
-      font: AppStyle.fonts.caption
-      backgroundColor: AppStyle.secondary.base
-      color: AppStyle.background.dp00
+      font: Styles.fonts.caption
+      backgroundColor: Styles.secondary.base
+      color: Styles.background.dp00
       hoverEnabled: enabled
       enabled: false
 

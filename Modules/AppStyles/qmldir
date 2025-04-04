@@ -1,0 +1,3 @@
+module AppStyles
+
+singleton Styles 1.0 Styles.qml

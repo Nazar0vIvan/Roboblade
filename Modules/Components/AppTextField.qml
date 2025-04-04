@@ -2,19 +2,19 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.15
 
-import AppStyle 1.0
+import AppStyles 1.0
 
 Rectangle {
     id: root
 
-    property color backgroundColor: AppStyle.background.dp01
-    property int borderWidth: 0
+    property color backgroundColor: Styles.background.dp01
+    property int borderWidth: 1
     property int hoverBorderWidth: 0
     property int borderRadius: 4
     property color borderColor: "gray"
 
     property alias defaultTxt: defaultTxt.text
-    property color defaultTxtColor: AppStyle.foreground.high
+    property color defaultTxtColor: Styles.foreground.high
 
     property alias validator: txtField.validator
     property alias readOnly: txtField.readOnly
@@ -28,7 +28,7 @@ Rectangle {
     radius: borderRadius
     border {
         width: root.readOnly ? 0 : txtField.activeFocus ? 2 : root.hovered ? hoverBorderWidth : borderWidth
-        color: txtField.activeFocus ? AppStyle.primary.base : borderColor
+        color: txtField.activeFocus ? Styles.primary.base : borderColor
     }
 
     TextField {
@@ -38,9 +38,9 @@ Rectangle {
 
         verticalAlignment: Text.AlignVCenter
         leftPadding: 5
-        font: AppStyle.fonts.body
-        color: root.readOnly ? AppStyle.foreground.disabled : AppStyle.foreground.high
-        selectionColor: AppStyle.primary.highlight
+        font: Styles.fonts.body
+        color: root.readOnly ? Styles.foreground.disabled : Styles.foreground.high
+        selectionColor: Styles.primary.highlight
         selectByMouse : true
 
         background: Rectangle{ color: "transparent" }
