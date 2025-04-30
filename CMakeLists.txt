@@ -7,10 +7,3 @@ set(CMAKE_AUTOMOC ON)
 
 add_subdirectory(frontend)
 add_subdirectory(backend)
-
-include(GNUInstallDirs)
-install(TARGETS src
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-)

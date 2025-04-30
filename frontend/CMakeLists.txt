@@ -1,15 +1,12 @@
 find_package(Qt6 REQUIRED COMPONENTS Quick)
 
-qt_add_qml_module(qml
-    URI qml
+qt_add_qml_module(frontend
+    URI frontend
     VERSION 1.0
     QML_FILES 
-    	qml/Main.qml
-        qml/Components/AppMenuBar.qml
-        qml/Components/AppMenu.qml
-        qml/Styles/Styles.qml
+        Main.qml
 )
 
-target_link_libraries(qml
+target_link_libraries(frontend
     PRIVATE Qt6::Quick
 )
