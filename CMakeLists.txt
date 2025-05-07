@@ -5,5 +5,6 @@ project(Roboblade VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 
-add_subdirectory(frontend)
-add_subdirectory(backend)
+add_subdirectory(src)
+add_subdirectory(qml_lib)
+

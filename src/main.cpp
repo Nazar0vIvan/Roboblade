@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     engine.addImportPath("E:/Qt/QtProjects/Roboblade/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug");
-    engine.addImportPath("E:/Qt/QtProjects/Roboblade/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/frontend");
+    engine.addImportPath("E:/Qt/QtProjects/Roboblade/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/qml_lib");
     engine.addImportPath(":/");
 
     for(const auto& path : engine.importPathList()) {
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
         &app,
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
-    engine.loadFromModule("frontend", "Main");
+    engine.loadFromModule("qml_lib", "Main");
 
     return app.exec();
 }
