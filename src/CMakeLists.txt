@@ -8,7 +8,12 @@ target_link_libraries(app
     PRIVATE Qt6::Core
     PRIVATE Qt6::Gui
     PRIVATE Qt6::Qml
-    PRIVATE qml_lib
+)
+
+qt_add_qml_module(app
+  URI qml
+  VERSION 1.0
+  RESOURCES resources.qrc
 )
 
 install(TARGETS app

@@ -16,13 +16,16 @@ int main(int argc, char *argv[])
         qDebug() << path;
     }
 
+    const QUrl url(QStringLiteral("qrc:/qml/Main.qml"));
+
     QObject::connect(
         &engine,
         &QQmlApplicationEngine::objectCreationFailed,
         &app,
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
-    engine.loadFromModule("qml_lib", "Main");
+
+    engine.load(url);
 
     return app.exec();
 }
