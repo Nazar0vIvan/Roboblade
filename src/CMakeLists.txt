@@ -8,12 +8,11 @@ target_link_libraries(app
     PRIVATE Qt6::Core
     PRIVATE Qt6::Gui
     PRIVATE Qt6::Qml
+    PRIVATE qml
 )
 
-qt_add_qml_module(app
-  URI qml
-  VERSION 1.0
-  RESOURCES resources.qrc
+set_target_properties(app PROPERTIES
+    QML_IMPORT_PATH "${CMAKE_SOURCE_DIR}/qml"
 )
 
 install(TARGETS app
