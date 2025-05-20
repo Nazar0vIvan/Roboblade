@@ -10,6 +10,8 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     engine.addImportPath(QGuiApplication::applicationDirPath() + "../qml");
+    engine.addImportPath(QGuiApplication::applicationDirPath() + "../qml/Modules/Components");
+
     // engine.addImportPath("E:/Qt/QtProjects/Roboblade/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/qml_lib");
     // engine.addImportPath(":/");
 
@@ -25,8 +27,8 @@ int main(int argc, char *argv[])
         Qt::QueuedConnection);
 
     // engine.load(QUrl(QStringLiteral("qml/Main.qml")));
-    // engine.load(QUrl(QStringLiteral("../qml/Main.qml")));
-    engine.loadFromModule("qml", "Main");
+    engine.load(QUrl(QStringLiteral("../qml/Main.qml")));
+    // engine.loadFromModule("qml", "Main");
 
     return app.exec();
 }
