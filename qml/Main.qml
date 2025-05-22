@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 
-import componentsLib 1.0
+import Modules.Components 1.0
 
 ApplicationWindow {
   id: app
