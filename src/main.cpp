@@ -9,8 +9,16 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    engine.addImportPath(QGuiApplication::applicationDirPath() + "../qml");
-    engine.addImportPath(QGuiApplication::applicationDirPath() + "../qml/Modules/Components");
+    QString appDir = QGuiApplication::applicationDirPath();
+    QString qmlImportPath = QDir(appDir).filePath("../qml");
+    QString componentsImportPath = QDir(appDir).filePath("../qml/Modules/Components");
+
+    engine.addImportPath(qmlImportPath);
+    engine.addImportPath(componentsImportPath);
+
+    for(const auto& path : engine.importPathList()) {
+        qDebug() << path;
+    }
 
     QObject::connect(
         &engine,

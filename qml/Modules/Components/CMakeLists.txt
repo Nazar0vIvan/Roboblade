@@ -1,11 +1,4 @@
-find_package(Qt6 REQUIRED COMPONENTS Qml)
-
-qt_add_library(componentsLib STATIC)
-
-set_target_properties(componentsLib PROPERTIES AUTOMOC ON)
-target_link_libraries(componentsLib PRIVATE Qt6::Qml)
-
-qt_add_qml_module(componentsLib
+qt_add_qml_module(components
     URI Modules.Components
     VERSION 1.0
     QML_FILES
@@ -26,3 +19,5 @@ qt_add_qml_module(componentsLib
         NavigationMenu.qml
         NavigationMenuDelegate.qml
 )
+
+target_link_libraries(components PRIVATE Qt6::Qml)

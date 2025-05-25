@@ -9,6 +9,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(QML_IMPORT_PATH ${CMAKE_BINARY_DIR}/qml CACHE STRING "" FORCE)
 
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml)
+
 add_subdirectory(qml)
 add_subdirectory(src)
 
