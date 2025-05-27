@@ -3,6 +3,7 @@ qt_add_qml_module(qml
     VERSION 1.0
     QML_FILES
         Main.qml
+        Logger.qml
         Views/Dashboard/Dashboard.qml
         Views/Dashboard/DashboardScene.qml
         Views/Dashboard/DashboardToolBar.qml
@@ -22,8 +23,14 @@ qt_add_qml_module(qml
         Navigation/NavigationMenu.qml
         Navigation/NavigationMenuDelegate.qml
         Navigation/NavigationPanel.qml
+        Properties/BorderProperty.qml
+        Properties/ColorProperty.qml
+        Properties/GeometryProperty.qml
+        Properties/LineProperty.qml
+        Properties/PropertiesSection.qml
+        Properties/TextProperty.qml
 )
 
-add_subdirectory(Modules/Components)
+add_subdirectory(Modules)
 
 target_link_libraries(qml PRIVATE Qt6::Qml)

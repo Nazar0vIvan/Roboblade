@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 
 import Modules.Components 1.0
+import Modules.Styles 1.0 as Styles
 
 ApplicationWindow {
   id: app
@@ -12,6 +13,6 @@ ApplicationWindow {
 
   Rectangle {
     width: 50; height: 50
-    color: "red";
+    color: Styles.background.dp24
   }
 }

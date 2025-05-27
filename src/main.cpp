@@ -12,13 +12,11 @@ int main(int argc, char *argv[])
     QString appDir = QGuiApplication::applicationDirPath();
     QString qmlImportPath = QDir(appDir).filePath("../qml");
     QString componentsImportPath = QDir(appDir).filePath("../qml/Modules/Components");
+    QString stylesImportPath = QDir(appDir).filePath("../qml/Modules/Styles");
 
     engine.addImportPath(qmlImportPath);
     engine.addImportPath(componentsImportPath);
-
-    for(const auto& path : engine.importPathList()) {
-        qDebug() << path;
-    }
+    engine.addImportPath(stylesImportPath);
 
     QObject::connect(
         &engine,
