@@ -13,6 +13,11 @@ ApplicationWindow {
 
   Rectangle {
     width: 50; height: 50
-    color: Styles.background.dp24
+    color: Styles.minColor
   }
+
+  AppRectangle {
+    id: bok
+  }
+
 }

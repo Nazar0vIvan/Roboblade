@@ -10,6 +10,9 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     QString appDir = QGuiApplication::applicationDirPath();
+
+    qDebug() << QDir::currentPath();
+
     QString qmlImportPath = QDir(appDir).filePath("../qml");
     QString componentsImportPath = QDir(appDir).filePath("../qml/Modules/Components");
     QString stylesImportPath = QDir(appDir).filePath("../qml/Modules/Styles");
@@ -17,6 +20,10 @@ int main(int argc, char *argv[])
     engine.addImportPath(qmlImportPath);
     engine.addImportPath(componentsImportPath);
     engine.addImportPath(stylesImportPath);
+
+    // for(const auto& path : engine.importPathList()) {
+    //     qDebug() << path;
+    // }
 
     QObject::connect(
         &engine,

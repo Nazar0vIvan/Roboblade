@@ -1,6 +1,7 @@
 qt_add_qml_module(qml
     URI qml
     VERSION 1.0
+    NO_PLUGIN
     QML_FILES
         Main.qml
         Logger.qml
@@ -31,6 +32,8 @@ qt_add_qml_module(qml
         Properties/TextProperty.qml
 )
 
-add_subdirectory(Modules)
+add_subdirectory(Modules/Components)
+add_subdirectory(Modules/Styles)
+add_subdirectory(Modules/Widgets)
 
 target_link_libraries(qml PRIVATE Qt6::Qml)

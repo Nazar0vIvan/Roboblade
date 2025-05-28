@@ -32,6 +32,7 @@ target_link_libraries(app
     PRIVATE styles
 )
 
+include(GNUInstallDirs)
 install(TARGETS app
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}

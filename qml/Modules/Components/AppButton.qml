@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.2
 // needs to add due to Qt6.3 and Windows bug: control.pressed doesn't work on Windows
 import QtQuick.Controls.Basic
 
-import AppStyles 1.0
+import Modules.Styles 1.0 as Styles
 
 Button {
     id: control
