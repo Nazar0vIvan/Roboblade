@@ -2,37 +2,28 @@
 #include <QQmlApplicationEngine>
 #include <QDebug>
 #include <QDir>
+#include <cstdlib>
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+    // QObject::connect(
+    //     &engine,
+    //     &QQmlApplicationEngine::objectCreationFailed,
+    //     &app,
+    //     []() { QCoreApplication::exit(-1); },
+    //     Qt::QueuedConnection);
 
-    QString appDir = QGuiApplication::applicationDirPath();
+    // QDir binaryDir = QDir(BINARY_PATH);
+    // engine.addImportPath(binaryDir.filePath("qml"));
 
-    qDebug() << QDir::currentPath();
-
-    QString qmlImportPath = QDir(appDir).filePath("../qml");
-    QString componentsImportPath = QDir(appDir).filePath("../qml/Modules/Components");
-    QString stylesImportPath = QDir(appDir).filePath("../qml/Modules/Styles");
-
-    engine.addImportPath(qmlImportPath);
-    engine.addImportPath(componentsImportPath);
-    engine.addImportPath(stylesImportPath);
-
-    // for(const auto& path : engine.importPathList()) {
+    // for(const auto& path: engine.importPathList()) {
     //     qDebug() << path;
     // }
 
-    QObject::connect(
-        &engine,
-        &QQmlApplicationEngine::objectCreationFailed,
-        &app,
-        []() { QCoreApplication::exit(-1); },
-        Qt::QueuedConnection);
-
-    engine.load(QUrl(QStringLiteral("../qml/Main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/Main.qml")));
 
     return app.exec();
 }

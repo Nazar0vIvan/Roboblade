@@ -1,6 +1,12 @@
 pragma Singleton
 import QtQuick 2.12
 
+Rectangle {
+  width: 50; height: 50
+  color: "red"
+}
+
+/*
 QtObject {
   readonly property QtObject background: QtObject {
     readonly property color dp00: "#121212"
@@ -82,4 +88,4 @@ QtObject {
   readonly property int drawerWidth: 220
 }
 
-
+*/
