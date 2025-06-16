@@ -1,0 +1,2 @@
+module qml.Modules.Styles
+singleton Styles 1.0 Styles.qml

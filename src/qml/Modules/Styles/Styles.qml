@@ -1,11 +1,9 @@
 pragma Singleton
 import QtQuick 2.12
 
-Rectangle {
-  width: 50; height: 50
-  color: "red"
+QtObject {
+    readonly property color foo: "red"
 }
-
 /*
 QtObject {
   readonly property QtObject background: QtObject {

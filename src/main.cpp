@@ -9,6 +9,9 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+
+    engine.addImportPath("qrc:/qt/qml/roboblade/");
+
     // QObject::connect(
     //     &engine,
     //     &QQmlApplicationEngine::objectCreationFailed,
@@ -17,13 +20,13 @@ int main(int argc, char *argv[])
     //     Qt::QueuedConnection);
 
     // QDir binaryDir = QDir(BINARY_PATH);
-    // engine.addImportPath(binaryDir.filePath("qml"));
+    // engine.addImportPath(binaryDir.filePath("qml/Modules/Styles"));
 
-    // for(const auto& path: engine.importPathList()) {
-    //     qDebug() << path;
-    // }
+    for(const auto& path: engine.importPathList()) {
+         qDebug() << path;
+    }
 
-    engine.load(QUrl(QStringLiteral("qrc:/Main.qml")));
+    engine.loadFromModule("roboblade", "Main");
 
     return app.exec();
 }

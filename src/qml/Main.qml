@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 
+import qml.Modules.Styles 1.0 as Styles
+
 ApplicationWindow {
   id: app
 

@@ -1,19 +1,16 @@
 #add_subdirectory(Modules/Styles)
 
-qt_add_qml_module(qmlModule
-    URI untitled
+qt_add_qml_module(roboblade_target
+    URI qml
     VERSION 1.0
-    RESOURCE_PREFIX /
+    NO_PLUGIN
     QML_FILES
         Main.qml
-    RESOURCES
-        resources.qrc
 )
 
-
-target_link_libraries(qmlModule
-    PUBLIC Qt6::Quick
-)
+#target_link_libraries(roboblade_target
+#    PUBLIC Qt6::Quick
+#)
 
 
 #Logger.qml
