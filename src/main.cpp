@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    engine.addImportPath("qrc:/qt/qml/roboblade/");
+    engine.addImportPath("qrc:/qt/qml/roboblade_qml_module/");
 
     // QObject::connect(
     //     &engine,
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
          qDebug() << path;
     }
 
-    engine.loadFromModule("roboblade", "Main");
+    engine.loadFromModule("roboblade_qml_module", "Main");
 
     return app.exec();
 }

@@ -16,14 +16,16 @@
 #   socketrsi.h
 # )
 
-qt_add_executable(roboblade_target
+qt_add_executable(roboblade
   main.cpp
   #${SOURCES}
   #${HEADERS}
 )
 
-qt_add_qml_module(roboblade_target
-    URI roboblade
+set(QML_IMPORT_PATH ${CMAKE_BINARY_DIR}/src/roboblade_qml_module CACHE STRING "" FORCE)
+
+qt_add_qml_module(roboblade
+    URI roboblade_qml_module
     VERSION 1.0
     NO_PLUGIN
     QML_FILES
@@ -33,7 +35,7 @@ qt_add_qml_module(roboblade_target
       qml/Modules/Styles/qmldir
 )
 
-target_link_libraries(roboblade_target
+target_link_libraries(roboblade
     PRIVATE Qt6::Core
     PRIVATE Qt6::Gui
     PRIVATE Qt6::Qml
@@ -41,10 +43,10 @@ target_link_libraries(roboblade_target
     PRIVATE Qt6::Quick
 )
 
-target_compile_definitions(roboblade_target PRIVATE BINARY_PATH="${CMAKE_BINARY_DIR}")
+target_compile_definitions(roboblade PRIVATE BINARY_PATH="${CMAKE_BINARY_DIR}")
 
 include(GNUInstallDirs)
-install(TARGETS roboblade_target
+install(TARGETS roboblade
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
