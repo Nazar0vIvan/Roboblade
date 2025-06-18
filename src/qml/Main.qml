@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 
 import qml.Modules.Styles 1.0
+import Components 1.0
 
 ApplicationWindow {
   id: app

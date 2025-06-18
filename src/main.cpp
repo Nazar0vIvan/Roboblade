@@ -10,7 +10,8 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    engine.addImportPath("qrc:/qt/qml/roboblade_qml_module/");
+    engine.addImportPath("qrc:/qt/qml/roboblade_qml_module");
+    engine.addImportPath("qrc:/qt/qml/Components");
 
     // QObject::connect(
     //     &engine,
@@ -22,9 +23,9 @@ int main(int argc, char *argv[])
     // QDir binaryDir = QDir(BINARY_PATH);
     // engine.addImportPath(binaryDir.filePath("qml/Modules/Styles"));
 
-    for(const auto& path: engine.importPathList()) {
-         qDebug() << path;
-    }
+    // for(const auto& path: engine.importPathList()) {
+    //      qDebug() << path;
+    // }
 
     engine.loadFromModule("roboblade_qml_module", "Main");
 

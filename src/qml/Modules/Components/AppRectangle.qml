@@ -4,5 +4,5 @@ Rectangle {
     id: foo
 
     width: 50; height: 50
-		color: "red"
+		color: "orange"
 }
