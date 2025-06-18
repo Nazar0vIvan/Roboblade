@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Controls.Basic
 import QtQuick.Layouts 1.2
 
-import AppStyles 1.0
+import qml.Modules.Styles 1.0
 
 ComboBox{
     id: control
@@ -45,7 +45,7 @@ ComboBox{
         padding: 8
         background: Rectangle{ color: "transparent" }
         contentItem: Image{
-            source: "file:///" + applicationDirPath + "/icons/arrow_down.svg"
+            //source: "file:///" + applicationDirPath + "/icons/arrow_down.svg"
             fillMode: Image.PreserveAspectFit
             mipmap: true
             visible: control.hovered || control.contentItem.activeFocus || control.popup.visible

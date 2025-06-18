@@ -2,10 +2,10 @@ import QtQuick 2.12
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
-import AppStyles 1.0
-import Components 1.0
+import qml.Modules.Styles 1.0
+import qml.Modules.Components 1.0
 
-import "subsDrawer"
+import "SubsDrawer"
 
 Item{
   id: root
@@ -32,7 +32,7 @@ Item{
       color: "transparent"
     }
 
-    AppButton {
+    QxButton {
       id: subsButton
 
       Layout.preferredHeight: 30;  Layout.preferredWidth: 100;

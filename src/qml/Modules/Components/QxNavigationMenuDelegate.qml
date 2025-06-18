@@ -1,9 +1,9 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.2
-import Qt5Compat.GraphicalEffects
+//import Qt5Compat.GraphicalEffects
 
-import AppStyles 1.0
+import qml.Modules.Styles 1.0
 
 Item{
     id: root
@@ -19,7 +19,7 @@ Item{
     property color selectionIconColor
     property color defaultIconColor
 
-    AppIcon{
+    QxIcon{
         id: icon
 
         anchors.centerIn: parent

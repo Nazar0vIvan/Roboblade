@@ -3,9 +3,9 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import Qt.labs.qmlmodels
 
-import AppStyles 1.0
-import Components 1.0
-import Widgets 1.0
+import qml.Modules.Styles 1.0
+import qml.Modules.Components 1.0
+import qml.Modules.Widgets 1.0
 
 TableView{
   id: tv

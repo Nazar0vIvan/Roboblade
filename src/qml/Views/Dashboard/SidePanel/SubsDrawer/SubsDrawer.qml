@@ -3,8 +3,8 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import Qt.labs.qmlmodels
 
-import AppStyles 1.0
-import Components 1.0
+import qml.Modules.Styles 1.0
+import qml.Modules.Components 1.0
 
 // change checkbox rectangle to circle in case of widget types 0 and 1
 // make unique parameter pick for widget types 0 and 1
@@ -62,7 +62,7 @@ Drawer{
         }
       }
 
-      AppTabButton{
+      QxTabButton{
         id: krcTabButton
 
         anchors.verticalCenter: parent.verticalCenter
@@ -70,7 +70,7 @@ Drawer{
         height: 35
         text: qsTr("KR C4")
       }
-      AppTabButton{
+      QxTabButton{
         id: ftsTabButton
 
         anchors.verticalCenter: parent.verticalCenter
@@ -78,7 +78,7 @@ Drawer{
         height: 35
         text: qsTr("F/T Sensor")
       }
-      AppTabButton{
+      QxTabButton{
         id: houTabButton
 
         anchors.verticalCenter: parent.verticalCenter
@@ -86,7 +86,7 @@ Drawer{
         height: 35
         text: qsTr("Houdini")
       }
-      AppTabButton{
+      QxTabButton{
         id: vfdTabButton
 
         anchors.verticalCenter: parent.verticalCenter
@@ -175,14 +175,14 @@ Drawer{
         height: root._searchBarHeight
         spacing: 10
 
-        AppToolButton{
+        QxToolButton{
           size: root._searchBarHeight - 12
           type: 9
           iconPath: "/dashboard/eraser.svg"
           todo: Action{}
         }
 
-        AppToolButton{
+        QxToolButton{
           size: root._searchBarHeight - 12
           type: 9
           iconPath: "/dashboard/settings.svg"

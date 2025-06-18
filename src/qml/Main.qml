@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 
 import qml.Modules.Styles 1.0
-import Components 1.0
+import qml.Modules.Components 1.0
 
 ApplicationWindow {
   id: app
@@ -11,8 +11,7 @@ ApplicationWindow {
   title: qsTr("Roboblade")
   visible: true
 
-  Rectangle {
+  QxButton {
     width: 50; height: 50
-    color: Styles.foo
   }
 }

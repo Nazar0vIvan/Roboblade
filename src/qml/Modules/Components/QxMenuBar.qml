@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 
-import qml.Styles 1.0
+import qml.Modules.Styles 1.0
 
 MenuBar{
   id: control
@@ -22,7 +22,7 @@ MenuBar{
   signal startTestTimer
   signal stopTestTimer
 
-  AppMenu {
+  QxMenu {
     title: qsTr("File")
 
     Action{ id: newFile; text: qsTr("New ...");     shortcut: StandardKey.New;  onTriggered: { control.newFile(); console.log("new") }}
@@ -39,7 +39,7 @@ MenuBar{
     Action{ id: quit; text: qsTr("Quit"); shortcut: StandardKey.Quit; onTriggered: { control.quit(); console.log("quit") }}
   }
 
-  AppMenu {
+  QxMenu {
     title: qsTr("Edit")
 
     Action{ id: undo; text: qsTr("Undo"); shortcut: StandardKey.Undo; onTriggered: { control.open(); console.log("undo") }}
@@ -57,7 +57,7 @@ MenuBar{
     Action{ id: paste; text: qsTr("Paste"); shortcut: StandardKey.Paste; onTriggered: { control.redo();   console.log("save") }}
   }
 
-  AppMenu {
+  QxMenu {
     title: qsTr("Tools")
 
     Action {
@@ -77,11 +77,11 @@ MenuBar{
     }
   }
 
-  AppMenu {
+  QxMenu {
     title: qsTr("View")
   }
 
-  AppMenu {
+  QxMenu {
     title: qsTr("Help")
   }
 

@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 import QtQml.Models 2.15
 
-import AppStyles 1.0
+import qml.Modules.Styles 1.0
 
 Item{
     id: root

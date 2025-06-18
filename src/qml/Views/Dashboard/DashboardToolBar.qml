@@ -1,12 +1,12 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
-import Qt5Compat.GraphicalEffects
+// import Qt5Compat.GraphicalEffects
 
-import AppStyles 1.0
-import Widgets 1.0
-import Components 1.0
-import Properties 1.0
+import qml.Modules.Styles 1.0
+import qml.Modules.Components 1.0
+import qml.Modules.Widgets 1.0
+import qml.Modules.Properties 1.0
 
 Rectangle{
   id: root
@@ -41,18 +41,18 @@ Rectangle{
 
   ButtonGroup{ id: dragModes }
 
-  AppPopup{ id: noPopup }
+  QxPopup{ id: noPopup }
 
-  AppPopup{
+  QxPopup{
     id: gridPopup
 
     componentHeight: _popupComponentHeight; font: _popupFont; spacing: _popupSpacing;
     labelWidth: _popupLabelWidth; fieldWidth: _popupFieldWidth; componentSpacing: _popupComponentSpacing
     components:[
-      AppFormComponent{
+      QxFormComponent{
         id: gridStep;
         labelName: qsTr("Step");
-        field: AppTextField{
+        field: QxTextField{
           text: "20"
           font.pixelSize: 12
           validator: IntValidator{ bottom: 0; top: 500 }
@@ -60,10 +60,10 @@ Rectangle{
           Component.onCompleted: editingFinished()
         }
       },
-      AppFormComponent{
+      QxFormComponent{
         id: gridOpacity
         labelName: qsTr("Opacity")
-        field: AppTextField{
+        field: QxTextField{
           text: "10%"
           font.pixelSize: 12
           validator: IntValidator{ bottom: 0; top: 100 }
@@ -71,10 +71,10 @@ Rectangle{
           Component.onCompleted: editingFinished()
         }
       },
-      AppFormComponent{
+      QxFormComponent{
         id: lineType
         labelName: qsTr("Line Type")
-        field: AppComboBox{
+        field: QxComboBox{
           anchors.leftMargin: contentItem.leftPadding
           font.pixelSize: 12
           valueRole: "value"
@@ -89,19 +89,19 @@ Rectangle{
           Component.onCompleted: { currentIndex = indexOfValue(Qt.SolidLine); editingFinished() }
         }
       },
-      AppFormComponent{
+      QxFormComponent{
         id: lineColor
         labelName: qsTr("Line Color")
-        field: ColorProperty{
+        field: ColorProperty {
           font.pixelSize: 12
           onEditingFinished: root.gridLineColorChanged(getColor())
           Component.onCompleted:{ editingFinished() }
         }
       },
-      AppFormComponent{
+      QxFormComponent{
         id: lineWidth
         labelName: qsTr("Line Width")
-        field: AppTextField{
+        field: QxTextField{
           text: "1"
           font.pixelSize: 12
           validator: IntValidator{ bottom: 0; top: 5000 }
@@ -112,16 +112,16 @@ Rectangle{
     ]
   }
 
-  AppPopup{
+  QxPopup{
     id: snapPopup
 
     componentHeight: _popupComponentHeight; font: _popupFont; spacing: _popupSpacing;
     labelWidth: _popupLabelWidth; fieldWidth: _popupFieldWidth; componentSpacing: _popupComponentSpacing
     components:[
-      AppFormComponent{
+      QxFormComponent{
         id: snapStep;
         labelName: qsTr("Step");
-        field: AppTextField{
+        field: QxTextField{
           text: "10"
           font.pixelSize: 12
           validator: IntValidator{ bottom: 0; top: 500 }
@@ -166,7 +166,7 @@ Rectangle{
       }
 
       // delegate parent - contentItem of the ListView !
-      delegate: AppToolButton{
+      delegate: QxToolButton{
 
         required property string section
         required property var popup

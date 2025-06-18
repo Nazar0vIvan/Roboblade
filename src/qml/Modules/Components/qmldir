@@ -1,0 +1,16 @@
+module qml.Modules.Components
+QxButton                 1.0 QxButton.qml
+QxComboBox               1.0 QxComboBox.qml
+QxFileUpload             1.0 QxFileUpload.qml
+QxFormComponent          1.0 QxFormComponent.qml
+QxIcon                   1.0 QxIcon.qml
+QxLinearGradientModel    1.0 QxLinearGradientModel.qml
+QxPopup                  1.0 QxPopup.qml
+QxScrollBar              1.0 QxScrollBar.qml
+QxSwitch                 1.0 QxSwitch.qml
+QxTabButton              1.0 QxTabButton.qml
+QxTextField              1.0 QxTextField.qml
+QxToolButton             1.0 QxToolButton.qml
+QxNavigationMenu         1.0 QxNavigationMenu.qml
+QxNavigationMenuDelegate 1.0 QxNavigationMenuDelegate.qml
+

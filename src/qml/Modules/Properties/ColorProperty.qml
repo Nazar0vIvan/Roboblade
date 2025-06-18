@@ -2,8 +2,8 @@ import QtQuick 2.12
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 
-import Components 1.0
-import AppStyles 1.0
+import qml.Modules.Styles 1.0
+import qml.Modules.Components 1.0
 
 Item{
     id: root
@@ -48,7 +48,7 @@ Item{
             }
         }
 
-        AppTextField{
+        QxTextField{
             id: txtColor
 
             Layout.preferredWidth: root.fieldWidth; Layout.preferredHeight: parent.height

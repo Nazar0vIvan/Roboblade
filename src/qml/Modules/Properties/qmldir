@@ -1,0 +1,9 @@
+module qml.Modules.Properties
+BorderProperty    1.0 BorderProperty.qml
+ColorProperty     1.0 ColorProperty.qml
+GeometryProperty  1.0 GeometryProperty.qml
+LineProperty      1.0 LineProperty.qml
+PropertiesSection 1.0 PropertiesSection.qml
+TextProperty      1.0 TextProperty.qml
+
+

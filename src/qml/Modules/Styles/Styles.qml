@@ -1,10 +1,7 @@
 pragma Singleton
 import QtQuick 2.12
 
-QtObject {
-    readonly property color foo: "red"
-}
-/*
+
 QtObject {
   readonly property QtObject background: QtObject {
     readonly property color dp00: "#121212"
@@ -86,4 +83,3 @@ QtObject {
   readonly property int drawerWidth: 220
 }
 
-*/

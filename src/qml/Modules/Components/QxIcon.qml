@@ -1,9 +1,9 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.2
-import Qt5Compat.GraphicalEffects
+//import Qt5Compat.GraphicalEffects
 
-import AppStyles 1.0
+import qml.Modules.Styles 1.0
 
 Item{
     id: root
@@ -29,11 +29,11 @@ Item{
         visible: false
         antialiasing: true
     }
-    OpacityMask{
-        id: mask
+    // OpacityMask{
+    //     id: mask
 
-        anchors.fill: parent
-        source: colorRect
-        maskSource: icon
-    }
+    //     anchors.fill: parent
+    //     source: colorRect
+    //     maskSource: icon
+    // }
 }

@@ -3,8 +3,8 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtCharts 2.2
 
-import AppStyles 1.0
-import Components 1.0
+import qml.Modules.Styles 1.0
+import qml.Modules.Components 1.0
 
 Item{
   id: root

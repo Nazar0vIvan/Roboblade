@@ -2,8 +2,8 @@ import QtQuick 2.12
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 
-import AppStyles 1.0
-import Components 1.0
+import qml.Modules.Styles 1.0
+import qml.Modules.Components 1.0
 
 Item {
     id: root
@@ -31,7 +31,7 @@ Item {
 
         height: _componentHeight;
 
-        AppFormComponent{
+        QxFormComponent{
             id: radiusFormComponent
 
             Layout.preferredHeight: _componentHeight
@@ -45,7 +45,7 @@ Item {
                 fillMode: Image.PreserveAspectFit
                 mipmap: true
             }
-            field: AppTextField{
+            field: QxTextField{
                 id: radiusField
 
                 width: _fieldWidth; height: _componentHeight
@@ -57,7 +57,7 @@ Item {
             }
         }
 
-        AppFormComponent{
+        QxFormComponent{
             id: lineWidthFormComponent
 
             Layout.preferredHeight: _componentHeight
@@ -71,7 +71,7 @@ Item {
                 fillMode: Image.PreserveAspectFit
                 mipmap: true
             }
-            field: AppTextField{
+            field: QxTextField{
                 id: lineWidthField
 
                 width: _fieldWidth; height: _componentHeight

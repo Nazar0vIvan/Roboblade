@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.2
 // needs to add due to Qt6.3 and Windows bug: control.pressed doesn't work on Windows
 import QtQuick.Controls.Basic
 
-import Modules.Styles 1.0 as Styles
+import qml.Modules.Styles 1.0
 
 Button {
     id: control
@@ -30,7 +30,7 @@ Button {
 
         spacing: 0
 
-        AppIcon{
+        QxIcon{
             Layout.preferredWidth: control.iconSize; Layout.preferredHeight: control.iconSize
             source: control.iconPath
             color: control.iconColor

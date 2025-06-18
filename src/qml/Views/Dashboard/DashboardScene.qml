@@ -1,10 +1,9 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 
-import AppStyles 1.0
-
-import Widgets 1.0
-import Components 1.0
+import qml.Modules.Styles 1.0
+import qml.Modules.Components 1.0
+import qml.Modules.Widgets 1.0
 
 Rectangle{
   id: root
@@ -244,7 +243,7 @@ Rectangle{
     }
   }
 
-  AppScrollBar{
+  QxScrollBar{
     id: vBar
 
     view: flick
@@ -259,7 +258,7 @@ Rectangle{
     iborderw: 1
   }
 
-  AppScrollBar{
+  QxScrollBar{
     id: hBar
 
     view: flick

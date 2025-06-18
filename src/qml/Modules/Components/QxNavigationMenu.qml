@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.2
 
-import AppStyles 1.0
+import qml.Modules.Styles 1.0
 
 Item{
     id: root
@@ -26,7 +26,7 @@ Item{
         interactive: false
         model: root.model
 
-        delegate: NavigationMenuDelegate {
+        delegate: QxNavigationMenuDelegate {
             width: parent.width; height: root.elemHeight
             iconSize: root.elemIconSize
             selectionIconColor: root.elemSelectionIconColor

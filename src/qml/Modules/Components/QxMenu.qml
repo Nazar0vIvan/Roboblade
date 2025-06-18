@@ -1,7 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.15
 
-import qml.Styles 1.0
+import qml.Modules.Styles 1.0
 
 Menu {
   delegate: MenuItem {

@@ -2,8 +2,8 @@ import QtQuick 2.12
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 
-import AppStyles 1.0
-import Components 1.0
+import qml.Modules.Styles 1.0
+import qml.Modules.Components 1.0
 
 Item {
     id: root
@@ -33,7 +33,7 @@ Item {
         width: parent.width
         spacing: 5
 
-        AppTextField{
+        QxTextField{
             id: txtField
 
             Layout.fillWidth: true; Layout.preferredHeight: 25
@@ -44,7 +44,7 @@ Item {
             onEditingFinished: root.textEditingFinished()
         }
 
-        AppComboBox{
+        QxComboBox{
             id: fontFamilies
 
             Layout.fillWidth: true; Layout.preferredHeight: 25
@@ -60,7 +60,7 @@ Item {
             Layout.fillWidth: true; Layout.preferredHeight: 25
             spacing: 10
 
-            AppComboBox{
+            QxComboBox{
                 id: fontWeights
 
                 Layout.preferredWidth: 95; Layout.preferredHeight: parent.height
@@ -82,7 +82,7 @@ Item {
                 onEditingFinished: root.weightEditingFinished()
                 Component.onCompleted: { currentIndex = indexOfValue(Font.Normal) }
             }
-            AppComboBox{
+            QxComboBox{
                 id: fontPixelSizes
 
                 Layout.preferredWidth: 60; Layout.preferredHeight: parent.height

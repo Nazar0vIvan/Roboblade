@@ -2,8 +2,8 @@ import QtQuick 2.12
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 
-import AppStyles 1.0
-import Components 1.0
+import qml.Modules.Styles 1.0
+import qml.Modules.Components 1.0
 
 Item{
     id: root
@@ -78,7 +78,7 @@ Item{
         }
         */
 
-        AppFormComponent{
+        QxFormComponent{
             id: xProp
 
             Layout.preferredHeight: _componentHeight
@@ -86,7 +86,7 @@ Item{
             labelWidth: _labelWidth
             labelName: "X"
             font: Styles.fonts.caption
-            field: AppTextField{
+            field: QxTextField{
                 width: _fieldWidth; height: _componentHeight
                 backgroundColor: "transparent"
                 validator: IntValidator{ bottom: 0 }
@@ -94,7 +94,7 @@ Item{
             }
         }
 
-        AppFormComponent{
+        QxFormComponent{
             id: yProp
 
             Layout.preferredHeight: _componentHeight
@@ -102,7 +102,7 @@ Item{
             labelWidth: _labelWidth
             labelName: "Y"
             font: Styles.fonts.caption
-            field: AppTextField{
+            field: QxTextField{
                 width: _fieldWidth; height: _componentHeight
                 backgroundColor: "transparent"
                 validator: IntValidator{ bottom: 0 }
@@ -110,7 +110,7 @@ Item{
             }
         }
 
-        AppFormComponent{
+        QxFormComponent{
             id: wProp
 
             Layout.preferredHeight: _componentHeight
@@ -118,7 +118,7 @@ Item{
             labelWidth: _labelWidth
             labelName: "W"
             font: Styles.fonts.caption
-            field: AppTextField{
+            field: QxTextField{
                 width: _fieldWidth; height: _componentHeight
                 backgroundColor: "transparent"
                 validator: IntValidator{ bottom: 0 }
@@ -126,7 +126,7 @@ Item{
             }
         }
 
-        AppFormComponent{
+        QxFormComponent{
             id: hProp
 
             Layout.preferredHeight: _componentHeight
@@ -134,7 +134,7 @@ Item{
             labelWidth: _labelWidth
             labelName: "H"
             font: Styles.fonts.caption
-            field: AppTextField{
+            field: QxTextField{
                 width: _fieldWidth; height: _componentHeight
                 backgroundColor: "transparent"
                 validator: IntValidator{ bottom: 0 }

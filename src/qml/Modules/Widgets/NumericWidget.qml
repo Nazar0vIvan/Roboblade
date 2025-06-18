@@ -5,8 +5,8 @@ import QtQuick.Layouts 1.2
 // needs to add due to Qt6.3 and Windows bug: root.pressed doesn't work on Windows
 // import QtQuick.Controls.Basic
 
-import AppStyles 1.0
-import Components 1.0
+import qml.Modules.Styles 1.0
+import qml.Modules.Components 1.0
 
 DashboardWidget{
     id: root
@@ -50,7 +50,7 @@ DashboardWidget{
         onTriggered: { value = Math.random() * (max - min) + min }
     }
 
-    LinearGradientModel{
+    QxLinearGradientModel{
         id: linearGradient
 
         stopToColor: new Map([ [0, minColor], [50, midColor], [100, maxColor] ])

@@ -2,8 +2,8 @@ import QtQuick 2.12
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 
-import AppStyles 1.0
-import Properties 1.0
+import qml.Modules.Styles 1.0
+import qml.Modules.Properties 1.0
 
 ObjectModel{
   id: root

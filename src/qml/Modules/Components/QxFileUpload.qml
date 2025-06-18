@@ -6,7 +6,7 @@ import QtQuick.Dialogs
 // needs to add due to Qt6.3 and Windows bug: root.pressed doesn't work on Windows
 import QtQuick.Controls.Basic
 
-import AppStyles 1.0
+import qml.Modules.Styles 1.0
 
 Item{
     id: root
@@ -40,7 +40,7 @@ Item{
 
         height: root.height
 
-        AppTextField{
+        QxTextField{
             id: txtField
 
             Layout.preferredWidth: fieldWidth - root.height
@@ -58,7 +58,7 @@ Item{
             padding: btnPadding      
             contentItem: Image{
                 fillMode: Image.PreserveAspectFit
-                source: "file:///" + applicationDirPath + "/icons/open.svg"
+                //source: "file:///" + applicationDirPath + "/icons/open.svg"
                 mipmap: true
             }
             background: Rectangle{

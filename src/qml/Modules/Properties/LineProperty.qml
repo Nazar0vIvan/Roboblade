@@ -2,9 +2,9 @@ import QtQuick 2.12
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.2
 
-import AppStyles 1.0
+import qml.Modules.Styles 1.0
+import qml.Modules.Components 1.0
 
-import Components 1.0
 
 Item {
     id: root
@@ -34,7 +34,7 @@ Item {
             Layout.fillWidth: true; Layout.preferredHeight: 25
             spacing: 10
 
-            AppComboBox{
+            QxComboBox{
                 id: lineStyle
 
                 Layout.preferredWidth: 95; Layout.preferredHeight: parent.height
@@ -50,7 +50,7 @@ Item {
 
                 Component.onCompleted: { currentIndex = indexOfValue(Qt.SolidLine) }
             }
-            AppComboBox{
+            QxComboBox{
                 id: lineWidth
 
                 Layout.preferredWidth: 60; Layout.preferredHeight: parent.height
@@ -60,10 +60,9 @@ Item {
                 Component.onCompleted: { currentIndex = indexOfValue(1) }
             }
         }
-        ColorProperty{
-            id: lineColor
-
-            wgt: root.wgt
-        }
+        // ColorProperty{
+        //     id: lineColor
+        //     wgt: root.wgt
+        // }
     }
 }

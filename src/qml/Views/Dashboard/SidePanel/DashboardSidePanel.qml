@@ -3,9 +3,9 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQml.Models 2.15
 
-import AppStyles 1.0
-import Components 1.0
-import Widgets 1.0
+import qml.Modules.Styles 1.0
+import qml.Modules.Components 1.0
+import qml.Modules.Widgets 1.0
 
 Rectangle{
   id: root
@@ -35,7 +35,7 @@ Rectangle{
         }
       }
 
-      AppTabButton{
+      QxTabButton{
         id: propsTabButton
 
         anchors{ verticalCenter: parent.verticalCenter }
@@ -43,7 +43,7 @@ Rectangle{
         text: qsTr("Properties")
 
       }
-      AppTabButton{
+      QxTabButton{
         id: subsTabButton
 
         anchors.verticalCenter: parent.verticalCenter

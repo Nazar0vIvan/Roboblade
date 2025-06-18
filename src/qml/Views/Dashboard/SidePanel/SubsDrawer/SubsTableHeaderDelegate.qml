@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.15
 
 import QtQuick.Controls.Basic
 
-import AppStyles 1.0
+import qml.Modules.Styles 1.0
 
 Item{
   id: control

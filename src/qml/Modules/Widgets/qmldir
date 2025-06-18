@@ -1,0 +1,6 @@
+module qml.Modules.Widgets
+DashboardWidget 1.0 DashboardWidget.qml
+GaugeWidget     1.0 GaugeWidget.qml
+LineChartWidget 1.0 LineChartWidget.qml
+NumericWidget   1.0 NumericWidget.qml
+WidgetFactory   1.0 widgetFactory.js

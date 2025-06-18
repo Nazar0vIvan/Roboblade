@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     engine.addImportPath("qrc:/qt/qml/roboblade_qml_module");
-    engine.addImportPath("qrc:/qt/qml/Components");
+    engine.addImportPath("qrc:/qml/Modules/");
 
     // QObject::connect(
     //     &engine,

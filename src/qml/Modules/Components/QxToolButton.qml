@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.2
 // needs to add due to Qt6.3 and Windows bug: control.pressed doesn't work on Windows
 import QtQuick.Controls.Basic
 
-import AppStyles 1.0
+import qml.Modules.Styles 1.0
 
 ToolButton{
     id: control
@@ -34,7 +34,7 @@ ToolButton{
 
         height: parent.height
 
-        AppIcon{
+        QxIcon{
             id: image
 
             // aspectRation > 1 => width > height => height = size and width must be increased
@@ -110,7 +110,7 @@ ToolButton{
             topPadding: dropDownButton.hovered ? 5 : 0
             Behavior on topPadding {NumberAnimation {duration: 100} }
             contentItem: Image{
-                source: "file:///" + applicationDirPath + "/icons/arrow_down.svg"
+                //source: "file:///" + applicationDirPath + "/icons/arrow_down.svg"
                 fillMode: Image.PreserveAspectFit
                 mipmap: true
             }
