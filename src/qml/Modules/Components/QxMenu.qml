@@ -1,5 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.15
+// import Qt5Compat.GraphicalEffects
 
 import qml.Modules.Styles 1.0
 
@@ -20,8 +21,15 @@ Menu {
         fillMode: Image.PreserveAspectFit
         smooth: true
         mipmap: true
-      }
 
+        // Colorize{
+        //   anchors.fill: parent
+
+        //   source: parent
+        //   saturation: 0.0
+        //   visible: !menuItem.enabled
+        // }
+      }
     }
     contentItem: Text {
       leftPadding: menuItem.icon.source ? menuItem.indicator.width : 0

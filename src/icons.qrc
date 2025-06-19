@@ -1,0 +1,42 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="logo.svg">../assets/icons/logo.svg</file>
+        <file alias="dashboard/adjust.svg">../assets/icons/dashboard/adjust.svg</file>
+        <file alias="dashboard/arrow_down.svg">../assets/icons/dashboard/arrow_down.svg</file>
+        <file alias="dashboard/arrow_left.svg">../assets/icons/dashboard/arrow_left.png</file>
+        <file alias="dashboard/arrow_right.svg">../assets/icons/dashboard/arrow_right.svg</file>
+        <file alias="dashboard/bar_chart.svg">../assets/icons/dashboard/bar_chart.svg</file>
+        <file alias="dashboard/eraser.svg">../assets/icons/dashboard/eraser.svg</file>
+        <file alias="dashboard/fullscreen.svg">../assets/icons/dashboard/fullscreen.svg</file>
+        <file alias="dashboard/gauge.svg">../assets/icons/dashboard/gauge.svg</file>
+        <file alias="dashboard/grid.svg">../assets/icons/dashboard/grid.svg</file>
+        <file alias="dashboard/group.svg">../assets/icons/dashboard/group.svg</file>
+        <file alias="dashboard/line_chart.svg">../assets/icons/dashboard/line_chart.svg</file>
+        <file alias="dashboard/line_width.svg">../assets/icons/dashboard/line_width.svg</file>
+        <file alias="dashboard/numeric.svg">../assets/icons/dashboard/numeric.svg</file>
+        <file alias="dashboard/pie_chart.svg">../assets/icons/dashboard/pie_chart.svg</file>
+        <file alias="dashboard/radius.svg">../assets/icons/dashboard/radius.svg</file>
+        <file alias="dashboard/search.svg">../assets/icons/dashboard/search.svg</file>
+        <file alias="dashboard/settings.svg">../assets/icons/dashboard/settings.svg</file>
+        <file alias="dashboard/snap.svg">../assets/icons/dashboard/snap.svg</file>
+        <file alias="dashboard/table.svg">../assets/icons/dashboard/table.svg</file>
+        <file alias="dashboard/text.svg">../assets/icons/dashboard/text.svg</file>
+        <file alias="dashboard/tick.svg">../assets/icons/dashboard/tick.svg</file>
+        <file alias="dashboard/vfd.svg">../assets/icons/dashboard/vfd.svg</file>
+        <file alias="menu/open.svg">../assets/icons/menu/open.svg</file>
+        <file alias="menu/play.svg">../assets/icons/menu/play.svg</file>
+        <file alias="menu/power.svg">../assets/icons/menu/power.svg</file>
+        <file alias="menu/redo.svg">../assets/icons/menu/redo.svg</file>
+        <file alias="menu/save.svg">../assets/icons/menu/save.svg</file>
+        <file alias="menu/save_as.svg">../assets/icons/menu/save_as.svg</file>
+        <file alias="menu/stop.svg">../assets/icons/menu/stop.svg</file>
+        <file alias="menu/timer.svg">../assets/icons/menu/timer.svg</file>
+        <file alias="menu/undo.svg">../assets/icons/menu/undo.svg</file>
+        <file alias="navigation/dashboard.svg">../assets/icons/navigation/dashboard.svg</file>
+        <file alias="navigation/help.svg">../assets/icons/navigation/help.svg</file>
+        <file alias="navigation/model.svg">../assets/icons/navigation/model.svg</file>
+        <file alias="navigation/network.svg">../assets/icons/navigation/network.svg</file>
+        <file alias="navigation/scene.svg">../assets/icons/navigation/scene.svg</file>
+        <file alias="navigation/settings.svg">../assets/icons/navigation/settings.svg</file>
+    </qresource>
+</RCC>

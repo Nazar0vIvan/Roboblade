@@ -16,6 +16,8 @@
 #   socketrsi.h
 # )
 
+## QML ##
+
 set(QML_FILES
   qml/Main.qml
   qml/Logger.qml
@@ -34,6 +36,11 @@ set(QML_FILES
   qml/Views/Network/Network.qml
   qml/Views/Network/NetworkTable.qml
   qml/Views/Network/NetworkTableItemDelegate.qml
+  qml/Views/Scene/Scene.qml
+  qml/Views/Settings/SettingsDashboardTab.qml
+  qml/Views/Settings/SettingsNetworkTab.qml
+  qml/Views/Settings/SettingsSection.qml
+  qml/Views/Settings/SettingsView.qml
   qml/Navigation/Logo.qml
   qml/Navigation/NavigationPanel.qml
   #qml/Navigation/NavigationMenu.qml
@@ -87,6 +94,8 @@ set(QML_FILES_QMLDIRS
   qml/Modules/Properties/qmldir
 )
 
+## --------------------------------------------------------------------------- ##
+
 qt_add_executable(roboblade
   main.cpp
   #${SOURCES}
@@ -108,6 +117,8 @@ qt_add_qml_module(roboblade
       ${QML_FILES_PROPERTIES}
     RESOURCES
       ${QML_FILES_QMLDIRS}
+      ${ICONS}
+      RESOURCES icons.qrc
 )
 
 target_link_libraries(roboblade

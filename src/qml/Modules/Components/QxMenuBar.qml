@@ -100,6 +100,11 @@ MenuBar{
     }
   }
   background: Rectangle{ color: Styles.background.dp00 }
+
+  Component.onCompleted: {
+    control.startTestTimer.connect(testTimer.start);
+    control.stopTestTimer.connect(testTimer.stop);
+  }
 }
 
 
